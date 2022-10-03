@@ -1,0 +1,14 @@
+{
+  "name": "modernui",
+  "version": "1.0.0",
+  "description": "Learn TailwindCss via building modern UI",
+  "main": "index.js",
+  "author": "Mr Nishanth",
+  "license": "MIT",
+  "scripts": {
+    "watch": "yarn tailwindcss -i ./src/input.css -o ./public/css/styles.css --watch"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.1.8"
+  }
+}
