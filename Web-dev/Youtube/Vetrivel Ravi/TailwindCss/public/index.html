@@ -4,11 +4,38 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="./css/styles.css" rel="stylesheet">
+  <!-- BoxIcons CDN Links -->
+  <link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+  <!--end of BoxIcons CDN Links -->
   <title>Beats | Promotion</title>
 </head>
 <body>
-  <h1 class="text-3xl font-bold underline">
-    Hello world!
-  </h1>
+  <!-- hero images -->
+  <img src="./img/hero.jpg" alt="Hero Banner" 
+  class="
+  absolute top-0 right-0 w-full h-full object-cover
+  -z-10 "
+  >
+  <!-- end of hero images -->
+  <header class="w-full px-6 py-3 flex items-center justify-between">
+    <img src="./img/logo.png" alt="Logo" class="w-12">
+    <!-- Mobile Navigation -->
+    <nav class="flex md:hidden items-center justify-center">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Products</a></li>
+      <li><a href="#">Services</a></li>
+      <li><a href="#">Contact US</a></li>
+    </nav>
+    <!-- Medium device navigation -->
+    <nav class="hidden md:flex flex-col">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Products</a></li>
+      <li><a href="#">Services</a></li>
+      <li><a href="#">Contact US</a></li>
+    </nav>
+    <i class='bx bx-menu-alt-right text-3xl text-gray-50'></i>
+
+  </header>
 </body>
 </html>
