@@ -20,7 +20,54 @@ const getAllUsers = asyncHandler(
 )
 
 
+/**
+ * @desc Create a new user
+ * @route POST /users
+ * @access Private
+ */
+ const createNewUser = asyncHandler(
+    async (req, res) => {
+        const { username, password, roles } = req.body
 
+        // Confirm data
+        if (!username || !password || !Array.isArray(roles) || !roles.length) {
+            return res.status(400).json({ message: "All fields must be provided" })
+        }
+
+        // Check for existing users
+        const duplicate = await User.findOne({ username }).lean().exec()
+
+        if (duplicate) {
+            return res.status(409).json({ message: "User already exists" })
+        }
+
+        // Hash password
+        const hashPassword = await bcrypt.hash(password, 10) // 10 = salt rounds
+
+        const userObject = {
+            username,
+            "password": hashPassword,
+            roles
+        }
+
+        // Create and store new user
+        const user = await User.create(userObject)
+
+        if (user) {
+            // created
+            res.status(201).json({
+                message: `New user ${username} created`
+            })
+        } else {
+            // not created
+            res.status(400).json({
+                message: "Invalid user data received"
+            })
+        }
+
+
+    }
+)
 
 
 /**
