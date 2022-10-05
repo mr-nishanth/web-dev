@@ -84,6 +84,7 @@ const updateNote = asyncHandler(async (req, res) => {
         return res.status(409).json({ message: 'Duplicate note title' })
     }
 
+    
     note.user = user
     note.title = title
     note.text = text
