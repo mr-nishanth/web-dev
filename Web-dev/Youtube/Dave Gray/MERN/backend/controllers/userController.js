@@ -77,6 +77,39 @@ const getAllUsers = asyncHandler(
  */
 const updateUser = asyncHandler(
     async (req, res) => {
+        const {id,username,roles,active,password} = req.body
+        
+        // Confirm data
+        if (!id || !username || !password || !Array.isArray(roles) || !roles.length || typeof active !== "boolean") {
+            return res.status(400).json({ message: "All fields must be provided" })
+        }
+
+        const user = await User.findById(id).exec()
+
+        if (!user) {
+            return res.status(400).json({ message: "User not found" })
+        }
+
+        // Check for duplicate
+        const duplicate = await User.findOne({username}).lean().exec()
+        // Allow update to the original user
+        if (duplicate && duplicate?._id.toString() !== id) {
+            return res.status(409).json({ message: "Duplicate username" })
+        }
+        
+        // Update user data
+        user.username = username
+        user.roles = roles
+        user.active = active
+        
+        if(password){
+            // hashPassword
+            user.password = await bcrypt.hash(password,10)
+        }
+        
+        const updatedUser  = await user.save()
+
+        roles.json({message:`${updatedUser.username} updated`})
 
     }
 )
