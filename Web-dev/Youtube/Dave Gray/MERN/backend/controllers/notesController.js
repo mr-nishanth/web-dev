@@ -80,11 +80,12 @@ const updateNote = asyncHandler(async (req, res) => {
     const duplicate = await Note.findOne({ title }).lean().exec()
 
     // Allow renaming of the original note 
-    if (duplicate && duplicate?._id.toString() !== id) {
+    if (duplicate && duplicate?._id.toString() !== id) {    
         return res.status(409).json({ message: 'Duplicate note title' })
     }
 
     
+
     note.user = user
     note.title = title
     note.text = text
