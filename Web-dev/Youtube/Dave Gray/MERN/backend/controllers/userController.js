@@ -83,8 +83,8 @@ const updateUser = asyncHandler(
         const {id,username,roles,active,password} = req.body
         
         // Confirm data
-        if (!id || !username || !password || !Array.isArray(roles) || !roles.length || typeof active !== "boolean") {
-            return res.status(400).json({ message: "All fields must be provided" })
+        if (!id || !username || !Array.isArray(roles) || !roles.length || typeof active !== "boolean") {
+            return res.status(400).json({ message: "All fields are required" })
         }
 
         const user = await User.findById(id).exec()
@@ -112,7 +112,7 @@ const updateUser = asyncHandler(
         
         const updatedUser  = await user.save()
 
-        roles.json({message:`${updatedUser.username} updated`})
+        return res.json({message:`${updatedUser.username} updated`})
 
     }
 )
