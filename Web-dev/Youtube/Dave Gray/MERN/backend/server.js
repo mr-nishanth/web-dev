@@ -36,6 +36,8 @@ app.use("/", require("./routes/root.routes"))
 
 app.use("/users",require("./routes/user.routes"))
 
+app.use('/notes', require('./routes/note.routes'))
+
 app.all("*", (req, res) => {
     res.status(404)
     if (req.accepts("html")) {
