@@ -9,7 +9,7 @@ const getAllNotes = asyncHandler(
     async (req, res) => {
         // Get all notes from MongoDB
         const notes = await Note.find().lean()
-        console.log("Notes get called")
+
         // If no notes 
         if (!notes?.length) {
             return res.status(400).json({ message: 'No notes found' })
@@ -33,7 +33,7 @@ const getAllNotes = asyncHandler(
 const createNewNote = asyncHandler(
     async (req, res) => {
         const { user, title, text } = req.body
-        console.log("Notes post called")
+
         // Confirm data
         if (!user || !title || !text) {
             return res.status(400).json({ message: 'All fields are required' })
@@ -63,7 +63,7 @@ const createNewNote = asyncHandler(
 // @access Private
 const updateNote = asyncHandler(async (req, res) => {
     const { id, user, title, text, completed } = req.body
-    console.log("Notes Patch called")
+    
     // Confirm data
     if (!id || !user || !title || !text || typeof completed !== 'boolean') {
         return res.status(400).json({ message: 'All fields are required' })
@@ -100,7 +100,7 @@ const updateNote = asyncHandler(async (req, res) => {
 // @route DELETE /notes
 // @access Private
 const deleteNote = asyncHandler(async (req, res) => {
-    console.log("Notes delete called")
+    
     const { id } = req.body
 
     // Confirm data
