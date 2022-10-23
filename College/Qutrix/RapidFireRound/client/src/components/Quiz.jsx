@@ -1,4 +1,5 @@
 import React from 'react'
+import Questions from './Questions'
 
 export default function Quiz() {
     // Next button event handler
@@ -14,6 +15,7 @@ export default function Quiz() {
             <h1 className='title text-light'>Rapid Fire Round</h1>
 
             {/* display question */}
+            <Questions />
 
             {/* Button */}
             <div className="grid">
