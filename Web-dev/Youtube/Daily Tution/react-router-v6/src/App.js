@@ -8,8 +8,12 @@ function App() {
         {/* <a href="/invoice"><span>Invoice</span></a> */}
         {/* <a href="/expenses"><span>Expenses</span></a> */}
 
-        <Link to="/invoice"><span>Invoice</span></Link>
-        <Link to="/expenses"><span>Expenses</span></Link>
+        <Link to="/invoice" >
+          <span>Invoice</span>
+        </Link>
+        <Link to="/expenses" >
+          <span>Expenses</span>
+        </Link>
       </nav>
     </div>
   );

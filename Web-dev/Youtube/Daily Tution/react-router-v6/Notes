@@ -1,0 +1,7 @@
+<BrowserRouter> -> setup router
+    <Routes> -> switch
+        <Route> -> case
+            <App />
+        </Route>
+    </Routes>
+</BrowserRouter>
