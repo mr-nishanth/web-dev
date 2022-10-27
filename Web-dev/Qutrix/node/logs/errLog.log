@@ -1,0 +1,4 @@
+20221005	10:46:52	cf519c7b-77dc-4c9f-a891-a3bae6a171bd	SyntaxError: Unexpected token } in JSON at position 57	POST	/users	undefined
+20221005	11:27:01	7c007767-ae93-4577-b555-7aa4b4f5d2c8	TypeError: roles.json is not a function	PATCH	/users	undefined
+20221026	20:42:52	ba10bfa8-6510-4a65-b312-fc0dc91bcb84	Error: ENOENT: no such file or directory, stat 'C:\College\Qutrix\node\views\quiz\index.html'	GET	/qutrix/quiz	undefined
+20221026	20:43:01	23eeac03-929a-4a64-96d5-f677647afe14	Error: ENOENT: no such file or directory, stat 'C:\College\Qutrix\node\views\wordHunt\index.html'	GET	/qutrix/wordhunt/	undefined
