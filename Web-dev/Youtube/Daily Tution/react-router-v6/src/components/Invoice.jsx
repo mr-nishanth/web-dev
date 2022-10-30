@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { Link, Outlet } from "react-router-dom"
 import { getInvoices } from "./data"
 
 const Invoice = () => {
@@ -20,6 +20,7 @@ const Invoice = () => {
                     })
                 }
             </div>
+            <Outlet />
         </main>
     )
 }
