@@ -1,0 +1,15 @@
+TypeScript 
+
+tsc 
+
+Types:
+    Number String Boolean
+    Null Undefined Void
+    Object Array Tuples ...
+    
+
+    Any Never unkown 
+
+    let variableName:type =value
+
+    all type are in lowercase
