@@ -41,4 +41,18 @@ function consoleError(errmsg: string): void {
     console.log(errmsg)
 }
 
+consoleError()
+
+
+// Error 
+// THe never type represents values which are never observed .
+// In a return type , this means that the function  throws an exception or terminates execution of the program
+
+// never also appears when TypeScript determines there's nothing left in a union
+function consoleErrorNever(errmsg: string): never {
+    throw new Error(errmsg)
+}
+
+consoleErrorNever("1")
+
 export { }
