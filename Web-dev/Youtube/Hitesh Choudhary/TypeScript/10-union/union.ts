@@ -73,7 +73,7 @@ const dataNS: (string | number)[] = [1, 2, 3, "4"]
 const dataNSB: (string | number | boolean)[] = [1, 2, 3, "4", true]
 
 
-// constant
+// create constant
 let seatAllotment: "aisle" | "middle" | "window"
 
 seatAllotment = "aisle"
