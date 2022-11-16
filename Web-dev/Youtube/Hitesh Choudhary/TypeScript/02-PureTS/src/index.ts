@@ -44,7 +44,10 @@ class UserTS {
 
 class UserGS {
 
-    private _courseCount = 1
+    // private _courseCount = 1
+
+    protected _courseCount = 1
+
     readonly city: string = "Erode"
     constructor
         (
@@ -78,3 +81,10 @@ class UserGS {
     }
 }
 
+
+class SubUser extends UserGS{
+ isFamily:boolean = true;
+ changeCourseCount(){
+    this._courseCount = 4
+ }   
+}
