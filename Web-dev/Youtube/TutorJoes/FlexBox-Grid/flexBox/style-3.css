@@ -1,0 +1,112 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    border: .25rem solid black;
+}
+
+.flex-item {
+    font-size: 1rem;
+    font-style: italic;
+    text-align: center;
+    font-weight: bold;
+    padding: 1rem;
+}
+
+.item-1 {
+    background-color: lightblue;
+}
+
+.item-2 {
+    background-color: lightcoral;
+}
+
+.item-3 {
+    background-color: cyan;
+}
+
+.item-4 {
+    background-color: lightgoldenrodyellow;
+}
+
+.item-5 {
+    background-color: lightpink;
+}
+
+.item-6 {
+    background-color: lightgreen;
+}
+
+/* ======================================================== */
+
+/* item properties  */
+
+
+.container {
+    display: flex;
+}
+
+/* order */
+.item-1 {
+    order: 6;
+}
+
+.item-2 {
+    order: 5;
+}
+
+.item-6 {
+    order: -1;
+}
+
+.item-5 {
+    order: -2;
+}
+
+/* flex-grow */
+.item-3 {
+    flex-grow: 1;
+}
+
+.item-6 {
+    flex-grow: 2;
+}
+
+/* grow for all element evenly */
+.flex-item {
+    flex-grow: 1;
+}
+
+/* flex-shrink by default 1*/
+
+.flex-item {
+    flex-shrink: 1;
+    flex-shrink: 0;
+}
+
+/* flex-basis used to assign value to separated items */
+
+.item-3 {
+    flex-basis: auto; /*default */
+    flex-basis: 200px ;
+    flex-grow: 1;
+}
+
+/* flex is shorthand for flex-grow (0) flex-shrink (1) flex-basis (auto) */
+
+/* flex-grow */
+/* flex-grow flex-basis(%,px) */
+/* flex-grow flex-shrink */
+/* flex-grow flex-shrink flex-basis*/
+.item-5{
+    flex: 0 1 auto;
+    flex: 0 1 auto;
+
+    flex: 1 0 auto;
+}
+
+
+/* align-self */
