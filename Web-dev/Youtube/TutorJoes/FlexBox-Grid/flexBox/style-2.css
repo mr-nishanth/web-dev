@@ -1,0 +1,65 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    border: .25rem solid black;
+}
+
+.flex-item {
+    font-size: 1rem;
+    font-style: italic;
+    text-align: center;
+    font-weight: bold;
+    padding: 1rem;
+}
+
+.item-1 {
+    background-color: lightblue;
+}
+
+.item-2 {
+    background-color: lightcoral;
+}
+
+.item-3 {
+    background-color: cyan;
+}
+
+.item-4 {
+    background-color: lightgoldenrodyellow;
+}
+
+.item-5 {
+    background-color: lightpink;
+}
+
+.item-6 {
+    background-color: lightgreen;
+}
+/* ======================================================== */
+
+    /* align-content */
+.container {
+    display: flex;
+    height: 400px;
+    
+    flex-wrap: wrap;
+
+    align-content: stretch;
+    align-content: flex-start;
+    align-content: flex-end;
+    align-content: center;
+
+    /* zoom in */
+    align-content: space-around;
+    align-content: space-between;
+}
+
+/* 
+    align-items working on each element
+
+    align-content: working on whole elements
+*/
