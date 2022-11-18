@@ -1,0 +1,141 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    border: .25rem solid black;
+}
+
+.flex-item {
+    font-size: 1rem;
+    font-style: italic;
+    text-align: center;
+    font-weight: bold;
+    padding: 1rem;
+}
+
+.item-1 {
+    background-color: lightblue;
+}
+
+.item-2 {
+    background-color: lightcoral;
+}
+
+.item-3 {
+    background-color: cyan;
+}
+
+.item-4 {
+    background-color: lightgoldenrodyellow;
+}
+
+.item-5 {
+    background-color: lightpink;
+}
+
+.item-6 {
+    background-color: lightgreen;
+}
+/* ======================================================== */
+
+    /* Flex and inline-flex */
+.container {
+    display: flex;
+
+    /* div is default block level element */
+    display: inline-flex;
+}
+
+    /* flex-direction */
+.container{
+    display: flex;
+    
+    flex-direction: row;
+    flex-direction: row-reverse;
+    flex-direction: column;
+    flex-direction: column-reverse;
+}
+
+    /* flex-wrap */
+
+.container{
+
+    display: flex;
+    flex-direction: row;
+
+    flex-wrap: nowrap;
+    flex-wrap: wrap;
+    flex-wrap: wrap-reverse;
+
+    height: 300px;
+    flex-direction: column;
+    flex-wrap: wrap;
+    flex-wrap: wrap-reverse;
+}
+
+
+    /* flex-flow 
+        shorthand for flex-direction and flex-wrap
+    */
+
+.container{
+    
+    flex-flow: row wrap;
+}
+
+    /* gap => row-gap and column-gap */
+.container{
+    display: flex;
+    flex-flow: row-reverse wrap;
+    row-gap: 1rem;
+    column-gap: 1rem;
+
+    /* gap: gap-row gap-column */
+    gap: 2rem;
+}
+
+    /* 
+    justify-content => Main Axis Alignment
+    Row Main Axis => X
+    Column Main Axis => Y
+    */
+
+.item-1{
+    font-size: 2rem;
+}
+.container{
+    height: 80px;
+    gap: 0;
+    flex-flow: row wrap;
+
+    justify-content: flex-start;
+    justify-content: flex-end;
+    justify-content: space-around;
+    justify-content: space-between;
+    justify-content: space-evenly;
+    justify-content: center;
+}
+
+
+    /* 
+    align-item  => Cross Axis Alignment
+    Row Cross Axis => Y
+    Column Cross Axis => X
+    */
+.container {
+    height: 200px;
+    align-items: stretch;
+    
+    align-items: flex-end;
+    align-items: flex-start;
+    align-items: center;
+    
+    align-items: baseline;
+}
+
+    /*
+    align-content
+    */
