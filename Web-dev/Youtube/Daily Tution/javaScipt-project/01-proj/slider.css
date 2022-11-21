@@ -40,12 +40,16 @@ body {
 
 .frame {
     border-radius: .75rem;
-    width: 50vw;
+    width: 70vw;
     height: 50vh;
     overflow: hidden;
 }
 
-image {
+.slider {
+    display: flex;
+}
+
+.image {
     width: 100%;
     height: 100%;
     object-fit: cover;
