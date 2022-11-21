@@ -5,3 +5,7 @@ npx tailwindcss -i ./src/input.css -o ./build/css/style.css
 npx tailwindcss -i ./src/input.css -o ./build/css/style.css --watch
 
  npm i -D prettier-plugin-tailwindcss
+
+ https://emojipedia.org/
+
+ https://unicode-table.com/en/
