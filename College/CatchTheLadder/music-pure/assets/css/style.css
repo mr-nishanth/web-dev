@@ -1,0 +1,104 @@
+*,
+::before,
+::after {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    outline: 0;
+}
+
+.header {
+    height: 5rem;
+    width: 100vw;
+    background-color: rgba(44, 174, 186, 0.7);
+}
+
+.main {
+    height: calc(100vh - 5rem);
+    background: linear-gradient(rgba(44, 174, 186, 0.7), rgba(0, 0, 0, 0.7)),
+        url("../images/lightGreenMusic.jpg") center/cover no-repeat fixed;
+}
+
+ul {
+    list-style-type: none;
+}
+
+a {
+    text-decoration: none;
+    color: whitesmoke;
+}
+
+/* img {
+    width: 100%;
+    display: block;
+  } */
+img:not(.nav-logo) {
+    width: 100%;
+    display: block;
+}
+
+
+.btn {
+    text-transform: uppercase;
+    background: rgb(44, 174, 186);
+    color: whitesmoke;
+    padding: 0.375rem 0.75rem;
+    letter-spacing: 0.25rem;
+    display: inline-block;
+    /* transition: all 0.3s linear; */
+    font-size: 0.875rem;
+    border: 2px solid transparent;
+    cursor: pointer;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    border-radius: .5rem;
+    font-weight: 500;
+}
+
+.btn:hover {
+    color: white;
+    background: transparent;
+    border: .1rem solid rgba(44, 174, 186, 0.7);
+}
+.navbar{
+    padding: 2rem;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+#nav-logo{
+    cursor: pointer;
+}
+.auth-container{
+    width: 10vw;
+    /* border: 1px solid red; */
+    display: flex;
+    justify-content: space-between;
+}
+
+.main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+button{
+    outline: 0;
+    border: rgba(44, 174, 186, 0.7);
+    background-color: transparent;
+}
+
+.login-container{
+    height: 20vh;
+}
+.nav-logo{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    letter-spacing: .1rem;
+    
+}
+#logo{
+    color: darkcyan;
+    font-weight: bold;
+    font-size:1.5rem;
+    
+}

@@ -1,0 +1,60 @@
+.signup-container {
+
+    /* border: 2px solid rgba(34, 156, 167, 0.322); */
+    border: .2rem solid rgba(26, 142, 153, 0.322);
+    border-radius: 1rem;
+    padding: 2rem;
+    height: 60vh;
+    width: 30vw;
+
+}
+
+.login-container {
+    border: .2rem solid rgba(26, 142, 153, 0.322);
+    border-radius: 1rem;
+    padding: 2rem;
+    height: 40vh;
+    width: 30vw;
+}
+
+#login-container {
+    height: 25vh;
+}
+
+.signup-header {
+    text-transform: capitalize;
+    margin-bottom: 2rem;
+    text-align: center;
+    color: rgba(205, 211, 205, 0.83);
+}
+
+.login-header {
+    text-transform: capitalize;
+    margin-bottom: 2rem;
+    text-align: center;
+    color: rgba(205, 211, 205, 0.83);
+}
+
+.form-container {
+    height: 40vh;
+    width: 25vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    row-gap: .25rem;
+}
+
+input {
+    height: 2rem;
+    border-radius: .5rem;
+    outline: transparent;
+    border: transparent;
+    background-color: rgba(44, 174, 186, 0.7);
+}
