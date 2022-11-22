@@ -1,0 +1,16 @@
+
+// fetch('https://dummyjson.com/products')
+//     .then(res => res.json())
+//     .then(console.log);
+
+
+    // fetch('https://dummyjson.com/products')
+    // .then(response => response.text())
+    // .then(data => console.log(data));
+
+
+fetch('https://dummyjson.com/products/').then(
+  resp => resp.json() // this returns a promise
+).then(console.log).catch(ex => {
+  console.error(ex);
+})
