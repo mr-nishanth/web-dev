@@ -1,12 +1,26 @@
 import React from 'react'
+import { useDispatch } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
 import ProductCard from '../components/ProductCard'
 import { ProductList } from '../data/ProductList'
+import { addItem } from '../redux/reducer/card'
 
 export default function Product() {
     const params = useParams()
     const props = ProductList.find((ele) => ele.id === parseInt(params.id))
     const navigate = useNavigate()
+
+    // Redux
+    const dispatch = useDispatch()
+    // end of Redux
+    const handleAddToCart = () => {
+        dispatch(addItem({ ...props, count: 1 }))
+    }
+    const handleBuy = () => {
+
+    }
+
+
     return (
         <>
             <h4 className='mt-3'>Product</h4>
@@ -24,11 +38,11 @@ export default function Product() {
                         {
                             props.stock > 40 ? (
                                 <>
-                                    <button className='btn btn-success' onClick={() => navigate("/")}>Buy Now</button>
-                                    <button className='btn btn-primary' onClick={() => navigate("/")}>Add Cart</button>
+                                    <button className='btn btn-success' onClick={handleBuy}>Buy Now</button>
+                                    <button className='btn btn-primary' onClick={handleAddToCart}>Add Cart</button>
                                 </>
                             ) : (
-                                <button className='btn btn-outline-danger mx-auto' onClick={() => navigate("/")}>Out of Stack</button>
+                                <button className='btn btn-outline-danger mx-auto' >Out of Stack</button>
                             )
                         }
                     </div>
