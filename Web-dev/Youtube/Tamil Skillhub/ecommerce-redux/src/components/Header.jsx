@@ -10,7 +10,7 @@ export default function Header() {
                 <div className='col-sm-12 col-md-7 col-lg-6 col-xl-5 d-flex gap-3'>
                     <button className='btn btn-success' onClick={() => navigate("/")}>Home</button>
                     <input type="search" className='form-control' placeholder='Search product' />
-                    <button className='btn btn-success' onClick={() => navigate("/card")} > Cart</button>
+                    <button className='btn btn-success' onClick={() => navigate("/cart")} > Cart</button>
                 </div>
             </div>
         </header >
