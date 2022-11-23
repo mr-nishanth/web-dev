@@ -24,6 +24,18 @@
                 </nav>
             </div>
         </section>
+        <section id="mobile-menu"
+            class="absolute top-0 bg-black w-full text-5xl flex-col justify-center origin-top animate-open-menu hidden">
+            <button class="text-8xl self-end px-6">&times;</button>
+            <nav class="flex flex-col min-h-screen items-center py-8" aria-label="Mobile">
+                <a href="#hero" class="w-full text-center py-6 hover:opacity-90">Home</a>
+                <a href="#rockets" class="w-full text-center py-6 hover:opacity-90">Our Rockets</a>
+                <a href="#testimonials" class="w-full text-center py-6 hover:opacity-90">Testimonials</a>
+                <a href="#contact" class="w-full text-center py-6 hover:opacity-90">Contact Us</a>
+                <a href="#footer" class="w-full text-center py-6 hover:opacity-90">Legal</a>
+            </nav>
+        </section>
+
     </header>
     <main class="max-w-4xl mx-auto">
         <section id="hero"
@@ -185,6 +197,8 @@
             </div>
         </section>
     </footer>
+
+    <script src="./js/main.js"></script>
 </body>
 
 </html>
