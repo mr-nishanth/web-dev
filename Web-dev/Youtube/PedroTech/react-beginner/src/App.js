@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import './App.css';
+import Header from './components/Header';
+import Todo from './components/Todo';
 
 function App() {
   const [tasks, setTasks] = useState([])
@@ -23,24 +25,8 @@ function App() {
   }
   return (
     <div className="App">
-      <div className='addTask'>
-        <input type="text" onChange={handleInput} />
-        <button className='' onClick={handleClick}>Add Task</button>
-      </div>
-      <div className="list">
-
-        {
-          tasks.map((task) => (
-            <>
-              <div className='task' key={task.id}>
-                <h1 >{task.name}</h1>
-                <button onClick={() => handleDelete(task)}>X</button>
-              </div>
-            </>
-          ))
-        }
-
-      </div>
+      <Header handleInput={handleInput} handleClick={handleClick} />
+      <Todo handleDelete={handleDelete} tasks={tasks} />
     </div>
   );
 }
