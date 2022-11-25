@@ -11,3 +11,26 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+
+
+.bg-pink {
+  color: white;
+  min-height: 50vh;
+  width: 50vw;
+  background-color: lightpink;
+  border: 1px solid red;
+  border-radius: .5rem;
+}
+
+.center {
+  margin: 0 auto;
+}
