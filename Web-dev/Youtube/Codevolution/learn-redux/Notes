@@ -1,3 +1,16 @@
 npm i react-redux @reduxjs/toolkit redux
 
 
+
+
+Three Core Concepts 
+
+                                Cake Shop
+
+Entities                                                Activities
+
+Shop - Stores cakes on a shelf                      Customer  - Order a cake
+Shopkeeper - Behind the counter entrance            Shopkeeper - Box a cake from the shelf
+Customer - All the store entrance                               - Receipt to keep track
+
+
