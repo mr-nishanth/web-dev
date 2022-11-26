@@ -1,0 +1,12 @@
+router.get('/', (req, res, next) => {
+    // res.send(req.params.id)
+
+    const task = new Task({
+        todo: "Makes sure you have a Lunch",
+        isCompleted: false
+    })
+    task.save((err, doc) => {
+        if (err) console.log("Error : " + err)
+        console.log("Inserted : " + doc)
+    })
+})
