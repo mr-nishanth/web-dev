@@ -1,11 +1,14 @@
 
 import './App.css';
-import Counter from './hooks/01-MustKowHooks/useStateHook/Counter';
+
+import Posts from './hooks/01-MustKowHooks/useEffectHook/Posts';
+// import Counter from './hooks/01-MustKowHooks/useStateHook/Counter';
 
 function App() {
   return (
     <div className="App">
-      <Counter />
+      {/* <Counter /> */}
+      <Posts />
     </div>
   );
 }
