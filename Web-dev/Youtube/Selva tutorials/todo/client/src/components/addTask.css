@@ -1,0 +1,54 @@
+.addTask {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.addTask input[type=text] {
+    width: 50%;
+    height: 2rem;
+    border: none;
+    outline: 0;
+    border-bottom: .1rem solid purple;
+    background-color: transparent;
+    font-size: 1.5rem;
+    padding: .75rem;
+    border-radius: .1rem;
+    color: blue;
+}
+
+.addTask input[type=text]::placeholder {
+    color: lightcoral;
+}
+
+.addTask button {
+    width: 10%;
+    padding: .3rem .1rem;
+    margin-left: 1rem;
+    border: 0;
+    outline: 0;
+    font-size: 1rem;
+    cursor: pointer;
+    color: black;
+    font-weight: bolder;
+    border-radius: .5rem;
+    background: linear-gradient(120deg, red, gold, blue);
+    background-size: 200% 200%;
+    /*  */
+    animation: changeBG 2s linear .4s infinite;
+}
+
+@keyframes changeBG {
+    0% {
+        background-position: 10% 0%;
+    }
+
+    50% {
+        background-position: 90% 100%;
+    }
+
+    100% {
+        background-position: 10% 0%;
+    }
+}
