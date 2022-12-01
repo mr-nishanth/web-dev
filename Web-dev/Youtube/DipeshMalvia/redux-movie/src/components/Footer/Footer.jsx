@@ -1,6 +1,12 @@
 import "./Footer.scss"
-export default function Footer() {
+
+function Footer() {
     return (
-        <div>Footer</div>
+        <footer className="footer">
+            <div>Movie Application</div>
+            <div>All right reserved &copy;2022 404 Inc</div>
+        </footer>
     )
 }
+
+export default Footer
