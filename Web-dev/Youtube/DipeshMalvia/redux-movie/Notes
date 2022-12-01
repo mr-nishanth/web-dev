@@ -1,0 +1,26 @@
+npm i react-redux @reduxjs/toolkit redux
+
+
+Here is your key: 828d8697
+
+Please append it to all of your API requests,
+
+OMDb API: http://www.omdbapi.com/?i=tt3896198&apikey=828d8697
+
+Click the following URL to activate your key: http://www.omdbapi.com/apikey.aspx?VERIFYKEY=2c14bb0c-5aa0-4de2-a803-1ca6277498f7
+
+sagelov341@eilnews.com
+
+
+
+
+
+Send all data requests to:
+
+http://www.omdbapi.com/?apikey=[yourkey]&
+
+
+Poster API requests:
+
+http://img.omdbapi.com/?apikey=[yourkey]&
+
