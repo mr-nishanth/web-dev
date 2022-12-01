@@ -1,7 +1,20 @@
-.App {
-  text-align: center;
+@import "./common/color.scss";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
 }
 
-.border-radius-9 {
-  border-radius: 9px;
+a {
+  text-decoration: none;
+}
+
+body {
+  background-color: $primary-color;
+}
+
+.container {
+  margin: 0px 40px;
 }
