@@ -1,7 +1,11 @@
 import "./PageNotFound.scss"
 
-export default function PageNotFound() {
+import React from 'react'
+
+function PageNotFound() {
     return (
         <div>PageNotFound</div>
     )
 }
+
+export default PageNotFound
