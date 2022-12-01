@@ -10,6 +10,11 @@ import helmet from "helmet";
 import path from "path";
 import { fileURLToPath } from "url";
 
+// ROUTES
+import authRoutes from "./logic/routes/auth.routes"
+// CONTROLLERS
+import { register } from "./logic/controllers/auth.controllers"
+
 /**
  * Configuration and Middleware
  */
@@ -51,6 +56,17 @@ const storage = multer.diskStorage({
 })
 const upload = multer({ storage })
 
+/**
+ * ROUTES WITH FILES
+ * This route needs for upload files
+ * Otherwise routes are in separate routes folder
+ */
+app.post("/auth/register", upload.single("picture"), register)
+
+/**
+ * ROUTES
+ */
+app.use("/auth", authRoutes);
 
 /**
  * MONGOOSE CONFIG/SETUP
