@@ -3,6 +3,13 @@
 .card-item {
     background-color: $secondary-color;
     cursor: pointer;
+    transition: all 0.3s;
+    border-radius: 1rem;
+
+    &:hover {
+        transform: scale(1.040);
+        transition: all 0.3s;
+    }
 }
 
 .card-inner {}
@@ -11,6 +18,8 @@
     height: 300px;
 
     img {
+        border-top-left-radius: 1rem;
+        border-top-right-radius: 1rem;
         width: 100%;
         height: 100%;
     }
