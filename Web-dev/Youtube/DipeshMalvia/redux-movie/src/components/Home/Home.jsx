@@ -23,6 +23,7 @@ const Home = () => {
         fetchMovie()
     }, [])
 
+
     return (
         <>
             <div className="banner-img">
