@@ -23,7 +23,7 @@ function Header() {
         <header className="header">
             <div className="logo">
                 <Link to="/">
-                    Movie App
+                    Black Hub
                 </Link>
             </div>
             <div className="search-bar">
