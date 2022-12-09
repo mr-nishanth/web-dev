@@ -41,10 +41,13 @@ const movieSlice = createSlice({
     initialState,
     reducers: {
         // action
-        addMovies: (state, { payload }) => {
-            // Internal it's use IMME library for mutability
-            state.movies = payload
-        }
+        // addMovies: (state, { payload }) => {
+        //     // Internal it's use IMME library for mutability
+        //     state.movies = payload
+        // },
+        removeSelectedMovieOrShowDetails: (state) => {
+            state.selectedMovieOrShow = {}
+        },
     }, extraReducers: {
         [fetchAsyncMovies.pending]: () => {
             console.log("Movies Pending")
@@ -68,7 +71,7 @@ const movieSlice = createSlice({
 })
 
 
-export const { addMovies } = movieSlice.actions;
+export const { addMovies, removeSelectedMovieOrShowDetails } = movieSlice.actions;
 
 export const getAllMovies = state => state.movies.movies;
 export const getAllShows = state => state.movies.shows;
