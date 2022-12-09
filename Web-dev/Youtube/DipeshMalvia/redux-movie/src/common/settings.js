@@ -15,7 +15,8 @@ export const Settings = {
                 infinite: true,
                 dots: false,
 
-            },
+            }
+        }, {
             breakpoint: 1300,
             settings: {
                 slidesToShow: 4,
@@ -25,8 +26,9 @@ export const Settings = {
 
             }
         },
+
         {
-            breakpoint: 600,
+            breakpoint: 700,
             settings: {
                 slidesToShow: 2,
                 slidesToScroll: 2,
@@ -34,7 +36,7 @@ export const Settings = {
             }
         },
         {
-            breakpoint: 480,
+            breakpoint: 500,
             settings: {
                 slidesToShow: 1,
                 slidesToScroll: 1
