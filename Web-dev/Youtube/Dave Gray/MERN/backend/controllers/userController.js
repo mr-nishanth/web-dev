@@ -12,7 +12,7 @@ const bcrypt = require("bcrypt")
 const getAllUsers = asyncHandler(
     async (req, res) => {
         const users = await User.find().select("-password").lean()
-        
+
         // ?. optional chain  ES2020
 
         if (!users?.length) {
@@ -28,7 +28,7 @@ const getAllUsers = asyncHandler(
  * @route POST /users
  * @access Private
  */
- const createNewUser = asyncHandler(
+const createNewUser = asyncHandler(
     async (req, res) => {
         const { username, password, roles } = req.body
 
@@ -80,8 +80,8 @@ const getAllUsers = asyncHandler(
  */
 const updateUser = asyncHandler(
     async (req, res) => {
-        const {id,username,roles,active,password} = req.body
-        
+        const { id, username, roles, active, password } = req.body
+
         // Confirm data
         if (!id || !username || !Array.isArray(roles) || !roles.length || typeof active !== "boolean") {
             return res.status(400).json({ message: "All fields are required" })
@@ -94,25 +94,25 @@ const updateUser = asyncHandler(
         }
 
         // Check for duplicate
-        const duplicate = await User.findOne({username}).lean().exec()
+        const duplicate = await User.findOne({ username }).lean().exec()
         // Allow update to the original user
         if (duplicate && duplicate?._id.toString() !== id) {
             return res.status(409).json({ message: "Duplicate username" })
         }
-        
+
         // Update user data
         user.username = username
         user.roles = roles
         user.active = active
-        
-        if(password){
-            // hashPassword
-            user.password = await bcrypt.hash(password,10)
-        }
-        
-        const updatedUser  = await user.save()
 
-        return res.json({message:`${updatedUser.username} updated`})
+        if (password) {
+            // hashPassword
+            user.password = await bcrypt.hash(password, 10)
+        }
+
+        const updatedUser = await user.save()
+
+        return res.json({ message: `${updatedUser.username} updated` })
 
     }
 )
@@ -125,29 +125,29 @@ const updateUser = asyncHandler(
  */
 const deleteUser = asyncHandler(
     async (req, res) => {
-        const {id} = req.body
-        
+        const { id } = req.body
+
         if (!id) {
             return res.status(400).json({ message: "No user id provided" })
         }
 
         // Check for if the user had notes
-        const note = await Note.findOne({user:id}).lean().exec()
-        if(note){
-            return res.status(400).json({message:"User has assigned notes"})
+        const note = await Note.findOne({ user: id }).lean().exec()
+        if (note) {
+            return res.status(400).json({ message: "User has assigned notes" })
         }
 
         // Delete the user
         const user = await User.findById(id).exec()
-        if(!user){
-            return res.status(400).json({message:"User not found"})
+        if (!user) {
+            return res.status(400).json({ message: "User not found" })
         }
 
         const result = await user.deleteOne()
         // result hold the deleted user information
         const reply = `Username ${result.username} with ID ${result._id} deleted`
 
-        res.status(200).json({message:reply})
+        res.status(200).json({ message: reply })
     }
 )
 

@@ -31,10 +31,10 @@ const noteSchema = new mongoose.Schema(
 )
 
 // Its create separate collection called counter
-noteSchema.plugin(AutoIncrement,{
-    inc_field:"ticket",
-    id:"ticketNums",
-    start_seq:500
+noteSchema.plugin(AutoIncrement, {
+    inc_field: "ticket",
+    id: "ticketNums",
+    start_seq: 500
 })
 
 

@@ -63,7 +63,7 @@ const createNewNote = asyncHandler(
 // @access Private
 const updateNote = asyncHandler(async (req, res) => {
     const { id, user, title, text, completed } = req.body
-    
+
     // Confirm data
     if (!id || !user || !title || !text || typeof completed !== 'boolean') {
         return res.status(400).json({ message: 'All fields are required' })
@@ -80,11 +80,11 @@ const updateNote = asyncHandler(async (req, res) => {
     const duplicate = await Note.findOne({ title }).lean().exec()
 
     // Allow renaming of the original note 
-    if (duplicate && duplicate?._id.toString() !== id) {    
+    if (duplicate && duplicate?._id.toString() !== id) {
         return res.status(409).json({ message: 'Duplicate note title' })
     }
 
-    
+
 
     note.user = user
     note.title = title
@@ -100,7 +100,7 @@ const updateNote = asyncHandler(async (req, res) => {
 // @route DELETE /notes
 // @access Private
 const deleteNote = asyncHandler(async (req, res) => {
-    
+
     const { id } = req.body
 
     // Confirm data
