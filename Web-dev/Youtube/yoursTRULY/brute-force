@@ -1,0 +1,9 @@
+# Rate limiting
+
+- It's a technique used to control the traffic
+- Limiting the number of requests a client can make
+- Reduced risk of attack,
+    eg: improved security
+
+- Server is never overloaded
+- Mitigation Brute-force/DOS/DDOS attack
