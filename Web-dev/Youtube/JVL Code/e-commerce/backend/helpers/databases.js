@@ -1,7 +1,8 @@
 const mongoose = require('mongoose')
 mongoose.set('strictQuery', true);
-const MONGO_URI = process.env.MONGODB_LOCAL
 const connectDB = async () => {
+    const MONGO_URI = process.env.MONGODB_LOCAL
+    console.log(`🥭 Database URI : ${MONGO_URI}`)
     try {
         const result = await mongoose.connect(MONGO_URI, {
             // useNewUrlParams: true,
