@@ -1,6 +1,6 @@
 const Product = require("../model/product.model")
 const ErrorHandler = require("../utils/errorHandler")
-
+const catchAsyncError = require("../middleware/catchAsyncErrors")
 /**
  * @description Create a new product
  * @param {/api/v1/product/new} req 
@@ -8,19 +8,32 @@ const ErrorHandler = require("../utils/errorHandler")
  * @param {*} next 
  */
 
-exports.newProduct = async (req, res, next) => {
+// exports.newProduct = async (req, res, next) => {
 
-    try {
+//     try {
+//         const product = await Product.create(req.body)
+//         return res.status(201).json({
+//             success: true,
+//             product
+//         })
+//     } catch (error) {
+//         return res.status(500).json({ success: false, error: error })
+//     }
+
+// }
+exports.newProduct = catchAsyncError(
+    async (req, res, next) => {
         const product = await Product.create(req.body)
-        return res.status(201).json({
+        res.status(201).json({
             success: true,
             product
         })
-    } catch (error) {
-        return res.status(500).json({ success: false, error: error })
+
+
     }
 
-}
+)
+
 
 /**
  * @description Get all products
