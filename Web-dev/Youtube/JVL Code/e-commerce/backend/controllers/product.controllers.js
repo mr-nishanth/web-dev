@@ -64,19 +64,13 @@ exports.getProducts = async (req, res, next) => {
  * @param {*} next 
  */
 
-exports.getSingleProduct = async (req, res, next) => {
-    const id = req.params.id
+exports.getSingleProduct = catchAsyncError(
+    async (req, res, next) => {
+        const id = req.params.id
 
-    try {
         const product = await Product.findById(id)
 
         if (!product) {
-            // return res.status(404).json(
-            // {
-            //     success: false,
-            //     message: "Product not found"
-            // }
-            // )
             return next(new ErrorHandler("Product not found", 400))
         }
         return res.status(200).json({
@@ -84,10 +78,8 @@ exports.getSingleProduct = async (req, res, next) => {
             product,
         })
 
-    } catch (error) {
-        res.status(500).json({ success: false, error: error })
     }
-}
+)
 
 
 /**
@@ -97,10 +89,9 @@ exports.getSingleProduct = async (req, res, next) => {
  * @param {*} next 
  */
 
-exports.updateProduct = async (req, res, next) => {
-    const id = req.params.id
-
-    try {
+exports.updateProduct = catchAsyncError(
+    async (req, res, next) => {
+        const id = req.params.id
         let product = await Product.findById(id)
 
         if (!product) return res.status(404).json(
@@ -118,11 +109,8 @@ exports.updateProduct = async (req, res, next) => {
             success: true,
             product,
         })
-
-    } catch (error) {
-        res.status(500).json({ success: false, error: error })
     }
-}
+)
 
 
 /**
@@ -132,30 +120,27 @@ exports.updateProduct = async (req, res, next) => {
  * @param {*} next 
  */
 
-exports.deleteProduct = async (req, res, next) => {
+exports.deleteProduct = catchAsyncError(async (req, res, next) => {
     const id = req.params.id
+    let product = await Product.findById(id)
 
-    try {
-        let product = await Product.findById(id)
+    if (!product) return res.status(404).json(
+        {
+            success: false,
+            message: "Product not found"
+        }
+    )
 
-        if (!product) return res.status(404).json(
-            {
-                success: false,
-                message: "Product not found"
-            }
-        )
+    product = await Product.findByIdAndDelete(
+        id
+    )
 
-        product = await Product.findByIdAndDelete(
-            id
-        )
+    return res.status(200).json({
+        success: true,
+        message: "Product Deleted"
+    })
 
-        return res.status(200).json({
-            success: true,
-            message: "Product Deleted"
-        })
 
-    } catch (error) {
-        res.status(500).json({ success: false, error: error })
-    }
 }
 
+)

@@ -2,7 +2,7 @@
 const express = require('express');
 const cors = require("cors")
 const logger = require("morgan")
-const errorHandler = require("./middleware/errors")
+const errorMiddleware = require("./middleware/error")
 const app = express();
 
 // setup body parser
@@ -23,6 +23,6 @@ app.use("/api/v1", require("./routes/products.routes"))
 
 
 // Error handling middleware
-app.use(errorHandler)
+app.use(errorMiddleware)
 
 module.exports = app

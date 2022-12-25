@@ -10,8 +10,8 @@ productRouter.route("/product/new").post(newProduct)
 // productRouter.get("/product/:id", getSingleProduct)
 // productRouter.put("/product/:id", updateProduct)
 productRouter.route("/product/:id")
-    .get(getSingleProduct)
     .put(updateProduct)
+    .get(getSingleProduct)
     .delete(deleteProduct)
 
 module.exports = productRouter
