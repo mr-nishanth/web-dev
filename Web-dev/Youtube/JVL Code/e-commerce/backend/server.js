@@ -24,6 +24,7 @@ process.on('unhandledRejection', (err) => {
     })
 })
 
+
 process.on('uncaughtException', (err) => {
     console.log(`Error: ${err.message}`);
     console.log('Shutting down the server due to uncaught exception error');
