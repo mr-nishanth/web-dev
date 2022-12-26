@@ -21,16 +21,22 @@ class APIFeatures {
     filter() {
         const queryStringCopy = { ...this.queryString }
         // before queryString
-        console.log(queryStringCopy)
+        console.log("before queryString", queryStringCopy)
 
         // removing fields from queryString
         const removeFields = ["keyword", "limit", "page"]
         removeFields.forEach(field => delete queryStringCopy[field])
 
         // after queryString
-        console.log(queryStringCopy)
+        console.log("after queryString", queryStringCopy) // { price: { gt: '1000', lt: '500' } }
 
-        this.query.find(queryStringCopy)
+        // Convert JSON to string
+        let queryStringForPrice = JSON.stringify(queryStringCopy)
+        queryStringForPrice = queryStringForPrice.replace(/\b(gt|gte|lt|lte)/g, match => `$${match}`)
+        // console.log(queryStringForPrice)
+
+        // convert to string to JSON
+        this.query.find(JSON.parse(queryStringForPrice))
         return this
 
     }
