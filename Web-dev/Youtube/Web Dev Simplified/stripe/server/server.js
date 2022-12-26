@@ -6,6 +6,7 @@ const stripe = require('stripe')(process.env.STRIPE_PRIVATE_KEY)
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
+app.use(express.static(path.join(__dirname, "public")))
 
 const storeItems = new Map([
     [
