@@ -40,6 +40,15 @@ class APIFeatures {
         return this
 
     }
+    paginate(resultPerPage) {
+        const currentPage = Number(this.queryString.page) || 1
+        // resultPerPage -> 2 * currentPage -> 3 - 1
+        // resultPerPage -> 2 * currentPage -> 2
+        // skip count 4
+        const skipCount = resultPerPage * currentPage - 1
+        this.query.limit(resultPerPage).skip(skipCount)
+        return this
+    }
 }
 
 module.exports = APIFeatures;
