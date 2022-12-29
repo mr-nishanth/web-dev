@@ -16,7 +16,11 @@ app.use(logger("dev"))
 
 // <============== Routers ==============>
 // Gets user routes
-app.use("/api/v1/guest", require("./routes/guest.routes"))
-app.use("/api/v1/user", require("./routes/user.routes"))
+// app.use("/api/v1/guest", require("./routes/guest.routes"))
+// app.use("/api/v1/user", require("./routes/user.routes"))
+// app.use("/novu", require("./routes/novu.routes"))
+
+app.use("/provider", require("./routes/provider.routes"))
+app.use("/consumer", require("./routes/consumer.routes"))
 
 module.exports = app;
