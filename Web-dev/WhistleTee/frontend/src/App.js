@@ -1,72 +1,20 @@
-import React, { useEffect, useState } from 'react'
-
+import React from 'react'
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom"
+import Consumer from './components/Consumer'
+import Home from './components/Home'
+import MatchWhistle from './components/MatchWhistle'
+import Provider from './components/Provider'
 export default function App() {
-  const [todos, setTodos] = useState([])
-  const [todoHeading, setTodoHeading] = useState("")
-  const [email, setEmail] = useState("")
-
-  // const handleChange = (e) => {
-  //   //   setUser((prev) => {
-  //   //     const addUser = { ...prev, [e.target.name]: e.target.value }
-  //   //     console.log(addUser)
-  //   //     return addUser;
-  //   // });
-
-  //   // setTodo((prev) => {
-  //   //   const newTodo = { ...prev, [e.target.name]: e.target.value }
-  //   //   return newTodo;
-  //   // })
-
-  //   setTodo(prev => ({ ...prev, [e.target.name]: e.target.value }))
-  // }
-
-  // useEffect(() => {
-  //   console.log(todo)
-  // }, [todo])
-
-  // const addTodo = () => {
-
-  // }
-
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    // addTodo()
-    setTodos([...todos, { email: email, todoHeading: todoHeading }])
-
-  }
-
-
   return (
-    <div style={{ textAlign: "center", marginTop: "100px" }}>
-      <form action="" onSubmit={(e) => handleSubmit(e)}>
-        <input
-          type="text"
-          name="todo"
-          id="todo"
-          placeholder='Todo'
-          onChange={e => setTodoHeading(e.target.value)}
-        />
-        <input
-          type="email"
-          name="email"
-          id="email"
-          placeholder='Email'
-          onChange={e => setEmail(e.target.value)}
-        />
-        <button type='submit'>Add</button>
-      </form>
-
-      <div style={{ marginTop: "20px" }}>
-        {todos.map((todo, index) => {
-          return (
-            <div key={crypto.randomUUID()}>
-              {todo.todoHeading}
-              {todo.email}
-            </div>
-          )
-        })}
-      </div>
-
+    <div>
+      <Router>
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/provider' element={<Provider />} />
+          <Route path='/consumer' element={<Consumer />} />
+          <Route path='/matchWhistle' element={<MatchWhistle />} />
+        </Routes>
+      </Router>
     </div>
   )
 }
