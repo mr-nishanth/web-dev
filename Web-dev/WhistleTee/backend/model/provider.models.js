@@ -38,7 +38,6 @@ const providerSchema = new mongoose.Schema({
     },
     selectedDate: {
         type: Date,
-        min: Date.now(),
         required: [true, "Ticket date and time is required"]
     }
 })
