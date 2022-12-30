@@ -33,8 +33,8 @@ const Provider = () => {
         providerName: "",
         golfName: "",
         coordinates: "",
-        price: "",
-        numberOfSlots: "",
+        price: null,
+        numberOfSlots: null,
         selectedDate: Date.now()
     })
 
@@ -51,7 +51,7 @@ const Provider = () => {
         e.preventDefault()
         console.log(provider)
     }
-
+    // console.log("Select a provider", provider.selectedDate.$d)
     return (
         <>
             <NavBar />
@@ -101,7 +101,7 @@ const Provider = () => {
                             <Form.Label>Price</Form.Label>
                             <Form.Control
                                 style={{ width: "500px" }}
-                                type="text"
+                                type="number"
                                 placeholder="Enter price"
                                 name='price'
                                 value={provider.price}
@@ -114,7 +114,7 @@ const Provider = () => {
                             <Form.Label>Number of slot</Form.Label>
                             <Form.Control
                                 style={{ width: "500px" }}
-                                type="text"
+                                type="number"
                                 placeholder="Number of slot"
                                 name='numberOfSlots'
                                 value={provider.numberOfSlots}
