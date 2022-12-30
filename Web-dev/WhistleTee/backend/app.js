@@ -22,5 +22,6 @@ app.use(logger("dev"))
 
 app.use("/provider", require("./routes/provider.routes"))
 app.use("/consumer", require("./routes/consumer.routes"))
+app.use("/whistle", require("./routes/whistle.routes"))
 
 module.exports = app;

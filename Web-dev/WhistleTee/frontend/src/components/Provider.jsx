@@ -36,8 +36,8 @@ const Provider = () => {
         providerName: "",
         golfName: "",
         coordinates: "",
-        price: null,
-        numberOfSlots: null,
+        price: "",
+        numberOfSlots: "",
         selectedDate: Date.now()
     }
     const [provider, setProvider] = useState(initialState)

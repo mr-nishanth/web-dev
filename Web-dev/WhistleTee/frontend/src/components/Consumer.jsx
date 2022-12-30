@@ -23,8 +23,8 @@ const Consumer = () => {
         coordinates: "",
         email: "",
         mobileNumber: "",
-        alertRadius: null,
-        expireTime: null
+        alertRadius: "",
+        expireTime: ""
     }
     const [consumer, setConsumer] = useState(initialState)
 
