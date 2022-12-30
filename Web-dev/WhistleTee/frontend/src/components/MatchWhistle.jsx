@@ -68,7 +68,7 @@ const MatchWhistle = () => {
                             </Col>
                         </Row>
                         <Row>
-                            <Col xs='12'>
+                            <Col>
                                 <h1 className='text-center'>
                                     {
                                         matchConsumers.length >= 1 ? (
@@ -89,7 +89,7 @@ const MatchWhistle = () => {
                                                                     <Accordion.Body>
                                                                         <h4>{consumer.email}</h4>
                                                                         <h4>{consumer.mobileNumber}</h4>
-                                                                        <button type='button'>Send Message</button>
+                                                                        <button type='button' className='btn btn-success'>Send Message</button>
                                                                     </Accordion.Body>
                                                                 </Accordion.Item>
 
