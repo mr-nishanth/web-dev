@@ -12,7 +12,9 @@
 //     alpha
 // } from '@material-ui/pickers';
 // =================================
-
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from 'react-toastify';
+import axios from 'axios';
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
@@ -25,31 +27,55 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs"
 import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker"
 import { TextField } from "@mui/material"
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 const Provider = () => {
     // const [selectedDate, handleDateChange] = useState(new Date());
     // const [selectedDate, handleDateChange] = useState(null);
 
-    const [provider, setProvider] = useState({
+    const initialState = {
         providerName: "",
         golfName: "",
         coordinates: "",
         price: null,
         numberOfSlots: null,
         selectedDate: Date.now()
-    })
+    }
+    const [provider, setProvider] = useState(initialState)
 
+
+    const navigate = useNavigate();
+
+    const notify = (message) => {
+        console.log("Notification : ", message)
+        toast(message)
+    };
 
     const handleChange = (e) => {
         setProvider(prev => ({ ...prev, [e.target.name]: e.target.value }))
     }
 
-    useEffect(() => {
-        console.log(provider)
-    }, [provider])
+    // useEffect(() => {
+    //     console.log(provider)
+    // }, [provider])
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
+        // console.log(`Date time ${typeof provider.selectedDate}`)
+        // console.log(`Date  ${new Date(new Date(provider.selectedDate).toLocaleString())}`)
+        // console.log(`Date  Type : ${typeof new Date(new Date(provider.selectedDate).toLocaleString())}`)
         e.preventDefault()
         console.log(provider)
+        // if (!provider.providerName || !provider.golfName || !provider.coordinates
+        //     || !provider.price || !provider.numberOfSlots || !provider.selectedDate) return notify("Please provider a details ...")
+        return await axios.post(`http://localhost:3500/provider/create`, provider)
+            .then((response) => {
+                // console.log(`Search : ${response.data}`)
+                // console.log("Add user" + response.data.message)
+                notify(response.data.message)
+                // navigate("/dashboard")
+                // setProvider(initialState)
+            })
+            .catch((error) => console.log(error))
+
     }
     // console.log("Select a provider", provider.selectedDate.$d)
     return (
@@ -145,6 +171,7 @@ const Provider = () => {
                     <Button variant="primary" type="submit">
                         Provider Whistle
                     </Button>
+                    <ToastContainer />
                 </Form>
 
                 <Row>

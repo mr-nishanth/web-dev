@@ -4,39 +4,64 @@
 // import DateFnsUtils from '@date-io/date-fns/build/date-fns-utils';
 // import DateTimeMUI from './DateTimeMUI';
 // import DateTimePicker from './DateTimePicker';
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from 'react-toastify';
+import axios from 'axios';
 import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import React, { useState } from "react";
 import NavBar from './NavBar';
+import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 
+
 const Consumer = () => {
-    const [consumer, setConsumer] = useState({
+    const initialState = {
         consumerName: "",
         coordinates: "",
         email: "",
         mobileNumber: "",
-        alertRadius: "",
-        expireTime: ""
-    })
+        alertRadius: null,
+        expireTime: null
+    }
+    const [consumer, setConsumer] = useState(initialState)
 
+    const navigate = useNavigate();
+
+    const notify = (message) => {
+        console.log("Notification : ", message)
+        toast(message)
+    };
 
     const handleChange = (e) => {
         setConsumer(prev => ({ ...prev, [e.target.name]: e.target.value }))
     }
 
-    useEffect(() => {
-        console.log(consumer)
-    }, [consumer])
+    // useEffect(() => {
+    //     console.log(consumer)
+    // }, [consumer])
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
-        console.log(consumer)
+        // console.log(consumer)
+        if (!consumer.consumerName || !consumer.coordinates || !consumer.email
+            || !consumer.mobileNumber || !consumer.alertRadius || !consumer.expireTime) return notify("Please consumer a details")
+        return await axios.post(`http://localhost:3500/consumer/create`, consumer)
+            .then((response) => {
+                // console.log(`Search : ${response.data}`)
+                console.log("Add user" + response.data.message)
+                notify(response.data.message)
+                // navigate("/dashboard")
+                setConsumer(initialState)
+            })
+            .catch((error) => console.log(error))
+
+
     }
     return (
-        <>
+        <div>
             <NavBar />
 
             <div className='container m-5 d-flex justify-content-center align-items-center'>
@@ -95,7 +120,7 @@ const Consumer = () => {
                             <Form.Label>Alert Radius</Form.Label>
                             <Form.Control
                                 style={{ width: "500px" }}
-                                type="text"
+                                type="number"
                                 placeholder="Enter your alert radius "
                                 name='alertRadius'
                                 value={consumer.alertRadius}
@@ -108,7 +133,7 @@ const Consumer = () => {
                             <Form.Label>Expire time</Form.Label>
                             <Form.Control
                                 style={{ width: "500px" }}
-                                type="text"
+                                type="number"
                                 placeholder="Enter your expire time "
                                 name='expireTime'
                                 value={consumer.expireTime}
@@ -119,10 +144,11 @@ const Consumer = () => {
                     <Button variant="primary" type="submit">
                         Consumer Whistle
                     </Button>
+                    <ToastContainer />
                 </Form>
 
             </div>
-        </>
+        </div>
     )
 }
 
