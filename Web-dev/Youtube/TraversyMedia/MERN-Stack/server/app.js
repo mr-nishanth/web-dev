@@ -53,5 +53,3 @@ mongoose
     console.log(`${err.message}`.red);
     process.exit(1);
   });
-9;
-``;
