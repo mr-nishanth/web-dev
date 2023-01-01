@@ -1,11 +1,13 @@
 import dbAsyncHandler from "express-async-handler";
 import Goal from "../models/goal.model.js";
+import User from "../models/user.model.js";
 
 // @desc Get goals
 // @route GET /api/goals
 // @access Private
 export const getGoals = dbAsyncHandler(async (req, res) => {
-  const goals = await Goal.find().lean();
+  // req.user.id came from auth middleware verification.
+  const goals = await Goal.find({ user: req.user.id }).lean();
   return res.status(200).json({ status: true, goals });
 });
 // @desc Set goal
@@ -16,7 +18,7 @@ export const createGoals = dbAsyncHandler(async (req, res) => {
     res.status(400);
     throw new Error("Please provide a text message");
   }
-  const goal = await Goal.create({ text: req.body.text });
+  const goal = await Goal.create({ user: req.user.id, text: req.body.text });
   await goal.save();
   return res.status(201).json({ status: true, goal });
 });
@@ -24,8 +26,8 @@ export const createGoals = dbAsyncHandler(async (req, res) => {
 // @route PUT /api/goals/:id
 // @access Private
 export const updateGoals = dbAsyncHandler(async (req, res) => {
-  const goalID = await Goal.findById(req.params.id);
-  if (!goalID) {
+  const goal = await Goal.findById(req.params.id);
+  if (!goal) {
     res.status(404);
     throw new Error("Goal not found");
   }
@@ -33,6 +35,21 @@ export const updateGoals = dbAsyncHandler(async (req, res) => {
   if (!req.body.text) {
     res.status(400);
     throw new Error("Please provide a text message");
+  }
+
+  //^ Update
+  const user = await Goal.findById(req.user.id);
+
+  // Check for user
+  if (!user) {
+    res.status(404);
+    throw new Error("User not found");
+  }
+
+  // Ensure that the goal user matches the current user
+  if (goal.user.toString() !== user.id) {
+    res.status(401);
+    throw new Error("Not Authenticate");
   }
 
   const updatedGoal = await Goal.findByIdAndUpdate(
@@ -52,6 +69,22 @@ export const deleteGoals = dbAsyncHandler(async (req, res) => {
     res.status(404);
     throw new Error("Goal not found");
   }
+
+  // ^ Delete
+  const user = await Goal.findById(req.user.id);
+
+  // Check for user
+  if (!user) {
+    res.status(404);
+    throw new Error("User not found");
+  }
+
+  // Ensure that the goal user matches the current user
+  if (goal.user.toString() !== user.id) {
+    res.status(401);
+    throw new Error("Not Authenticate");
+  }
+
   await goal.remove();
   return res.status(200).json({ status: true, id: req.params.id });
 });
