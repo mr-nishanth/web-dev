@@ -79,7 +79,26 @@ export const loginUser = asyncHandler(async (req, res, next) => {
 // @route GET /api/users/me
 // @access Private
 export const getMe = asyncHandler(async (req, res, next) => {
-  res.send("Me");
+  // NOTE: Remember in auth middleware we set the decoded user data
+  // req.user._id
+  const { _id, name, email } = await User.findById(req.user._id);
+
+  res.status(200).json({
+    id: _id,
+    name: name,
+    email: email,
+  });
+});
+
+// @desc Get all User Profile
+// @route GET /api/users/all
+// @access Public
+export const getAll = asyncHandler(async (req, res, next) => {
+  const users = await User.find({});
+  res.status(200).json({
+    counts: users.length,
+    users,
+  });
 });
 
 // ! Generate JWT Token
