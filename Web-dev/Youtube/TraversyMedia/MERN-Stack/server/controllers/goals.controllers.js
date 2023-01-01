@@ -38,7 +38,7 @@ export const updateGoals = dbAsyncHandler(async (req, res) => {
   }
 
   //^ Update
-  const user = await Goal.findById(req.user.id);
+  const user = await User.findById(req.user.id);
 
   // Check for user
   if (!user) {
@@ -49,7 +49,7 @@ export const updateGoals = dbAsyncHandler(async (req, res) => {
   // Ensure that the goal user matches the current user
   if (goal.user.toString() !== user.id) {
     res.status(401);
-    throw new Error("Not Authenticate");
+    throw new Error("User Not Authenticate");
   }
 
   const updatedGoal = await Goal.findByIdAndUpdate(
@@ -65,24 +65,29 @@ export const updateGoals = dbAsyncHandler(async (req, res) => {
 // @access Private
 export const deleteGoals = dbAsyncHandler(async (req, res) => {
   const goal = await Goal.findById(req.params.id);
+  console.log(`User ${req.user._id}`);
+  console.log(`Goal ${goal}`);
   if (!goal) {
-    res.status(404);
+    res.status(400);
     throw new Error("Goal not found");
   }
 
   // ^ Delete
-  const user = await Goal.findById(req.user.id);
+  const user = await User.findById(req.user.id);
+  console.log(`Delete User ${user}`);
 
   // Check for user
   if (!user) {
-    res.status(404);
-    throw new Error("User not found");
+    // res.status(404);
+    // throw new Error("User not found");
+    res.status(401);
+    throw new Error("Not Authenticate");
   }
 
   // Ensure that the goal user matches the current user
   if (goal.user.toString() !== user.id) {
     res.status(401);
-    throw new Error("Not Authenticate");
+    throw new Error("User Not Authenticate");
   }
 
   await goal.remove();
