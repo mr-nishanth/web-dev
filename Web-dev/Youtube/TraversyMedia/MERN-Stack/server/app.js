@@ -10,6 +10,7 @@ import { errorHandlerMiddleware } from "./middleware/errorHandlerMiddleware.js";
 
 // imports
 import goalRoutes from "./routes/goals.routes.js";
+import userRoutes from "./routes/user.routes.js";
 
 // Application initialization
 const app = express();
@@ -28,6 +29,7 @@ app.use(express.urlencoded({ extended: false }));
 
 //* ROUTES
 app.use("/api/goals", goalRoutes);
+app.use("/api/users", userRoutes);
 
 // Error handling middleware
 app.use(errorHandlerMiddleware);
