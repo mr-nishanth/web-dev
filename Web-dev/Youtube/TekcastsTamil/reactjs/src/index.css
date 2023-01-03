@@ -5,6 +5,18 @@
   padding: 0;
   box-sizing: border-box;
 }
+.btn-success{
+  background-color: green;
+}
+.btn-success:hover{
+  background-color: greenyellow;
+}
+.btn-red{
+  background-color: red;
+}
+.btn-red:hover{
+  background-color: lightcoral;
+}
 
 body {
   font-family: 'Poppins', sans-serif;
