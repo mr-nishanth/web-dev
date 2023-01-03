@@ -4,6 +4,7 @@ import UseStateEx from "./session/04-session - useState/UseStateEx";
 import LifeCycle from "./session/05-session - LifeCycle Methods/LifeCycle";
 import UseEffectEx from "./session/06-session - useEffect/UseEffectEx";
 import LifeCycleUpdateAndUnMount from "./session/07-session - LifeCycle Update and Unmount/LifeCycleUpdateAndUnMount";
+import Forms from "./session/08-session - Forms/Forms";
 
 function App() {
   return (
@@ -14,7 +15,9 @@ function App() {
       {/* <LifeCycle /> */}
       {/* <UseEffectEx /> */}
 
-      <LifeCycleUpdateAndUnMount />
+      {/* <LifeCycleUpdateAndUnMount /> */}
+
+      <Forms />
     </>
   );
 }
