@@ -1,0 +1,14 @@
+.yellow-card{
+    background-color: yellow;
+    display: flex;
+    justify-content: center;
+    border-radius: 6px;
+    width: 400px;
+}
+.red-card{
+    background-color: red;
+    display: flex;
+    justify-content: center;
+    border-radius: 6px;
+    width: 400px;
+}
