@@ -10,6 +10,7 @@ import UseReducerDemo from "./session/10-session - useReducer/UseReducerDemo";
 import ContextDemo from "./session/11-session - Context/ContextDemo";
 import UseReducerContextDemo from "./session/13-session - useReducerContextStateRef/UseReducerContextDemo";
 import MemoEx from "./session/15-session - Memo/MemoEx";
+import CompoundComponent from "./session/16-session - Compound Component/CompoundComponent";
 
 function App() {
   return (
@@ -32,7 +33,9 @@ function App() {
 
       {/* <UseReducerContextDemo /> */}
 
-      <MemoEx />
+      {/* <MemoEx /> */}
+
+      <CompoundComponent />
     </>
   );
 }
