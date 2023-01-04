@@ -9,6 +9,7 @@ import UseRefDemo from "./session/09-session - useRef/UseRefDemo";
 import UseReducerDemo from "./session/10-session - useReducer/UseReducerDemo";
 import ContextDemo from "./session/11-session - Context/ContextDemo";
 import UseReducerContextDemo from "./session/13-session - useReducerContextStateRef/UseReducerContextDemo";
+import MemoEx from "./session/15-session - Memo/MemoEx";
 
 function App() {
   return (
@@ -29,7 +30,9 @@ function App() {
 
       {/* <ContextDemo /> */}
 
-      <UseReducerContextDemo />
+      {/* <UseReducerContextDemo /> */}
+
+      <MemoEx />
     </>
   );
 }
