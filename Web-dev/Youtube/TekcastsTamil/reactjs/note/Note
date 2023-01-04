@@ -1,1 +1,12 @@
 useReducer()
+
+Pure Components
+
+if the state is not changed but the component was re-rendered
+eg:
+    Take a example of the counter application
+    There are two buttons for incrementing and Button(set to zero)
+    Once the state is set to zero , again click Button(set to zero)
+    The component will be re-rendered but the state will not be changed
+    
+    ShouldComponentUpdate
