@@ -6,6 +6,7 @@ import UseEffectEx from "./session/06-session - useEffect/UseEffectEx";
 import LifeCycleUpdateAndUnMount from "./session/07-session - LifeCycle Update and Unmount/LifeCycleUpdateAndUnMount";
 import Forms from "./session/08-session - Forms/Forms";
 import UseRefDemo from "./session/09-session - useRef/UseRefDemo";
+import UseReducerDemo from "./session/10-session - useReducer/UseReducerDemo";
 
 function App() {
   return (
@@ -20,7 +21,9 @@ function App() {
 
       {/* <Forms /> */}
 
-      <UseRefDemo />
+      {/* <UseRefDemo /> */}
+
+      <UseReducerDemo />
     </>
   );
 }
