@@ -1,6 +1,6 @@
-import { useState } from "react";
+import React, { useState } from "react";
 
-const ReactMemo = () => {
+const WithReactMemo = () => {
   const [day, setDay] = useState(1);
   const [pocketMoney, setPocketMoney] = useState(5000);
   const handleIncrement = () => {
@@ -15,11 +15,10 @@ const ReactMemo = () => {
       <p>Day : {day} </p>
       <button onClick={handleIncrement}>Increment</button>
 
-      <PocketMoney money={pocketMoney} />
+      <ReactMemoPocketMoney money={pocketMoney} />
     </div>
   );
 };
-export default ReactMemo;
 
 const PocketMoney = ({ money }) => {
   console.log("Rendering PocketMoney....");
@@ -29,3 +28,14 @@ const PocketMoney = ({ money }) => {
     </>
   );
 };
+
+const isPropsEqual = (prevProps, nextProps) => {
+  //   return prevProps.money === nextProps.money;
+  //   return false;
+  //   return true;
+};
+
+// const ReactMemoPocketMoney = React.memo(PocketMoney);
+const ReactMemoPocketMoney = React.memo(PocketMoney, isPropsEqual);
+
+export default WithReactMemo;
