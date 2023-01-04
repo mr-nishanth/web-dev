@@ -10,3 +10,5 @@ eg:
     The component will be re-rendered but the state will not be changed
     
     ShouldComponentUpdate
+
+If the component State or Props was updated but the updated state and props was same its not re-rendering
