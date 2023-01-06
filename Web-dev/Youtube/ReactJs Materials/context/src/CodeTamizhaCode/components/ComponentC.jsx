@@ -1,4 +1,13 @@
+import ComponentE from "./ComponentE";
+import ComponentF from "./ComponentF";
 const ComponentC = () => {
-  return <div>ComponentC</div>;
+  console.log("Component C");
+  return (
+    <div>
+      ComponentC
+      <ComponentE />
+      <ComponentF />
+    </div>
+  );
 };
 export default ComponentC;
