@@ -1,5 +1,11 @@
+import CodeTamil from "./LetsCodeTamil/CodeTamil";
+
 function App() {
-  return <></>;
+  return (
+    <>
+      <CodeTamil />
+    </>
+  );
 }
 
 export default App;
