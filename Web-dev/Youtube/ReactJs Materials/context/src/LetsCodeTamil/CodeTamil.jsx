@@ -1,11 +1,16 @@
+import AddMovie from "./components/AddMovie";
+import { MovieProvider } from "./components/context/MovieContext";
 import MovieList from "./components/MovieList";
 import Nav from "./components/Nav";
 
 const CodeTamil = () => {
   return (
     <>
-      <Nav />
-      <MovieList />
+      <MovieProvider>
+        <Nav />
+        <MovieList />
+        <AddMovie />
+      </MovieProvider>
     </>
   );
 };

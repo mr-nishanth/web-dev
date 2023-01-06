@@ -203,6 +203,21 @@ h3 {
   animation: spin 1.2s linear infinite;
 }
 
+/* ul,li{
+} */
+
+.center{
+  text-align: center;
+}
+.navbar {
+  display: flex;
+  text-decoration: none;
+  justify-content: space-between;
+  align-items: center;
+  min-width: 5vh;
+  background-color: rgb(136, 199, 224);
+}
+
 @keyframes spin {
   0% {
     transform: rotate(0deg);

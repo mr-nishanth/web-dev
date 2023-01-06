@@ -1,12 +1,15 @@
 import { useState } from "react";
 
-const Movie = ({ name, id, price }) => {
+const Movie = ({ name, price }) => {
+  // const Movie = (props) => {
+
   return (
-    <>
-      <li key={id}>
-        Name : {name} <br /> Price : {price}rs
-      </li>
-    </>
+    <li>
+      {/* <li key={props.key}> */}
+      Name : {name} <br /> Price : {price}rs
+      {/* Name : {props.name} <br /> Price : {props.price}rs */}
+    </li>
   );
 };
+
 export default Movie;
