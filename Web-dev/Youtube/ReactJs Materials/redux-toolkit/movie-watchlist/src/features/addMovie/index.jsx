@@ -1,6 +1,7 @@
 import { Search } from "@mui/icons-material";
 import { IconButton, InputBase, Paper } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useGetMoviesMutation } from "../../services/movieApi";
 
 const AddMovie = () => {
   const [query, setQuery] = useState("");
@@ -8,6 +9,19 @@ const AddMovie = () => {
     setQuery(e.target.value);
   };
 
+  const [getMovies, { data }] = useGetMoviesMutation();
+
+  useEffect(() => {
+    if (query) {
+      fetchMovie();
+    }
+  }, [query]);
+
+  const fetchMovie = async () => {
+    await getMovies({ query });
+  };
+
+  console.log(`Data ${data}`);
   return (
     <div
       style={{
