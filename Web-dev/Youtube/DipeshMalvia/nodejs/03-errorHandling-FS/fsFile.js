@@ -38,3 +38,59 @@ const fileReading = async () => {
 };
 
 fileReading();
+
+// ===========================================
+//  Writing/reading into a file [without fs-promise]
+const writePath = path.join(__dirname, "files", "text.txt");
+/*
+const writePath = path.join(__dirname, "files", "text.txt");
+console.log(writePath);
+const content = "I love JavaScript";
+fs.writeFile(writePath, content, (err) => {
+  if (err) {
+    throw new Error("Error in writing file");
+  }
+  console.log("\n Write operation successful");
+
+  // read the file
+  fs.readFile(writePath, "utf-8", (err, content) => {
+    if (err) {
+      throw new Error("Error in reading file");
+    }
+    console.log(content);
+  });
+});
+*/
+
+// ===========================================
+//  Writing/reading into a file [fs-promise]
+const writingInFile = async (content) => {
+  try {
+    await fsPromise.writeFile(writePath, content);
+
+    // Seems like appended
+    await fsPromise.writeFile(
+      writePath,
+      "\n Position of the head at the last of the content",
+      { flag: "a+" }
+    );
+    // Append the file
+    // await fsPromise.appendFile(writePath, "\n This is file appended");
+
+    // Rename the file
+    await fsPromise.rename(
+      writePath,
+      path.join(__dirname, "files", "newText.txt")
+    );
+
+    // const data = await fsPromise.readFile(writePath, "utf-8");
+    const data = await fsPromise.readFile(
+      path.join(__dirname, "files", "newText.txt"),
+      "utf-8"
+    );
+    console.log(data);
+  } catch (error) {
+    console.log(error);
+  }
+};
+writingInFile("I Love Promise");
