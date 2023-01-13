@@ -2,12 +2,6 @@ const asyncHandler = require("express-async-handler");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const User = require("../models/user.model");
-/**
- * @description Get current user information
- * @route GET /api/users/current
- * @access private
- */
-exports.currentUser = asyncHandler(async (req, res) => {});
 
 /**
  * @description Register new user
@@ -73,12 +67,26 @@ exports.loginUser = asyncHandler(async (req, res) => {
         user: {
           username: exist.username,
           email: exist.email,
-          id: exist.id,
+          id: exist._id,
         },
       },
       process.env.JWT_ACCESS_TOKEN,
-      { expiresIn: "1m" }
+      { expiresIn: "10m" }
     );
     return res.status(200).json({ accessToken });
   }
+});
+
+/**
+ * @description Get current user information
+ * @route GET /api/users/current
+ * @access private
+ */
+exports.currentUser = asyncHandler(async (req, res) => {
+  // console.log(req.user);
+  const current = await User.findOne({ email: req.user.email })
+    .lean()
+    .select({ username: 1, email: 1 })
+    .exec();
+  res.status(200).json({ message: current });
 });
