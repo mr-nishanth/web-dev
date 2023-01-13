@@ -70,3 +70,13 @@ describe("Testing other matcher methods", () => {
     expect(str).toMatch(/stop/i);
   });
 });
+
+describe("Test performs on Array", () => {
+  const shoppingList = ["Milk", "Trash bags", "Paper towels", "iPhones"];
+  test("The shopping list doesn't have PS4", () => {
+    expect(shoppingList).not.toContain("PS4");
+  });
+  test("The shopping list does have Milk", () => {
+    expect(shoppingList).toContain("Milk");
+  });
+});
