@@ -106,4 +106,43 @@ describe("Testing  reference type equality", () => {
       })
     );
   });
+
+  // TESTING ARRAY EQUALITY
+  test("should array equality", () => {
+    const user = ["Nishanth", "Sun", "Moon"];
+    user.push("Hell");
+
+    expect(user).toEqual(["Nishanth", "Sun", "Moon", "Hell"]);
+    expect(user).toEqual(expect.arrayContaining(["Hell"]));
+    expect(user).toEqual(expect.arrayContaining([expect.any(String)]));
+  });
+
+  test("should array of object equality", () => {
+    const userObjectInArray = [
+      {
+        user: "Nishanth",
+        age: 22,
+      },
+      {
+        user: "Sun",
+        age: 12345,
+      },
+      {
+        user: "Moon",
+        age: 21231,
+      },
+    ];
+    userObjectInArray.push({
+      name: "Football",
+      age: 50,
+    });
+    expect(userObjectInArray).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          name: expect.any(String),
+          age: expect.any(Number),
+        }),
+      ])
+    );
+  });
 });
