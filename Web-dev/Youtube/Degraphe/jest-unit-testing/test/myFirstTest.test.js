@@ -147,21 +147,28 @@ describe("Testing  reference type equality", () => {
   });
 });
 
-const { sum, deletedUserById } = require("../utils/helper");
+const { sum, deletedUserById, findUserById } = require("../utils/helper");
 describe("Testing imported Function ", () => {
+  const users = [
+    { name: "John", id: 1 },
+    { name: "Rose", id: 2 },
+    { name: "Mike", id: 3 },
+  ];
   test("should sum function should add 2 numbers", () => {
     expect(sum(5, 3)).toBe(8);
   });
 
   test("Delete by ID function should delete a user by their ID", () => {
-    const users = [
-      { name: "John", id: 1 },
-      { name: "Rose", id: 2 },
-      { name: "Mike", id: 3 },
-    ];
     expect(deletedUserById(users, 3)).toEqual([
       { name: "John", id: 1 },
       { name: "Rose", id: 2 },
     ]);
+  });
+  // Done by test driven development
+  test("Find a user by ID form a list of users", () => {
+    expect(findUserById(users, 2)).toEqual({ name: "Rose", id: 2 });
+  });
+  test("Find a user by ID form a list of users does't exists", () => {
+    expect(findUserById(users, 4)).toBeUndefined();
   });
 });
