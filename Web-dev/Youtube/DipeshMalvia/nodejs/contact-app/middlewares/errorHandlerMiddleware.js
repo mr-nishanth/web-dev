@@ -44,7 +44,6 @@ const errorHandlerMiddleware = (err, req, res, next) => {
 
     default:
       console.log(`No error all good`);
-      break;
   }
 };
 
