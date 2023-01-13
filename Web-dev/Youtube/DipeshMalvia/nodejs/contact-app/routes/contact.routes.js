@@ -7,9 +7,12 @@ const {
   updateContact,
   deleteContact,
 } = require("../controllers/contact.controller");
+const validateToken = require("../middlewares/verifyToken");
 
 const router = require("express").Router();
 
+// Lets make all the routes as private
+router.use(validateToken);
 router.route("/contacts").get(getAllContact).post(createContact);
 router
   .route("/contacts/:id")
