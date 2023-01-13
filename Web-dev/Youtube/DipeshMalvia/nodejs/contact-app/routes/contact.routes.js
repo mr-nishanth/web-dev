@@ -13,9 +13,9 @@ const router = require("express").Router();
 
 // Lets make all the routes as private
 router.use(validateToken);
-router.route("/contacts").get(getAllContact).post(createContact);
+router.route("/").get(getAllContact).post(createContact);
 router
-  .route("/contacts/:id")
+  .route("/:id")
   .get(getSingleContact)
   .put(updateContact)
   .delete(deleteContact);
