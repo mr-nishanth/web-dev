@@ -14,7 +14,6 @@ exports.registerUser = asyncHandler(async (req, res) => {
     res.status(400);
     throw new Error("All fields are required");
   }
-
   //   Find the duplicates
   const duplicates = await User.findOne({ email: email }).lean().exec();
   if (duplicates) {
@@ -71,7 +70,7 @@ exports.loginUser = asyncHandler(async (req, res) => {
         },
       },
       process.env.JWT_ACCESS_TOKEN,
-      { expiresIn: "10m" }
+      { expiresIn: "30m" }
     );
     return res.status(200).json({ accessToken });
   }
