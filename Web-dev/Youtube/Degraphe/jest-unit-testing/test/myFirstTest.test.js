@@ -163,6 +163,8 @@ describe("Testing imported Function ", () => {
       { name: "John", id: 1 },
       { name: "Rose", id: 2 },
     ]);
+
+    expect(deletedUserById(users, 1).length).toBe(2);
   });
   // Done by test driven development
   test("Find a user by ID form a list of users", () => {
