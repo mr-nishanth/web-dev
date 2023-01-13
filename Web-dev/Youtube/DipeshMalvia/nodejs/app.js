@@ -15,7 +15,7 @@ app.use(logger("dev"));
 dbConn();
 // Routes
 app.use("/api/", require("./contact-app/routes/contact.routes"));
-
+app.use("/api/users", require("./contact-app/routes/users.routes"));
 // Custom Error Handler
 app.use(errorHandlerMiddleware);
 app.listen(PORT, () => console.log(`Application is listening on ${PORT}`));
