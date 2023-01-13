@@ -80,3 +80,30 @@ describe("Test performs on Array", () => {
     expect(shoppingList).toContain("Milk");
   });
 });
+
+//! Testing primitive and reference type equality
+// In this case we are testing reference type equality.
+// To make things abundantly clear "toEqual()" tests reference type equality while "toBe()" tests primitive type equality
+describe("Testing  reference type equality", () => {
+  const user = { name: "Nishanth" };
+  user["age"] = 22;
+
+  test("should return a user object with age as a key 22", () => {
+    // toBe is only used for testing primitive types
+    expect(user).toEqual({
+      name: "Nishanth",
+      age: 22,
+    });
+
+    expect(user.age).toEqual(22);
+  });
+
+  test("should return a user with a name and age key", () => {
+    expect(user).toEqual(
+      expect.objectContaining({
+        name: expect.any(String),
+        age: expect.any(Number),
+      })
+    );
+  });
+});
