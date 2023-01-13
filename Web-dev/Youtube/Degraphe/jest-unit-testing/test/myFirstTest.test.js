@@ -174,3 +174,24 @@ describe("Testing imported Function ", () => {
     expect(findUserById(users, 4)).toBeUndefined();
   });
 });
+
+/*
+describe("Database Testing", () => {});
+
+beforeEach(() => {
+  console.log("Running before each test");
+});
+afterEach(() => {
+  console.log("Running after each test");
+});
+
+
+beforeALl(()=> {
+console.log("Runs before all tests");
+console.log("Its run only once");
+})
+afterALl(()=> {
+console.log("Runs after all tests");
+console.log("Its run only once");
+})
+*/
