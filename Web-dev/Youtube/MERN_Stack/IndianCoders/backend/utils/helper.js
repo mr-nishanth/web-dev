@@ -17,3 +17,21 @@ export const createToken = async (id) => {
   });
   return token;
 };
+
+export const verifyToken = async (existingToken) => {
+  const token = await jwt.verify(
+    existingToken,
+    process.env.JWT_ACCESS_TOKEN,
+    (err, decoded) => {
+      if (err) {
+        // return res.status(400).json({ message: `${err.message}` });
+        throw new Error(err.message);
+      } else {
+        console.log("DECODED ID => " + decoded.id);
+        return decoded.id;
+      }
+    }
+  );
+  console.log(token);
+  return token;
+};
