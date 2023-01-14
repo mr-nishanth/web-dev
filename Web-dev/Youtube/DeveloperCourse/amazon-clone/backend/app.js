@@ -9,6 +9,7 @@ import cors from "cors";
 // Custom Import
 import { dbConnection } from "./config/dbConn.js";
 import authRouter from "./routes/auth.routes.js";
+import { NOT_FOUND, customErrorHandler } from "./middleware/errorHandler.js";
 
 const app = express();
 const PORT = process.env.PORT ?? 3600;
@@ -25,4 +26,7 @@ app.use("/api/user", authRouter);
 // Database connection
 dbConnection();
 
+// Custom error handlers middleware
+app.use(NOT_FOUND);
+app.use(customErrorHandler);
 app.listen(PORT, () => console.log(` \n 🚀 http://localhost:${PORT} ✅`));
