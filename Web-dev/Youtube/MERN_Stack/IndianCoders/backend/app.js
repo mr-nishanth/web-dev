@@ -5,6 +5,7 @@ import path from "path";
 import logger from "morgan";
 import { dbConnection } from "./config/dbConn.js";
 import userRouter from "./routes/user.routes.js";
+import adminRouter from "./routes/admin.routes.js";
 const app = express();
 
 const PORT = process.env.PORT ?? 3600;
@@ -16,6 +17,7 @@ app.use(logger("dev"));
 
 // ROUTES
 app.use("/api/users", userRouter);
+app.use("/api/admins", adminRouter);
 // Database connection
 dbConnection();
 
