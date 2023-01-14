@@ -1,6 +1,6 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 mongoose.set("strictQuery", true);
-const dbConnection = async () => {
+export const dbConnection = async () => {
   const MONGO_LOCAL_URI = process.env.MONGO_LOCAL_URI;
   try {
     const res = await mongoose.connect(MONGO_LOCAL_URI);
@@ -9,7 +9,6 @@ const dbConnection = async () => {
     );
   } catch (error) {
     console.error(error.message);
+    process.exit(1);
   }
 };
-
-module.exports = dbConnection;

@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
-  "type": "commonjs",
+  "type": "module",
   "scripts": {
     "test": "jest --watchAll",
     "start": "node app.js",
-    "dev": "nodemon app.js"
+    "dev": "nodemon  --experimental-modules --es-module-specifier=resolution=node app.js"
   },
   "keywords": [],
   "author": "",

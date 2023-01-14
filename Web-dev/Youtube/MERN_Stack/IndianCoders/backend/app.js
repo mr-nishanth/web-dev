@@ -1,9 +1,11 @@
-require("dotenv").config();
-const express = require("express");
+import dotenv from "dotenv";
+dotenv.config();
+import express from "express";
+import path from "path";
+import logger from "morgan";
+import { dbConnection } from "./config/dbConn.js";
+
 const app = express();
-const path = require("path");
-const logger = require("morgan");
-const dbConnection = require("./config/dbConn");
 
 const PORT = process.env.PORT ?? 3600;
 
