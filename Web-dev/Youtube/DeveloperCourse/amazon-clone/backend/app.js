@@ -5,9 +5,12 @@ import express from "express";
 import logger from "morgan";
 import helmet from "helmet";
 import cors from "cors";
-import { dbConnection } from "./config/dbConn.js";
-const app = express();
 
+// Custom Import
+import { dbConnection } from "./config/dbConn.js";
+import authRouter from "./routes/auth.routes.js";
+
+const app = express();
 const PORT = process.env.PORT ?? 3600;
 
 // Middleware
@@ -18,7 +21,7 @@ app.use(cors());
 app.use(logger("dev"));
 
 // ROUTES
-
+app.use("/api/user", authRouter);
 // Database connection
 dbConnection();
 
