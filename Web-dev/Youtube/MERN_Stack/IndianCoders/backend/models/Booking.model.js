@@ -2,8 +2,9 @@ import mongoose from "mongoose";
 
 const bookingSchema = new mongoose.Schema({
   movie: {
-    type: String,
-    required: [true, "Please provide a movie name"],
+    type: mongoose.Types.ObjectId,
+    ref: "Movie",
+    required: [true, "Please provide a Movie ID"],
   },
   date: {
     type: Date,
@@ -14,8 +15,9 @@ const bookingSchema = new mongoose.Schema({
     required: [true, "Please provide a seat number"],
   },
   user: {
-    type: String,
-    required: [true, "Please provide a user"],
+    type: mongoose.Types.ObjectId,
+    ref: "User",
+    required: [true, "Please provide a User ID"],
   },
 });
 

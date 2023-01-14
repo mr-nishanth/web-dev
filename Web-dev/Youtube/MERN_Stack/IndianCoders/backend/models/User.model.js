@@ -15,6 +15,12 @@ const userSchema = new mongoose.Schema({
     required: [true, "Password must be provided"],
     minLength: [6, "Password must be at least 6 characters"],
   },
+  bookings: [
+    {
+      type: mongoose.Types.ObjectId,
+      ref: "Booking",
+    },
+  ],
 });
 
 const userModel = mongoose.model("User", userSchema);
