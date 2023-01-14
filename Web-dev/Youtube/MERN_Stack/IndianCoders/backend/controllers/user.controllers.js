@@ -119,3 +119,37 @@ export const deleteUser = async (req, res, next) => {
 
   return res.status(200).json({ message: "Deleted Successfully" });
 };
+
+/**
+ * @description Login user
+ * @route POST /api/users/login
+ * @access public
+ */
+export const login = async (req, res, next) => {
+  const { email, password } = req.body;
+  console.log({ email, password });
+  //^ Validate the user details
+  if (!email && email?.trim() === "" && !password && password?.trim() === "") {
+    return res.status(422).json({ message: "Invalid User details" });
+  }
+
+  let existingUser;
+  try {
+    existingUser = await User.findOne({ email: email });
+  } catch (error) {
+    return console.log(error);
+    return next(error);
+  }
+
+  if (!existingUser) {
+    return res.status(404).json({ message: "User not found" });
+  }
+
+  // Compare password
+  const isPassword = await decryptedPassword(password, existingUser.password);
+  if (!isPassword) {
+    return res.status(400).json({ message: "User credentials are incorrect" });
+  }
+
+  return res.status(200).json({ message: "Login successful" });
+};
