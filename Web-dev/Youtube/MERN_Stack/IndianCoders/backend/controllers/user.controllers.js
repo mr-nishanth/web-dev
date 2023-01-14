@@ -57,3 +57,56 @@ export const signUp = async (req, res, next) => {
 
   return res.status(201).json({ id: newUser.id, email: newUser.email });
 };
+/**
+ * @description Update existing user
+ * @route PUT /api/users/:id
+ * @access public
+ */
+export const updateUser = async (req, res, next) => {
+  const { id } = req.params;
+  const { name, email, password } = req.body;
+
+  //^ Validate the user details
+  if (
+    (!name && name.trim() === "") ||
+    (!email && email.trim() === "") ||
+    (!password && password.trim() === "")
+  ) {
+    return res.status(422).json({ message: "Invalid User details" });
+  }
+  const hashPassword = await encryptedPassword(password);
+  console.log(`Updated Hash password: ${hashPassword}`);
+  let updateUser;
+  try {
+    updateUser = await User.findByIdAndUpdate(
+      id,
+      { name: name, email: email, password: hashPassword },
+      { new: true }
+    );
+    // updateUser = await updateUser.save(); // automatically saved
+  } catch (error) {
+    return console.log(error);
+    // return next(error);
+  }
+
+  if (!updateUser) {
+    return res.status(500).json({ message: "Something went wrong" });
+  }
+
+  return res.status(200).json({ message: "Updated Successfully" });
+};
+export const deleteUser = async (req, res, next) => {
+  const { id } = req.params;
+  let deleteUser;
+  try {
+    deleteUser = await User.findByIdAndDelete(id);
+  } catch (error) {
+    return console.log(error);
+    return next(error);
+  }
+  if (!deleteUser) {
+    return res.status(500).json({ message: "Something went wrong" });
+  }
+
+  return res.status(200).json({ message: "Deleted Successfully" });
+};
