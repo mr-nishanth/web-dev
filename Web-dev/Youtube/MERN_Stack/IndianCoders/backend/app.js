@@ -7,6 +7,7 @@ import { dbConnection } from "./config/dbConn.js";
 import usersRouter from "./routes/user.routes.js";
 import adminsRouter from "./routes/admin.routes.js";
 import moviesRouter from "./routes/movie.routes.js";
+import bookingsRouter from "./routes/booking.routes.js";
 const app = express();
 
 const PORT = process.env.PORT ?? 3600;
@@ -20,6 +21,7 @@ app.use(logger("dev"));
 app.use("/api/users", usersRouter);
 app.use("/api/admins", adminsRouter);
 app.use("/api/movies", moviesRouter);
+app.use("/api/bookings", bookingsRouter);
 // Database connection
 dbConnection();
 
