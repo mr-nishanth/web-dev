@@ -4,8 +4,9 @@ import express from "express";
 import path from "path";
 import logger from "morgan";
 import { dbConnection } from "./config/dbConn.js";
-import userRouter from "./routes/user.routes.js";
-import adminRouter from "./routes/admin.routes.js";
+import usersRouter from "./routes/user.routes.js";
+import adminsRouter from "./routes/admin.routes.js";
+import moviesRouter from "./routes/movie.routes.js";
 const app = express();
 
 const PORT = process.env.PORT ?? 3600;
@@ -16,8 +17,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(logger("dev"));
 
 // ROUTES
-app.use("/api/users", userRouter);
-app.use("/api/admins", adminRouter);
+app.use("/api/users", usersRouter);
+app.use("/api/admins", adminsRouter);
+app.use("/api/movies", moviesRouter);
 // Database connection
 dbConnection();
 
