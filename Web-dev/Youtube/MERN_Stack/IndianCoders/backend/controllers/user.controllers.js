@@ -1,4 +1,5 @@
 import User from "../models/User.model.js";
+import Booking from "../models/Booking.model.js";
 import { decryptedPassword, encryptedPassword } from "../utils/helper.js";
 
 /**
@@ -152,4 +153,21 @@ export const login = async (req, res, next) => {
   }
 
   return res.status(200).json({ message: "Login successful" });
+};
+
+export const getBookingsOfUser = async (req, res, next) => {
+  const { id } = req.params;
+  let bookings;
+
+  try {
+    bookings = await Booking.find({ user: id }).lean();
+  } catch (error) {
+    return console.log(error);
+    return next(error);
+  }
+  if (!bookings) {
+    return res.status(500).json({ message: "Unable to get bookings" });
+  }
+
+  return res.status(200).json({ bookings });
 };
