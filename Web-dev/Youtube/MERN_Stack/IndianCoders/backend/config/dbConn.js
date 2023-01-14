@@ -1,9 +1,10 @@
 import mongoose from "mongoose";
 mongoose.set("strictQuery", true);
 export const dbConnection = async () => {
-  const MONGO_LOCAL_URI = process.env.MONGO_LOCAL_URI;
+  // const MONGO_URI = process.env.MONGO_LOCAL_URI;
+  const MONGO_URI = process.env.MONGO_ATLAS_URI;
   try {
-    const res = await mongoose.connect(MONGO_LOCAL_URI);
+    const res = await mongoose.connect(MONGO_URI);
     console.log(
       `Database connection established \n HOST: ${res.connection.host} \n DATABASE: ${res.connection.name}\n`
     );
