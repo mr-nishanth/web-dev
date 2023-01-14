@@ -3,6 +3,7 @@ import User from "../models/User.model.js";
 import asyncHandler from "express-async-handler";
 export const registerUser = asyncHandler(async (req, res) => {
   const { email } = req.body;
+  console.log(`Register User \n ${JSON.stringify(req.body)}\n `);
   //^ Check if the user is already registered
   const isExisting = await User.findOne({ email }).lean();
   if (!isExisting) {
