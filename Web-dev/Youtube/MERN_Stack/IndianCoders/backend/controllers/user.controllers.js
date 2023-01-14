@@ -1,5 +1,5 @@
 import User from "../models/User.model.js";
-import { encryptedPassword } from "../utils/helper.js";
+import { decryptedPassword, encryptedPassword } from "../utils/helper.js";
 
 /**
  * @description Get all users
@@ -32,11 +32,11 @@ export const signUp = async (req, res, next) => {
   //^ Validate the user details
   if (
     !name &&
-    name.trim() === "" &&
+    name?.trim() === "" &&
     !email &&
-    email.trim() === "" &&
+    email?.trim() === "" &&
     !password &&
-    password.trim() === ""
+    password?.trim() === ""
   ) {
     return res.status(422).json({ message: "Invalid User details" });
   }
@@ -68,9 +68,12 @@ export const updateUser = async (req, res, next) => {
 
   //^ Validate the user details
   if (
-    (!name && name.trim() === "") ||
-    (!email && email.trim() === "") ||
-    (!password && password.trim() === "")
+    !name &&
+    name.trim() === "" &&
+    !email &&
+    email.trim() === "" &&
+    !password &&
+    password.trim() === ""
   ) {
     return res.status(422).json({ message: "Invalid User details" });
   }
@@ -95,6 +98,12 @@ export const updateUser = async (req, res, next) => {
 
   return res.status(200).json({ message: "Updated Successfully" });
 };
+
+/**
+ * @description Delete existing user
+ * @route DELETE /api/users/:id
+ * @access public
+ */
 export const deleteUser = async (req, res, next) => {
   const { id } = req.params;
   let deleteUser;
