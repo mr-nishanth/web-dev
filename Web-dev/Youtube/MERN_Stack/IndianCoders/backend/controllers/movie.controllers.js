@@ -1,3 +1,5 @@
+import mongoose from "mongoose";
+import Admin from "../models/Admin.model.js";
 import Movie from "../models/Movie.model.js";
 import { verifyToken } from "../utils/helper.js";
 
@@ -10,7 +12,7 @@ export const addMovie = async (req, res, next) => {
 
   let adminID;
 
-  //   ^ Verify the token
+  // ^ Verify the token
   adminID = await verifyToken(extractedToken);
   console.log("ADMIN ID => " + adminID);
 
@@ -39,7 +41,15 @@ export const addMovie = async (req, res, next) => {
       featured,
       admin: adminID,
     });
-    movie = await movie.save();
+
+    const session = await mongoose.startSession();
+    const adminUser = await Admin.findById(adminID);
+    console.log(`adminUser ${adminUser}`);
+    session.startTransaction();
+    await movie.save({ session: session });
+    adminUser.addedMovies.push(movie);
+    await adminUser.save({ session: session });
+    await session.commitTransaction();
   } catch (error) {
     return console.log(error);
     return next(error);
