@@ -1,0 +1,6 @@
+// Sending unknown user
+
+"message": "Cannot read properties of null (reading 'isPasswordMatched')",
+    "stack": "TypeError: Cannot read properties of null (reading 'isPasswordMatched')\n    at file:///C:/VSCode/Web-dev/Youtube/DeveloperCourse/amazon-clone/backend/controllers/user.controllers.js:37:39\n    at processTicksAndRejections (node:internal/process/task_queues:96:5)"
+}
+

@@ -1,0 +1,50 @@
+developer_course_eCommerce
+======== USERS ======== 
+{
+    "firstname":"Mohan",
+    "lastname":"M",
+    "email":"Mohan@gmail.com",
+    "password":"Mohan@123",
+    "mobile":"9876543001"
+}
+
+{
+    "firstname":"Vijay",
+    "lastname":"M",
+    "email":"Vijay@gmail.com",
+    "password":"Vijay@123",
+    "mobile":"9876543002"
+}
+
+{
+    "firstname":"Paramaswari",
+    "lastname":"M",
+    "email":"Paramaswari@gmail.com",
+    "password":"Paramaswari@123",
+    "mobile":"9876543003"
+}
+
+{
+    "firstname":"Surya",
+    "lastname":"M",
+    "email":"Surya@gmail.com",
+    "password":"Surya@123",
+    "mobile":"9876543004"
+}
+
+======== ADMIN ======== 
+{
+    "firstname":"Admin",
+    "lastname":"M",
+    "email":"Admin@gmail.com",
+    "password":"Admin@123",
+    "mobile":"9876543004"
+}
+
+{
+    "firstname":"Nishanth",
+    "lastname":"M",
+    "email":"Nishanth@gmail.com",
+    "password":"Nishanth@123",
+    "mobile":"9876543004"
+}
