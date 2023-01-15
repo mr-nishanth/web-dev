@@ -31,12 +31,13 @@ export const loginUser = asyncHandler(async (req, res) => {
   const isExisting = await User.findOne({ email });
 
   // ^ Check if the user is exists as well as password is correct
+  const passwordCheck = await isExisting.isPasswordMatched(password);
   console.log(
     `\n ⚠️⚠️ LOGIN STATUS ⚠️⚠️  \n 
     USER CHECK ${isExisting ? "true" : "false"} \n
-    PASSWORD CHECK ${await isExisting.isPasswordMatched(password)} \n`
+    PASSWORD CHECK ${passwordCheck} \n`
   );
-  if (isExisting && (await isExisting.isPasswordMatched(password))) {
+  if (isExisting && passwordCheck) {
     return res.status(200).json({
       _id: isExisting.id,
       firstname: isExisting?.firstname,
@@ -60,7 +61,8 @@ export const getAllUser = asyncHandler(async (req, res) => {
   }
 });
 export const getOneUser = asyncHandler(async (req, res) => {
-  const { id } = req.params;
+  // const { id } = req.params;
+  const { _id: id } = req?.user;
   console.log(`\n \t\t\t\t\t 🔔🔔 Get One User ID : ${id}🔔🔔  \n`);
   try {
     const getUser = await User.findById(id).lean();
@@ -71,7 +73,8 @@ export const getOneUser = asyncHandler(async (req, res) => {
 });
 
 export const updatedUser = asyncHandler(async (req, res) => {
-  const { id } = req.params;
+  // const { id } = req.params;
+  const { _id: id } = req?.user;
   console.log(`\n \t\t\t\t\t 🔔🔔 Update User | ID : ${id}🔔🔔  \n`);
   try {
     const updatedUser = await User.findByIdAndUpdate(
@@ -90,7 +93,8 @@ export const updatedUser = asyncHandler(async (req, res) => {
   }
 });
 export const deleteUser = asyncHandler(async (req, res) => {
-  const { id } = req.params;
+  // const { id } = req.params;
+  const { _id: id } = req?.user;
   console.log(`\n \t\t\t\t\t 🔔🔔 Delete User | ID : ${id}🔔🔔  \n`);
   try {
     const deleteUser = await User.findByIdAndDelete(id);
