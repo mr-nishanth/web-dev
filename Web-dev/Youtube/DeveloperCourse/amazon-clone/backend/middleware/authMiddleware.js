@@ -1,6 +1,7 @@
 import asyncHandler from "express-async-handler";
 import User from "../models/User.model.js";
 import jwt from "jsonwebtoken";
+import { validateID } from "../utils/validateMongoDBID.js";
 // Verify JWT Token
 export const authMiddleware = asyncHandler(async (req, res, next) => {
   const check =
@@ -16,23 +17,11 @@ export const authMiddleware = asyncHandler(async (req, res, next) => {
   );
   if (check && token) {
     try {
-      /*
-      const decoded = jwt.verify(
-        token,
-        process.env.JWT_ACCESS_TOKEN,
-        async (err, decoded) => {
-          if (err) {
-            throw new Error(err);
-          }
-          console.log(`\n DECODED :${JSON.stringify(decoded)} \n `);
-          // Find the user with help of the decoded (id)
-          const user = await User.findById(decoded?.id);
-        }
-      );
-      */
       const decoded = jwt.verify(token, process.env.JWT_ACCESS_TOKEN);
       console.log(`\n DECODED :${JSON.stringify(decoded)} \n `);
       // Find the user with help of the decoded (id)
+      //^ Validate the user ID
+      validateID(decoded?.id);
       const user = await User.findById(decoded?.id).select({ email: 1 });
       console.log(
         `\n GET USER EMAIL VIA DECODED :${JSON.stringify(user.email)} \n `
@@ -72,6 +61,8 @@ export const isAdmin = asyncHandler(async (req, res, next) => {
 // Block the user
 export const blockUser = asyncHandler(async (req, res, next) => {
   const { id } = req.params;
+  //^ Validate the user ID
+  validateID(id);
   console.log(
     `\n ⚠️⚠️ Block STATUS ⚠️⚠️  \n        
     ID :  ${id} \n       
@@ -91,6 +82,8 @@ export const blockUser = asyncHandler(async (req, res, next) => {
 // UnBlock the user
 export const unBlockUser = asyncHandler(async (req, res, next) => {
   const { id } = req.params;
+  //^ Validate the user ID
+  validateID(id);
   console.log(
     `\n ⚠️⚠️ UnBlock STATUS ⚠️⚠️  \n        
     ID :  ${id} \n       
