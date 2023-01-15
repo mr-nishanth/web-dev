@@ -2,8 +2,8 @@ import User from "../models/User.model.js";
 
 import asyncHandler from "express-async-handler";
 
-import bcrypt from "bcryptjs";
 import { generateToken } from "../middleware/jwtToken.js";
+import { validateID } from "../utils/validateMongoDBID.js";
 export const registerUser = asyncHandler(async (req, res) => {
   const { email } = req.body;
   console.log(
@@ -63,6 +63,8 @@ export const getAllUser = asyncHandler(async (req, res) => {
 export const getOneUser = asyncHandler(async (req, res) => {
   // const { id } = req.params;
   const { _id: id } = req?.user;
+  //^ Validate the user ID
+  // validateID(id);
   console.log(`\n \t\t\t\t\t 🔔🔔 Get One User ID : ${id}🔔🔔  \n`);
   try {
     const getUser = await User.findById(id).lean();
@@ -75,6 +77,8 @@ export const getOneUser = asyncHandler(async (req, res) => {
 export const updatedUser = asyncHandler(async (req, res) => {
   // const { id } = req.params;
   const { _id: id } = req?.user;
+  //^ Validate the user ID
+  validateID(id);
   console.log(`\n \t\t\t\t\t 🔔🔔 Update User | ID : ${id}🔔🔔  \n`);
   try {
     const updatedUser = await User.findByIdAndUpdate(
@@ -95,6 +99,8 @@ export const updatedUser = asyncHandler(async (req, res) => {
 export const deleteUser = asyncHandler(async (req, res) => {
   // const { id } = req.params;
   const { _id: id } = req?.user;
+  //^ Validate the user ID
+  validateID(id);
   console.log(`\n \t\t\t\t\t 🔔🔔 Delete User | ID : ${id}🔔🔔  \n`);
   try {
     const deleteUser = await User.findByIdAndDelete(id);
