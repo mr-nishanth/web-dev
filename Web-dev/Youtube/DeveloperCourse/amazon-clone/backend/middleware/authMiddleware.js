@@ -68,3 +68,42 @@ export const isAdmin = asyncHandler(async (req, res, next) => {
     next();
   }
 });
+
+// Block the user
+export const blockUser = asyncHandler(async (req, res, next) => {
+  const { id } = req.params;
+  console.log(
+    `\n ⚠️⚠️ Block STATUS ⚠️⚠️  \n        
+    ID :  ${id} \n       
+        `
+  );
+  try {
+    const blockUser = await User.findByIdAndUpdate(
+      id,
+      { isBlocked: true },
+      { new: true }
+    );
+    return res.json({ msg: "User Block" });
+  } catch (error) {
+    throw new Error(error);
+  }
+});
+// UnBlock the user
+export const unBlockUser = asyncHandler(async (req, res, next) => {
+  const { id } = req.params;
+  console.log(
+    `\n ⚠️⚠️ UnBlock STATUS ⚠️⚠️  \n        
+    ID :  ${id} \n       
+        `
+  );
+  try {
+    const blockUser = await User.findByIdAndUpdate(
+      id,
+      { isBlocked: false },
+      { new: true }
+    );
+    return res.json({ msg: "User UnBlock" });
+  } catch (error) {
+    throw new Error(error);
+  }
+});
