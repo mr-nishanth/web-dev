@@ -1,0 +1,17 @@
+/*
+In authMiddleware file
+      const decoded = jwt.verify(
+        token,
+        process.env.JWT_ACCESS_TOKEN,
+        async (err, decoded) => {
+          if (err) {
+            throw new Error(err);
+          }
+          console.log(`\n DECODED :${JSON.stringify(decoded)} \n `);
+          // Find the user with help of the decoded (id)
+          const user = await User.findById(decoded?.id);
+        }
+      );
+      */
+      
+
