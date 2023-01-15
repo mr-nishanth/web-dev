@@ -7,7 +7,7 @@ import { generateToken } from "../middleware/jwtToken.js";
 export const registerUser = asyncHandler(async (req, res) => {
   const { email } = req.body;
   console.log(
-    `\n 🔔🔔 Register User 🔔🔔 
+    `\n \t\t\t\t\t 🔔🔔 Register User 🔔🔔 
     \n ${JSON.stringify(req.body)}\n `
   );
   //^ Check if the user is already registered
@@ -24,15 +24,17 @@ export const registerUser = asyncHandler(async (req, res) => {
 
 export const loginUser = asyncHandler(async (req, res) => {
   const { email, password } = req.body;
-  console.log(`Login User \n ${JSON.stringify(req.body)}\n `);
+  console.log(
+    `\n \t\t\t\t\t 🔔🔔 Login User 🔔🔔  \n ${JSON.stringify(req.body)}\n `
+  );
   //^ Check if the user is exists or not
   const isExisting = await User.findOne({ email });
 
   // ^ Check if the user is exists as well as password is correct
   console.log(
-    `\n 🔔🔔 LOGIN STATUS 🔔🔔 \n 
+    `\n ⚠️⚠️ LOGIN STATUS ⚠️⚠️  \n 
     USER CHECK ${isExisting ? "true" : "false"} \n
-    PASSWORD CHECK ${await isExisting.isPasswordMatched(password)}`
+    PASSWORD CHECK ${await isExisting.isPasswordMatched(password)} \n`
   );
   if (isExisting && (await isExisting.isPasswordMatched(password))) {
     return res.status(200).json({
