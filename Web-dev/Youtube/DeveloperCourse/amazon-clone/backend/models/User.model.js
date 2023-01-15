@@ -1,39 +1,63 @@
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
-const userSchema = new mongoose.Schema({
-  firstname: {
-    type: String,
-    trim: true,
-    required: true,
+const userSchema = new mongoose.Schema(
+  {
+    firstname: {
+      type: String,
+      trim: true,
+      required: true,
+    },
+    lastname: {
+      type: String,
+      trim: true,
+      required: true,
+    },
+    email: {
+      type: String,
+      trim: true,
+      lowercase: true,
+      required: true,
+      unique: true,
+    },
+    mobile: {
+      type: String,
+      trim: true,
+      required: true,
+      unique: true,
+    },
+    password: {
+      type: String,
+      trim: true,
+      required: true,
+    },
+    role: {
+      type: String,
+      enum: ["admin", "user", "guest"],
+      default: "user",
+    },
+    isBlocked: {
+      type: Boolean,
+      default: false,
+    },
+    cart: {
+      type: Array,
+      default: [],
+    },
+    address: [
+      {
+        type: mongoose.Types.ObjectId,
+        ref: "Address",
+      },
+    ],
+    wishlist: [
+      {
+        type: mongoose.Types.ObjectId,
+        ref: "Product",
+      },
+    ],
   },
-  lastname: {
-    type: String,
-    trim: true,
-    required: true,
-  },
-  email: {
-    type: String,
-    trim: true,
-    required: true,
-    unique: true,
-  },
-  mobile: {
-    type: String,
-    trim: true,
-    required: true,
-    unique: true,
-  },
-  password: {
-    type: String,
-    trim: true,
-    required: true,
-  },
-  role: {
-    type: String,
-    enum: ["admin", "user", "guest"],
-    default: "user",
-  },
-});
+  { timestamps: true }
+);
 
 // Password hashing
 userSchema.pre("save", async function (next) {
