@@ -50,3 +50,52 @@ export const loginUser = asyncHandler(async (req, res) => {
     throw new Error("Invalid Credentials");
   }
 });
+export const getAllUser = asyncHandler(async (req, res) => {
+  console.log(`\n \t\t\t\t\t 🔔🔔 Get All User 🔔🔔  \n `);
+  try {
+    const getUsers = await User.find().lean();
+    return res.status(200).json(getUsers);
+  } catch (error) {
+    throw new Error(error);
+  }
+});
+export const getOneUser = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+  console.log(`\n \t\t\t\t\t 🔔🔔 Get One User ID : ${id}🔔🔔  \n`);
+  try {
+    const getUser = await User.findById(id).lean();
+    return res.status(200).json(getUser);
+  } catch (error) {
+    throw new Error(error);
+  }
+});
+
+export const updatedUser = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+  console.log(`\n \t\t\t\t\t 🔔🔔 Update User | ID : ${id}🔔🔔  \n`);
+  try {
+    const updatedUser = await User.findByIdAndUpdate(
+      id,
+      {
+        firstname: req?.body?.firstname,
+        lastname: req?.body?.lastname,
+        email: req?.body?.email,
+        mobile: req?.body?.mobile,
+      },
+      { new: true }
+    );
+    return res.status(200).json({ updatedUser });
+  } catch (error) {
+    throw new Error(error);
+  }
+});
+export const deleteUser = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+  console.log(`\n \t\t\t\t\t 🔔🔔 Delete User | ID : ${id}🔔🔔  \n`);
+  try {
+    const deleteUser = await User.findByIdAndDelete(id);
+    return res.status(200).json({ deleteUser });
+  } catch (error) {
+    throw new Error(error);
+  }
+});
