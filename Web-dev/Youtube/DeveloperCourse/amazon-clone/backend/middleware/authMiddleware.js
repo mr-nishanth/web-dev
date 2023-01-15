@@ -47,3 +47,24 @@ export const authMiddleware = asyncHandler(async (req, res, next) => {
     throw new Error("There is no authorization token available");
   }
 });
+
+// Check the user is admin or not
+export const isAdmin = asyncHandler(async (req, res, next) => {
+  const { email } = req?.user;
+
+  const adminUser = await User.findOne({ email }).select({ role: 1 });
+
+  console.log(
+    `\n ⚠️⚠️ IsAdmin STATUS ⚠️⚠️  \n
+        EMAIL :  ${req?.user?.email} \n       
+        ROLE :  ${adminUser?.role} \n       
+        STATUS :  ${adminUser?.role !== "admin" ? false : true} \n`
+  );
+
+  if (adminUser?.role !== "admin") {
+    res.status(403);
+    throw new Error("You are not an administrator");
+  } else {
+    next();
+  }
+});
