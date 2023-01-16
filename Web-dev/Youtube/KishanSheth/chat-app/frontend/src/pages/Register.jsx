@@ -15,6 +15,12 @@ const Register = () => {
     confirmPassword: "",
   });
 
+  useEffect(() => {
+    if (localStorage.getItem("chat-app-user")) {
+      navigate("/");
+    }
+  }, []);
+
   let toastOptions = {
     position: "bottom-right",
     autoClose: 5000,

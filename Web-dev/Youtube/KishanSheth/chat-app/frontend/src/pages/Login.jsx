@@ -1,17 +1,24 @@
 import styled from "styled-components";
 import { Link, useNavigate } from "react-router-dom";
 import Logo from "../assets/logo.svg";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import { loginRoute, registerRoute } from "../utils/APIRoutes";
 const Login = () => {
   const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
   const [values, setValues] = useState({
     username: "",
     password: "",
   });
+
+  useEffect(() => {
+    if (localStorage.getItem("chat-app-user")) {
+      navigate("/");
+    }
+  }, []);
 
   let toastOptions = {
     position: "bottom-right",
@@ -36,15 +43,18 @@ const Login = () => {
     e.preventDefault();
     console.log("Submit");
     if (handleValidation()) {
+      // setIsLoading(true);
       const { username, password } = values;
       const { data } = await axios.post(loginRoute, {
         username,
         password,
       });
       if (data.status === false) {
+        // setIsLoading(false);
         toast.error(`${data.msg}`, toastOptions);
       }
       if (data.status === true) {
+        // setIsLoading(false);
         localStorage.setItem("chat-app-user", data.user);
         navigate("/");
       }
@@ -78,7 +88,9 @@ const Login = () => {
             max="256"
             onChange={(e) => handleChange(e)}
           />
-          <button type="submit">Login</button>
+          <button type="submit" disabled={isLoading}>
+            Login
+          </button>
           <span>
             Don't have an account ? <Link to="/register">Register</Link>
           </span>
