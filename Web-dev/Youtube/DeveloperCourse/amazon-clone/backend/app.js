@@ -8,8 +8,9 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 // Custom Import
 import { dbConnection } from "./config/dbConn.js";
-import authRouter from "./routes/auth.routes.js";
 import { NOT_FOUND, customErrorHandler } from "./middleware/errorHandler.js";
+import authRouter from "./routes/auth.routes.js";
+import productRouter from "./routes/product.routes.js";
 
 const app = express();
 const PORT = process.env.PORT ?? 3600;
@@ -24,6 +25,7 @@ app.use(logger("dev"));
 
 // ROUTES
 app.use("/api/user", authRouter);
+app.use("/api/product", productRouter);
 // Database connection
 dbConnection();
 

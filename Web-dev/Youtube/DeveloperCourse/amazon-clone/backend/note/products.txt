@@ -1,0 +1,8 @@
+{
+ title:"Apple Watch",
+    slug: "abc",
+    description: "This brand new Apple Watch",
+    price: 500,
+    brand: "",
+    quantity: 50,    
+}
