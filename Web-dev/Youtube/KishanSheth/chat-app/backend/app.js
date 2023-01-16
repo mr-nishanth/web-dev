@@ -10,7 +10,6 @@ import cookieParser from "cookie-parser";
 import { dbConnection } from "./config/dbConn.js";
 import { NOT_FOUND, customErrorHandler } from "./middleware/errorHandler.js";
 import authRouter from "./routes/auth.routes.js";
-import productRouter from "./routes/product.routes.js";
 
 const app = express();
 const PORT = process.env.PORT ?? 3600;
@@ -24,8 +23,8 @@ app.use(cookieParser());
 app.use(logger("dev"));
 
 // ROUTES
-app.use("/api/user", authRouter);
-app.use("/api/product", productRouter);
+app.use("/api/auth", authRouter);
+
 // Database connection
 dbConnection();
 
