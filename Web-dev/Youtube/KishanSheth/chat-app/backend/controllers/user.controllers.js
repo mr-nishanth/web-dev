@@ -32,3 +32,34 @@ export const registerUser = asyncHandler(async (req, res, next) => {
     next(error);
   }
 });
+
+// !=================================================================================
+export const loginUser = asyncHandler(async (req, res, next) => {
+  const { username, password } = req.body;
+  console.log(
+    `\n \t\t\t\t\t 🔔🔔 Login User 🔔🔔  \n ${JSON.stringify(req.body)}\n `
+  );
+  //^ Check if the user is exists or not
+
+  try {
+    const isUsername = await User.findOne({ username }).exec();
+
+    const isPassword = await isUsername?.isPasswordMatched(password);
+    // ^ Check if the user is exists as well as password is correct
+    if (!isUsername)
+      return res.json({ msg: "Invalid Username or password", status: false });
+    if (!isPassword)
+      return res.json({ msg: "Invalid username or Password", status: false });
+
+    console.log(
+      `\n ⚠️⚠️ LOGIN STATUS ⚠️⚠️  \n 
+        USER CHECK ${isUsername ? "true" : "false"} \n
+        PASSWORD CHECK ${isPassword} \n`
+    );
+    console.log("PASS U", isUsername.password);
+
+    return res.json({ user: isUsername, status: true });
+  } catch (error) {
+    next(error);
+  }
+});
