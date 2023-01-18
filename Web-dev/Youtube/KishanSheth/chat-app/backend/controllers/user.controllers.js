@@ -63,3 +63,28 @@ export const loginUser = asyncHandler(async (req, res, next) => {
     next(error);
   }
 });
+
+// !=================================================================================
+export const setAvatar = asyncHandler(async (req, res, next) => {
+  const { id } = req.params;
+  const { image } = req.body;
+  console.log(
+    `\n \t\t\t\t\t 🔔🔔 Set Avatar 🔔🔔  \n ID : ${JSON.stringify(
+      req.params
+    )}\n Images : ${JSON.stringify(req.body)}\n `
+  );
+  //^ Set Avatar image
+  try {
+    const userAvatar = await User.findByIdAndUpdate(
+      id,
+      { isAvatarImageSet: true, avatarImage: image },
+      { new: true }
+    ).exec();
+    return res.json({
+      isSet: userAvatar.isAvatarImageSet,
+      image: userAvatar.avatarImage,
+    });
+  } catch (error) {
+    next(error);
+  }
+});
