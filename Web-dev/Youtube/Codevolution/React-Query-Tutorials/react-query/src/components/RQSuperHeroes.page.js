@@ -1,8 +1,6 @@
 import axios from "axios";
 import { useQuery } from "react-query";
-const fetchSuperHeroes = () => {
-  return axios.get("http://localhost:4000/superheroes");
-};
+import { useSuperHeroesData } from "../hooks/useSuperHeroesData";
 
 export const RQSuperHeroesPage = () => {
   const onSuccess = (data) => {
@@ -22,17 +20,8 @@ export const RQSuperHeroesPage = () => {
     isError,
     error,
     data: superHeroes,
-  } = useQuery(["super-heroes"], fetchSuperHeroes, {
-    onSuccess: onSuccess,
-    onError: onError,
-    //^ Data transformations using select
-    select: (res) => {
-      // const superHeroNames = res.data.map((hero) => hero.name);
-      const superHeroNames = res.data.filter((hero) => hero.name === "Batman");
-      console.log(superHeroNames);
-      return superHeroNames;
-    },
-  });
+  } = useSuperHeroesData(onSuccess, onError);
+
   console.log({ superHeroes });
   console.log({ isFetching, isLoading });
   if (isLoading || isFetching) return <h1>Loading....</h1>;
@@ -51,3 +40,9 @@ export const RQSuperHeroesPage = () => {
     </>
   );
 };
+
+/**
+ * Create brand new components and display the list of superheroes using custom query hook , we have just built,
+ * however i also want you to ensure the data is fetched when the component mounts in react query superheros page
+ * where as the data should only be fetched , when you click a button in the new component
+ */
