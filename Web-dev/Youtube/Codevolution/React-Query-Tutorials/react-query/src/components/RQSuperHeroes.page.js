@@ -18,7 +18,9 @@ export const RQSuperHeroesPage = () => {
     // } = useQuery(["super-heroes"], fetchSuperHeroes, {});
   } = useQuery(["super-heroes"], fetchSuperHeroes, {
     // cacheTime: 5000,
-    staleTime: 20000,
+    // staleTime: 20000,
+    refetchOnMount: "always", // by default true , false ,  'always' -> Its not care about staleTime , its refetch on unmount always
+    refetchOnWindowFocus: true, // by default true , false , 'always' -> Its not care about staleTime , its refetch on window focus always
   });
   // cacheTime: 5000 => 5sec
 
