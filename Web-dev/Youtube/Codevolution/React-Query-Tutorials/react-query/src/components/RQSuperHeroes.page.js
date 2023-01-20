@@ -26,8 +26,15 @@ export const RQSuperHeroesPage = () => {
   } = useQuery(["super-heroes"], fetchSuperHeroes, {
     onSuccess: onSuccess,
     onError: onError,
+    //^ Data transformations using select
+    select: (res) => {
+      // const superHeroNames = res.data.map((hero) => hero.name);
+      const superHeroNames = res.data.filter((hero) => hero.name === "Batman");
+      console.log(superHeroNames);
+      return superHeroNames;
+    },
   });
-
+  console.log({ superHeroes });
   console.log({ isFetching, isLoading });
   if (isLoading || isFetching) return <h1>Loading....</h1>;
   if (isError) return <h1>{error.message}</h1>;
@@ -35,7 +42,21 @@ export const RQSuperHeroesPage = () => {
     <>
       <h2>React Query Super Heroes Page</h2>
       <button onClick={refetch}>Fetch Super Heroes</button>
-      {superHeroes?.data?.map((hero) => {
+      {/* {superHeroes?.data?.map((hero) => {
+        return (
+          <div key={hero.id}>
+            <p>{hero.name}</p>
+          </div>
+        );
+      })} */}
+
+      {/* ========== Array MAP =========== */}
+      {/* {superHeroes.map((hero) => {
+        return <div key={hero}>{hero}</div>;
+      })} */}
+
+      {/* ========== Object Filter =========== */}
+      {superHeroes?.map((hero) => {
         return (
           <div key={hero.id}>
             <p>{hero.name}</p>
