@@ -6,6 +6,7 @@ const fetchSuperHeroes = () => {
 
 export const RQSuperHeroesPage = () => {
   const onSuccess = (data) => {
+    // Opening Model , Navigate Different routes , Display Toast Notifications
     console.log(
       `Performing sideEffects eg:Toast notifications ${JSON.stringify(data)}`
     );
@@ -41,7 +42,21 @@ export const RQSuperHeroesPage = () => {
     <>
       <h2>React Query Super Heroes Page</h2>
       <button onClick={refetch}>Fetch Super Heroes</button>
-      {superHeroes?.data?.map((hero) => {
+      {/* {superHeroes?.data?.map((hero) => {
+        return (
+          <div key={hero.id}>
+            <p>{hero.name}</p>
+          </div>
+        );
+      })} */}
+
+      {/* ========== Array MAP =========== */}
+      {/* {superHeroes.map((hero) => {
+        return <div key={hero}>{hero}</div>;
+      })} */}
+
+      {/* ========== Object Filter =========== */}
+      {superHeroes?.map((hero) => {
         return (
           <div key={hero.id}>
             <p>{hero.name}</p>
