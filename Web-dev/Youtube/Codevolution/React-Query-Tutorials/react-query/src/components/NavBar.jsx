@@ -13,6 +13,9 @@ const NavBar = () => {
         <li>
           <Link to="/rq-super-heroes">RQ Super Heroes</Link>
         </li>
+        <li>
+          <Link to="/rq-parallel">RQ Parallel Queries</Link>
+        </li>
       </ul>
     </nav>
   );
