@@ -17,15 +17,18 @@ export const RQSuperHeroesPage = () => {
     data: superHeroes,
     // } = useQuery(["super-heroes"], fetchSuperHeroes, {});
   } = useQuery(["super-heroes"], fetchSuperHeroes, {
+    // ~ Cache
     // cacheTime: 5000,
+    // ~
     // staleTime: 20000,
-    refetchOnMount: true, // by default true , false ,  'always' -> Its not care about staleTime , its refetch on unmount always
-    refetchOnWindowFocus: true, // by default true , false , 'always' -> Its not care about staleTime , its refetch on window focus always
-
-    // Polling
+    // ~
+    // refetchOnMount: true, // by default true , false ,  'always' -> Its not care about staleTime , its refetch on unmount always
+    // refetchOnWindowFocus: true, // by default true , false , 'always' -> Its not care about staleTime , its refetch on window focus always
+    // ~ Polling
     // refetchInterval:false // by default false
-    refetchInterval: 2000, // the query refresh the data every 2 sec whether staleTime:30000/refetchOnMount:false/refetchWindowFocus:false is set or not
-    refetchIntervalInBackground: true, // Even though the window was not in focus , its refetch the data in background
+    // refetchInterval: 2000, // the query refresh the data every 2 sec whether staleTime:30000/refetchOnMount:false/refetchWindowFocus:false is set or not
+    // refetchIntervalInBackground: true, // Even though the window was not in focus , its refetch the data in background
+    // ~
   });
   // cacheTime: 5000 => 5sec
 
