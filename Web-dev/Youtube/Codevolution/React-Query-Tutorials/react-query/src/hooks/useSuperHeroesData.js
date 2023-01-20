@@ -8,10 +8,10 @@ export const useSuperHeroesData = (onSuccess, onError) => {
   return useQuery(["super-heroes"], fetchSuperHeroes, {
     onSuccess: onSuccess,
     onError: onError,
-    select: (res) => {
-      const superHeroNames = res.data.map((hero) => hero.name);
-      console.log({ superHeroNames });
-      return superHeroNames;
-    },
+    // select: (res) => {
+    //   const superHeroNames = res.data.map((hero) => hero.name);
+    //   console.log({ superHeroNames });
+    //   return superHeroNames;
+    // },
   });
 };

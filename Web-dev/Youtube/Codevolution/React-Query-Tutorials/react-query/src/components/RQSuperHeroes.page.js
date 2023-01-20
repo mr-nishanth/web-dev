@@ -1,12 +1,13 @@
 import axios from "axios";
 import { useQuery } from "react-query";
+import { Link } from "react-router-dom";
 import { useSuperHeroesData } from "../hooks/useSuperHeroesData";
 
 export const RQSuperHeroesPage = () => {
   const onSuccess = (data) => {
-    console.log(
-      `Performing sideEffects eg:Toast notifications ${JSON.stringify(data)}`
-    );
+    // console.log(
+    //   `Performing sideEffects eg:Toast notifications ${JSON.stringify(data)}`
+    // );
   };
   const onError = (error) => {
     console.log(
@@ -33,7 +34,7 @@ export const RQSuperHeroesPage = () => {
       {superHeroes?.data?.map((hero) => {
         return (
           <div key={hero.id}>
-            <p>{hero.name}</p>
+            <Link to={`/rq-super-heroes/${hero.id}`}>{hero.name}</Link>
           </div>
         );
       })}

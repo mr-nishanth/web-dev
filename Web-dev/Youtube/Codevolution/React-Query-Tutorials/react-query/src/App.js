@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
 import { HomePage } from "./components/Home.page";
 import NavBar from "./components/NavBar";
+import RQSuperHeroPage from "./components/RQSuperHero.page";
 import { RQSuperHeroesPage } from "./components/RQSuperHeroes.page";
 import { SuperHeroesPage } from "./components/SuperHeroes.page";
 
@@ -13,6 +14,10 @@ function App() {
         <Routes>
           <Route path="/super-heroes" element={<SuperHeroesPage />} />
           <Route path="/rq-super-heroes" element={<RQSuperHeroesPage />} />
+          <Route
+            path="/rq-super-heroes/:heroId"
+            element={<RQSuperHeroPage />}
+          />
           <Route path="/" element={<HomePage />} />
         </Routes>
       </Router>
