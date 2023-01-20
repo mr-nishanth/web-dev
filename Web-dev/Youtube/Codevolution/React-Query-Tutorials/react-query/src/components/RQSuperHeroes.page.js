@@ -10,9 +10,9 @@ export const RQSuperHeroesPage = () => {
     // );
   };
   const onError = (error) => {
-    console.log(
-      `Performing sideEffects after encountered error: ${error.message}`
-    );
+    // console.log(
+    //   `Performing sideEffects after encountered error: ${error.message}`
+    // );
   };
   const {
     isLoading,
@@ -21,9 +21,10 @@ export const RQSuperHeroesPage = () => {
     isError,
     error,
     data: superHeroes,
-  } = useSuperHeroesData(onSuccess, onError);
+    // } = useSuperHeroesData(onSuccess, onError);
+  } = useSuperHeroesData();
 
-  console.log({ superHeroes });
+  // console.log({ superHeroes });
   console.log({ isFetching, isLoading });
   if (isLoading || isFetching) return <h1>Loading....</h1>;
   if (isError) return <h1>{error.message}</h1>;
