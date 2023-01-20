@@ -78,7 +78,7 @@ const Register = () => {
         <form onSubmit={(e) => handleSubmit(e)}>
           <div className="brand">
             <img src={Logo} alt="BlackChat" />
-            <h1>BlackChat</h1>
+            <h1>WhistleMyTee</h1>
           </div>
           <input
             type="text"
