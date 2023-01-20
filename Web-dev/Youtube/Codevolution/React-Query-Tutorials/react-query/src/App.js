@@ -8,6 +8,7 @@ import RQSuperHeroPage from "./components/RQSuperHero.page";
 import { RQSuperHeroesPage } from "./components/RQSuperHeroes.page";
 import { SuperHeroesPage } from "./components/SuperHeroes.page";
 import DependentQueries from "./components/DependentQueries";
+import PaginatedQueries from "./components/PaginatedQueries.page";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
             path="/dependent-queries"
             element={<DependentQueries email={"Nishanth@gmail.com"} />}
           />
+          <Route path="/paginated" element={<PaginatedQueries />} />
 
           <Route path="/" element={<HomePage />} />
         </Routes>
