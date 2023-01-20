@@ -29,5 +29,17 @@
       "id": 3,
       "name": "Balloon"
     }
+  ],
+  "users": [
+    {
+      "id": "Nishanth@gmail.com",
+      "channelID": "BlackCode"
+    }
+  ],
+  "channels": [
+    {
+      "id": "BlackCode",
+      "hobby": ["Coding", "Gaming", "Riding"]
+    }
   ]
 }
