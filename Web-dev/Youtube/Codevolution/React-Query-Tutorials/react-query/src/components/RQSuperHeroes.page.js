@@ -1,3 +1,5 @@
+// ! By default the react query automatically retry(4-times) if the error occurred
+
 import axios from "axios";
 import { useQuery } from "react-query";
 
@@ -9,15 +11,20 @@ const fetchSuperHeroes = () => {
 export const RQSuperHeroesPage = () => {
   const {
     isLoading,
+    isFetching,
     isError,
     error,
     data: superHeroes,
-  } = useQuery(["super-heroes"], fetchSuperHeroes);
+  } = useQuery(["super-heroes"], fetchSuperHeroes, {});
+  // } = useQuery(["super-heroes"], fetchSuperHeroes, { cacheTime: 5000 });
+  // cacheTime: 5000 => 5sec
 
+  console.log({ isFetching, isLoading });
   if (isLoading) return <h1>Loading....</h1>;
 
-  // ! By default the react query automatically retry(4-times) if the error occurred
   if (isError) return <h1>{error.message}</h1>;
+
+  // if (isFetching) return <h1>Fetching...</h1>;
 
   return (
     <>

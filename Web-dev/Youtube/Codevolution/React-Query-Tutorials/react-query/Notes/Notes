@@ -1,2 +1,4 @@
 # React Query
 
+- ! By default the react query automatically retry(4-times) if the error occurred
+- ! The React Query Cache , by default every query result cached 5mins
