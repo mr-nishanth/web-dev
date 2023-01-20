@@ -12,6 +12,7 @@ export const RQSuperHeroesPage = () => {
   const {
     isLoading,
     isFetching,
+    refetch, // used for triggering manually fetching
     isError,
     error,
     data: superHeroes,
@@ -28,12 +29,15 @@ export const RQSuperHeroesPage = () => {
     // refetchInterval:false // by default false
     // refetchInterval: 2000, // the query refresh the data every 2 sec whether staleTime:30000/refetchOnMount:false/refetchWindowFocus:false is set or not
     // refetchIntervalInBackground: true, // Even though the window was not in focus , its refetch the data in background
-    // ~
+    // ~ useQuery on Click
+    // 1st disable fetching onmount using enabled
+    // enabled: true, // by default true , if we set enabled:false , then the useQuery requires the any event to be fired
+    enabled: false,
   });
   // cacheTime: 5000 => 5sec
 
   console.log({ isFetching, isLoading });
-  if (isLoading) return <h1>Loading....</h1>;
+  if (isLoading || isFetching) return <h1>Loading....</h1>;
 
   if (isError) return <h1>{error.message}</h1>;
 
@@ -42,6 +46,7 @@ export const RQSuperHeroesPage = () => {
   return (
     <>
       <h2>React Query Super Heroes Page</h2>
+      <button onClick={refetch}>Fetch Super Heroes</button>
       {superHeroes?.data?.map((hero) => {
         return (
           <div key={hero.id}>
