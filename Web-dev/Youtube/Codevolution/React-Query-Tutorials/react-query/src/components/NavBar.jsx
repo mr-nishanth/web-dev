@@ -16,6 +16,9 @@ const NavBar = () => {
         <li>
           <Link to="/rq-parallel">RQ Parallel Queries</Link>
         </li>
+        <li>
+          <Link to="/drq-parallel">RQ Dynamic PQ</Link>
+        </li>
       </ul>
     </nav>
   );

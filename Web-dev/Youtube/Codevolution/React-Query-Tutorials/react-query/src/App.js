@@ -3,6 +3,7 @@ import "./App.css";
 import { HomePage } from "./components/Home.page";
 import NavBar from "./components/NavBar";
 import ParallelQueriesPage from "./components/ParallelQueries.page";
+import DynamicParallelQueriesPage from "./components/DynamicParallelQueries";
 import RQSuperHeroPage from "./components/RQSuperHero.page";
 import { RQSuperHeroesPage } from "./components/RQSuperHeroes.page";
 import { SuperHeroesPage } from "./components/SuperHeroes.page";
@@ -20,6 +21,11 @@ function App() {
             element={<RQSuperHeroPage />}
           />
           <Route path="/rq-parallel" element={<ParallelQueriesPage />} />
+          <Route
+            path="/drq-parallel"
+            element={<DynamicParallelQueriesPage heroIds={[1, 3]} />}
+          />
+
           <Route path="/" element={<HomePage />} />
         </Routes>
       </Router>
