@@ -13,7 +13,7 @@ const NavBar = () => {
         <li>
           <Link to="/rq-super-heroes">RQ Super Heroes</Link>
         </li>
-        <li>
+        {/* <li>
           <Link to="/rq-parallel">RQ Parallel Queries</Link>
         </li>
         <li>
@@ -24,7 +24,7 @@ const NavBar = () => {
         </li>
         <li>
           <Link to="/paginated">Paginated</Link>
-        </li>
+        </li> */}
       </ul>
     </nav>
   );

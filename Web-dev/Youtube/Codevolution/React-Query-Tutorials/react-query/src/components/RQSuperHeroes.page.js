@@ -1,36 +1,65 @@
 import axios from "axios";
+import { useState } from "react";
 import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
-import { useSuperHeroesData } from "../hooks/useSuperHeroesData";
+import {
+  useAddSuperHeroData,
+  useSuperHeroesData,
+} from "../hooks/useSuperHeroesData";
 
 export const RQSuperHeroesPage = () => {
+  const [name, setName] = useState("");
+  const [alterEgo, setAlterEgo] = useState("");
   const onSuccess = (data) => {
-    // console.log(
-    //   `Performing sideEffects eg:Toast notifications ${JSON.stringify(data)}`
-    // );
+    console.log(
+      `Performing sideEffects eg:Toast notifications ${JSON.stringify(data)}`
+    );
   };
   const onError = (error) => {
-    // console.log(
-    //   `Performing sideEffects after encountered error: ${error.message}`
-    // );
+    console.log(
+      `Performing sideEffects after encountered error: ${error.message}`
+    );
   };
   const {
     isLoading,
     isFetching,
-    refetch, // used for triggering manually fetching
+    refetch,
     isError,
     error,
     data: superHeroes,
-    // } = useSuperHeroesData(onSuccess, onError);
-  } = useSuperHeroesData();
-
+  } = useSuperHeroesData(onSuccess, onError);
+  const {
+    mutate: addHero,
+    isLoading: isAddHeroLoading,
+    isError: isAddHeroError,
+    error: addHeroError,
+  } = useAddSuperHeroData();
   // console.log({ superHeroes });
+
+  const handleAddHeroClick = () => {
+    console.log({ name, alterEgo });
+    const hero = { name, alterEgo };
+    addHero(hero);
+  };
   console.log({ isFetching, isLoading });
   if (isLoading || isFetching) return <h1>Loading....</h1>;
   if (isError) return <h1>{error.message}</h1>;
   return (
     <>
       <h2>React Query Super Heroes Page</h2>
+      <div>
+        <input
+          type="text"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+        <input
+          type="text"
+          value={alterEgo}
+          onChange={(e) => setAlterEgo(e.target.value)}
+        />
+        <button onClick={handleAddHeroClick}>Add Hero</button>
+      </div>
       <button onClick={refetch}>Fetch Super Heroes</button>
       {superHeroes?.data?.map((hero) => {
         return (
