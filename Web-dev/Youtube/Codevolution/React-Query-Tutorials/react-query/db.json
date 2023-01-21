@@ -29,6 +29,21 @@
       "name": "mission",
       "alterEgo": "impossiable",
       "id": 6
+    },
+    {
+      "name": "",
+      "alterEgo": "",
+      "id": 7
+    },
+    {
+      "name": "Green Arrow",
+      "alterEgo": "Oliver Queen",
+      "id": 8
+    },
+    {
+      "name": "Catwoman",
+      "alterEgo": "Selina Kyle",
+      "id": 9
     }
   ],
   "friends": [
