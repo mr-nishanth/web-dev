@@ -19,6 +19,16 @@
       "name": "The",
       "alterEgo": "Black",
       "id": 4
+    },
+    {
+      "name": "Shazam",
+      "alterEgo": "Billy Batson",
+      "id": 5
+    },
+    {
+      "name": "mission",
+      "alterEgo": "impossiable",
+      "id": 6
     }
   ],
   "friends": [
