@@ -21,34 +21,9 @@
       "id": 4
     },
     {
-      "name": "Shazam",
-      "alterEgo": "Billy Batson",
+      "name": "Nishanth",
+      "alterEgo": "Nishanth",
       "id": 5
-    },
-    {
-      "name": "mission",
-      "alterEgo": "impossiable",
-      "id": 6
-    },
-    {
-      "name": "",
-      "alterEgo": "",
-      "id": 7
-    },
-    {
-      "name": "Green Arrow",
-      "alterEgo": "Oliver Queen",
-      "id": 8
-    },
-    {
-      "name": "Catwoman",
-      "alterEgo": "Selina Kyle",
-      "id": 9
-    },
-    {
-      "name": "Aquaman",
-      "alterEgo": "Arthur Curry",
-      "id": 10
     }
   ],
   "friends": [
