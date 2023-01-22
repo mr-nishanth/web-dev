@@ -57,13 +57,14 @@ app.use("/assets", express.static(path.join(__dirname, "public/assets")));
 
 const PORT = process.env.PORT || 6001;
 mongoose
-  .connect(process.env.MONGO_URI, {
+  .connect(process.env.MONGO_LOCAL_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
   .then(() => {
+    console.log(`\n 🥭 Connected Successfully  🥭`);
     app.listen(PORT, () =>
-      console.log(`Application listening on http://localhost:${PORT}`)
+      console.log(`\n Application listening on http://localhost:${PORT}`)
     );
   })
   .catch((err) => console.log(`${err} didn't connect`));
