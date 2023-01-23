@@ -1,14 +1,21 @@
-import dotenv from "dotenv"
-dotenv.config()
-import express from "express";
-const app = express();
-const port = 5000;
+// import "dotenv/config"
+import app from "./app";
+import env from "./utils/validateEnv";
+import mongoose from "mongoose";
+mongoose.set("strictQuery", true);
 
-app.get("/",(req, res) => {
-    res.send("Hello World!");
-});
+const PORT = env.PORT;
 
-
-app.listen(port, () => {
-  console.log(`Server listening on port ${port}`);
-})
+mongoose
+  .connect(env.MONGO_LOCAL_URI)
+  .then(() => {
+    console.log(`\n 🥭🥭 MongoDB connected 🥭🥭`);
+    app.listen(PORT, () => {
+      console.log(`\n ✅ Server listening on port ${PORT} ✅`);
+    });
+  })
+  // .catch(console.error)
+  .catch((err) => {
+    console.error(err.message);
+    process.exit(1);
+  });
