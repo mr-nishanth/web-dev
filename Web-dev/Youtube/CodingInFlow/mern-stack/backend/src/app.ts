@@ -3,13 +3,16 @@ dotenv.config();
 import express, { NextFunction, Request, Response } from "express";
 import notesRoutes from "./routes/notes.routes";
 import morgan from "morgan";
+import cors from "cors";
+import helmet from "helmet";
 const app = express();
 
 // MIDDLEWARE
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(morgan("dev"));
-
+app.use(cors());
+app.use(helmet());
 // ROUTES
 app.use("/api/notes", notesRoutes);
 
