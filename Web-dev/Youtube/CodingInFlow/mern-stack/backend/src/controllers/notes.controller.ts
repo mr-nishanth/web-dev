@@ -9,6 +9,16 @@ export const getNotes: RequestHandler = async (req, res, next) => {
   }
 };
 
+export const getNote: RequestHandler = async (req, res, next) => {
+  const { noteId } = req.params;
+  try {
+    const notes = await Note.findById(noteId).exec();
+    res.status(200).json(notes);
+  } catch (error) {
+    next(error);
+  }
+};
+
 export const createNote: RequestHandler = async (req, res, next) => {
   const { title, text } = req.body;
   try {
