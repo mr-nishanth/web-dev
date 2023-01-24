@@ -5,7 +5,7 @@ import { Note as NoteModel } from "./models/notes.model";
 import styles from "./styles/NotesPage.module.css";
 import styleUtils from "./styles/utils.module.css";
 import * as NotesApi from "./services/notes_api";
-import AddNoteDialog from "./components/AddNoteDialog";
+import AddEditNoteDialog from "./components/AddEditNoteDialog";
 import { FaPlus } from "react-icons/fa";
 
 function App() {
@@ -55,7 +55,7 @@ function App() {
       </Row>
 
       {showAddNoteDialog && (
-        <AddNoteDialog
+        <AddEditNoteDialog
           onDismiss={() => setShowAddNoteDialog(false)}
           onNoteSave={(newNote) => {
             setNotes([...notes, newNote]);
