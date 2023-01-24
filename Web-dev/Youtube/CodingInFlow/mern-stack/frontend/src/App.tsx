@@ -1,11 +1,31 @@
-import React from 'react';
-
-import './App.css';
+import React, { useEffect, useState } from "react";
+import Note from "./components/Note";
+import { Note as NoteModel } from "./models/notes.model";
 
 function App() {
+  const [notes, setNotes] = useState<NoteModel[]>([]);
+
+  useEffect(() => {
+    async function loadNotes() {
+      try {
+        const response = await fetch("http://localhost:5000/api/notes/", {
+          method: "GET",
+        });
+        const notes = await response.json();
+        setNotes(notes);
+      } catch (error) {
+        console.error(error);
+        // alert(error);
+      }
+    }
+    loadNotes();
+  }, []);
+
   return (
-    <div className="App">
-      
+    <div>
+      {notes.map((note) => (
+        <Note note={note} key={note._id} />
+      ))}
     </div>
   );
 }
