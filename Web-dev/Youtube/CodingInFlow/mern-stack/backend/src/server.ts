@@ -11,7 +11,7 @@ mongoose
   .then(() => {
     console.log(`\n 🥭🥭 MongoDB connected 🥭🥭`);
     app.listen(PORT, () => {
-      console.log(`\n ✅ Server listening on port ${PORT} ✅`);
+      console.log(`\n ✅ Server listening on port ${PORT} ✅ \n`);
     });
   })
   // .catch(console.error)
