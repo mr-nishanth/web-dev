@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 mongoose.set("strictQuery", true);
 const connectDB = async () => {
   const MONGO_URI = process.env.MONGO_LOCAL_URI;
@@ -13,4 +13,4 @@ const connectDB = async () => {
       );
     });
 };
-module.exports = connectDB;
+export default connectDB;
