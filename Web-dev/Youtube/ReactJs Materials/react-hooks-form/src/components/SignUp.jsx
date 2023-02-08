@@ -27,8 +27,10 @@ const SignUp = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
-  } = useForm({ resolver: yupResolver(schema) });
+    formState: { errors, isValid, isDirty },
+  } = useForm({ resolver: yupResolver(schema), mode: "onChange" });
+  console.log({ errors });
+  console.log({ isValid });
 
   return (
     <div className="App">
@@ -39,7 +41,6 @@ const SignUp = () => {
           console.log({ data });
         })}
       >
-        {" "}
         <input {...register("fName")} placeholder="First Name" />
         {errors?.fName && <p>{errors?.fName?.message}</p>}
         <input {...register("lName")} placeholder="Last Name" />
@@ -60,7 +61,12 @@ const SignUp = () => {
           placeholder="Confirm Password"
         />
         {errors?.confirmPassword && <p>{errors?.confirmPassword?.message}</p>}
-        <input type="submit" value="Submit" id="submit" />
+        <input
+          type="submit"
+          value="Submit"
+          id="submit"
+          disabled={isDirty && !isValid}
+        />
       </form>
     </div>
   );
