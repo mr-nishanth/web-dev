@@ -11,8 +11,17 @@ const Register = () => {
     register,
     handleSubmit,
     formState: { errors },
+    watch,
   } = useForm({ defaultValues: initialValues });
+
   console.log({ errors });
+  console.log({ watchFunctionCalled: watch() });
+
+  // Only re-renders when the "fName" field changes
+  // watch("fName")
+  // watch("fName", (value) => console.log("fName changed", value));
+  // const fName = watch("fName");
+
   return (
     <div className="App">
       <div className="title">Sign Up</div>
