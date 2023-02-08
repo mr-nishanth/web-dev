@@ -3,11 +3,15 @@ import { useForm } from "react-hook-form";
 import "../App.css";
 
 const Register = () => {
+  const initialValues = {
+    fName: "John",
+    lName: "Doe",
+  };
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm({ defaultValues: initialValues });
   console.log({ errors });
   return (
     <div className="App">
