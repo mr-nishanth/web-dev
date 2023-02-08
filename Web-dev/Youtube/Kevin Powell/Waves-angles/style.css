@@ -1,0 +1,85 @@
+*,
+::after,
+::before {
+  box-sizing: border-box;
+}
+
+html {
+  color-scheme: dark light;
+}
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-size: 1.25rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.wrapper {
+  max-width: 50rem;
+  /* margin-left: auto; */
+  /* margin-right: auto; */
+  /* margin-inline == left and right */
+  /* margin-block == top and bottom */
+  margin-inline: auto;
+  padding-inline: 1rem;
+}
+
+.site-title {
+  font-size: 3rem;
+  text-align: center;
+}
+.section-title {
+  font-size: 2.25rem;
+}
+
+section {
+  padding-block: 5rem;
+  /* background-color: lightblue; */
+}
+
+/* ==================== START diagonal ======================= */
+/* .diagonal */
+/* background-image: linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.5),
+    rgba(255, 255, 255, 0.5) 50%,
+    transparent 50%
+  ); */
+
+/* .diagonal {
+  position: relative;
+  background-image: linear-gradient(45deg, #12c2e9, #c471ed, #f64f59);
+} */
+/* .diagonal::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(45deg, #12c2e9, #c471ed, #f64f59);
+  background-size: 20px 20px;
+  opacity: 0.5;
+  z-index: -1;
+} */
+.diagonal {
+  --skew-angle: -5deg;
+  --background: linear-gradient(45deg, #12c2e9, #c471ed, #f64f59);
+  position: relative;
+  isolation: isolate;
+}
+.diagonal::after {
+  content: "";
+  background: var(--background);
+  position: absolute;
+  z-index: -1;
+  /* top: 0; */
+  /* left: 0; */
+  /* right: 0; */
+  /* bottom: 0; */
+  inset: 0;
+  transform: skewY(var(--skew-angle));
+}
+
+/* ==================== end diagonal ======================= */
