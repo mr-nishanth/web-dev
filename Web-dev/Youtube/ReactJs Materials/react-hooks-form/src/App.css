@@ -84,7 +84,13 @@ input[type="submit"] {
 
 ::placeholder {
   color: whitesmoke;
+  background-color: black;
   opacity: 0.5;
   padding: 10px;
   /* margin-left: 10px; */
+}
+p {
+  color: red;
+  background-color: black;
+  font-size: 1rem;
 }
