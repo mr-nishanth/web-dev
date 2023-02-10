@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import Contact from "../screens/Contact";
+import Contact from "../components/Contact";
 
 const ContactLayout = () => {
   return (
