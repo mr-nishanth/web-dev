@@ -1,6 +1,11 @@
-import { Typography } from "@mui/material";
+import { Button, Typography } from "@mui/material";
+import { useState } from "react";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const About = () => {
+  const [user, setUser] = useState(true);
+  // const navigate = useNavigate();
+  if (!user) return <Navigate to={"/"} replace={true} />; // by default the routes are stored in history, replace={true} used to remove the history
   return (
     <>
       <Typography variant="h3">About</Typography>
@@ -10,6 +15,9 @@ const About = () => {
         natus nostrum laborum perspiciatis. Non deleniti maxime quas nisi
         nostrum.
       </Typography>
+      <Button variant="contained" onClick={() => setUser(false)}>
+        Logout
+      </Button>
     </>
   );
 };
