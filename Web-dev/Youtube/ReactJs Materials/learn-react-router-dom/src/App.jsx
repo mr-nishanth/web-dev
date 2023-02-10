@@ -8,11 +8,11 @@ import ContactLayout from "./layouts/ContactLayout";
 import RootLayout from "./layouts/RootLayout";
 import About from "./screens/About";
 import Call from "./screens/Call";
-import Career from "./screens/Career";
-import Contact from "./components/Contact";
 import Home from "./screens/Home";
 import Mail from "./screens/Mail";
 import PageNotFound from "./screens/PageNotFound";
+import CareerLayout from "./layouts/CareerLayout";
+import Career from "./screens/Career";
 // step 2
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -27,7 +27,10 @@ const router = createBrowserRouter(
         <Route path="mail" element={<Mail />} />
         <Route path="call" element={<Call />} />
       </Route>
-      <Route path="career" element={<Career />} />
+      <Route path="career" element={<CareerLayout />}>
+        {/* Career component render once the reach career route with help of [index attribute]*/}
+        <Route index element={<Career />} />
+      </Route>
       <Route path="*" element={<PageNotFound />} />
     </Route>
   )
