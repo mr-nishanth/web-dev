@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Border</title>
+    <link rel="stylesheet" href="./style.css">
+    <script src="./script.js" defer></script>
+</head>
+<body>
+    <button class="button glow-effect">
+        Hi there 👋
+        <svg class="glow-container">
+          <rect pathLength="100" stroke-linecap="round" class="glow-blur"></rect>
+          <rect pathLength="100" stroke-linecap="round" class="glow-line"></rect>
+        </svg>
+      </button>
+      
+      <button class="button glow-effect" data-glow-animation="false">
+        Hi there 👋
+        <svg class="glow-container">
+          <rect pathLength="100" stroke-linecap="round" class="glow-blur"></rect>
+          <rect pathLength="100" stroke-linecap="round" class="glow-line"></rect>
+        </svg>
+      </button>
+      
+      <button class="button glow-effect" data-glow-offset="true">
+        Hi there 👋
+        <svg class="glow-container">
+          <rect pathLength="100" stroke-linecap="round" class="glow-blur"></rect>
+          <rect pathLength="100" stroke-linecap="round" class="glow-line"></rect>
+        </svg>
+      </button>
+      
+      <div class="avatar glow-effect" data-glow-animation="grow">
+        <img src="https://images.unsplash.com/photo-1504199367641-aba8151af406?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE2NzQ1NzUwNTE&ixlib=rb-4.0.3&q=80&w=400" alt="">
+        <svg class="glow-container">
+          <rect pathLength="100" stroke-linecap="round" class="glow-blur"></rect>
+          <rect pathLength="100" stroke-linecap="round" class="glow-line"></rect>
+        </svg>
+      </div>
+      
+      <p class="inspiration" target="_blank">Inspired from <a href="https://dribbble.com/shots/17674758-Button-Glow">this Dribbble shot by Aaron Iker</a></p></body>
+</html>
