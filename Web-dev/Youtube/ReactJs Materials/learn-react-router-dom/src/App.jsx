@@ -14,6 +14,7 @@ import PageNotFound from "./screens/PageNotFound";
 import CareerLayout from "./layouts/CareerLayout";
 import Career, { careerLoader } from "./screens/Career";
 import CareerError from "./components/CareerError";
+import CareerDetails, { jobDetails } from "./components/CareerDetails";
 // step 2
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -34,6 +35,12 @@ const router = createBrowserRouter(
           index
           element={<Career />}
           loader={careerLoader}
+          errorElement={<CareerError />}
+        />
+        <Route
+          path=":id"
+          element={<CareerDetails />}
+          loader={jobDetails}
           errorElement={<CareerError />}
         />
       </Route>
