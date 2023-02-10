@@ -1,0 +1,27 @@
+git remote -v. this shows how many repo's are assigned to your current code.
+
+# Create a local branch
+
+git checkout -b <branch-name>
+
+# Make sure you are on the newly created branch
+
+git branch
+
+# Finally pull the remote branch to your local branch
+
+git pull origin <branch-name>
+
+# Delete the Remote repository
+
+git push origin -d <branch-name>
+
+# Pull Specific branch
+
+git pull origin <other-branch>
+
+# Here is the syntax that could pull a remote branch to a local branch.
+
+git pull <repo> <remote branch name>:<local branch name>
+
+git pull origin xyz:xyz
