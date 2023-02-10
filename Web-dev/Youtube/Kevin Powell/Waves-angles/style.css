@@ -3,11 +3,15 @@
 ::before {
   box-sizing: border-box;
 }
-
+:root {
+  --body-bg: hsl(0, 0%, 12%);
+}
 html {
   color-scheme: dark light;
 }
 body {
+  background: var(--body-bg);
+  color: white;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   font-size: 1.25rem;
@@ -36,6 +40,20 @@ body {
 section {
   padding-block: 5rem;
   /* background-color: lightblue; */
+}
+
+/* ============== CUSTOM Scrollbar =============== */
+body::-webkit-scrollbar {
+  width: 0.5em;
+}
+
+body::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  outline: 1px solid slategrey;
 }
 
 /* ==================== START diagonal ======================= */
@@ -83,3 +101,38 @@ section {
 }
 
 /* ==================== end diagonal ======================= */
+
+/* ==================== start spikes ======================= */
+.spikes {
+  --spike-color: var(--body-bg);
+  /* change the spike width and height for different style */
+  --spike-width: 50px;
+  --spike-height: 10px;
+  position: relative;
+  color: black;
+  background: linear-gradient(to right, #fdc830, #f37335);
+}
+.spikes::before,
+.spikes::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: var(--spike-height);
+  /* background: purple; */
+  background: var(--spike-color);
+
+  /* Chrome */
+  -webkit-mask-image: url("assets/triangle.svg");
+  -webkit-mask-size: var(--spike-width) var(--spike-height); /*like background width height*/
+  /* Firefox and Safari */
+  mask-image: url("assets/triangle.svg");
+  mask-size: var(--spike-width) var(--spike-height); /*like background width height*/
+}
+.spikes::before {
+  top: 0;
+}
+.spikes::after {
+  bottom: 0;
+  transform: rotate(0.5turn);
+}
+/* ==================== end spikes ======================= */
