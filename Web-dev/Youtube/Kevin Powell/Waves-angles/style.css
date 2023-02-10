@@ -136,3 +136,36 @@ body::-webkit-scrollbar-thumb {
   transform: rotate(0.5turn);
 }
 /* ==================== end spikes ======================= */
+
+/* ==================== start wavy ======================= */
+.wavy {
+  /* mask created with https://css-generators.com/wavy-shapes/ */
+  background: linear-gradient(to right, #00f260, #0575e6);
+
+  --mask: radial-gradient(51.48px at 50% 70px, #000 99%, #0000 101%)
+      calc(50% - 50px) 0/100px 51% repeat-x,
+    radial-gradient(51.48px at 50% -45px, #0000 99%, #000 101%) 50% 25px/100px
+      calc(51% - 25px) repeat-x,
+    radial-gradient(51.48px at 50% calc(100% - 70px), #000 99%, #0000 101%)
+      calc(50% - 50px) 100%/100px 51% repeat-x,
+    radial-gradient(51.48px at 50% calc(100% + 45px), #0000 99%, #000 101%) 50%
+      calc(100% - 25px) / 100px calc(51% - 25px) repeat-x;
+  -webkit-mask: var(--mask);
+  mask: var(--mask);
+}
+/* ==================== end wavy ======================= */
+.another {
+  background: linear-gradient(to right, #00f260, #0575e6);
+
+  --mask: radial-gradient(22.36px at 30px 50%, #000 99%, #0000 101%) 0
+      calc(50% - 20px) / 51% 40px repeat-y,
+    radial-gradient(22.36px at -20px 50%, #0000 99%, #000 101%) 10px 50% /
+      calc(51% - 10px) 40px repeat-y,
+    radial-gradient(22.36px at calc(100% - 30px) 50%, #000 99%, #0000 101%) 100%
+      calc(50% - 20px) / 51% 40px repeat-y,
+    radial-gradient(22.36px at calc(100% + 20px) 50%, #0000 99%, #000 101%)
+      calc(100% - 10px) 50% / calc(51% - 10px) 40px repeat-y;
+  -webkit-mask: var(--mask);
+  mask: var(--mask);
+  padding-inline-start: 20px;
+}
