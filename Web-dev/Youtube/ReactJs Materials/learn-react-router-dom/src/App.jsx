@@ -9,9 +9,10 @@ import RootLayout from "./layouts/RootLayout";
 import About from "./screens/About";
 import Call from "./screens/Call";
 import Career from "./screens/Career";
-import Contact from "./screens/Contact";
+import Contact from "./components/Contact";
 import Home from "./screens/Home";
 import Mail from "./screens/Mail";
+import PageNotFound from "./screens/PageNotFound";
 // step 2
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -27,6 +28,7 @@ const router = createBrowserRouter(
         <Route path="call" element={<Call />} />
       </Route>
       <Route path="career" element={<Career />} />
+      <Route path="*" element={<PageNotFound />} />
     </Route>
   )
 );
