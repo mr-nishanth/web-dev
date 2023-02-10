@@ -1,4 +1,4 @@
-import { Typography } from "@mui/material";
+import { Container, Typography } from "@mui/material";
 import { Outlet } from "react-router-dom";
 import Career from "../screens/Career";
 
@@ -11,6 +11,9 @@ const CareerLayout = () => {
         culpa, labore voluptatum quos, quia tenetur vel modi perferendis quidem
         voluptates, vitae quisquam?
       </Typography>
+      <Container sx={{ p: 5 }}>
+        <Outlet />
+      </Container>
     </>
   );
 };

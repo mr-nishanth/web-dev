@@ -12,7 +12,8 @@ import Home from "./screens/Home";
 import Mail from "./screens/Mail";
 import PageNotFound from "./screens/PageNotFound";
 import CareerLayout from "./layouts/CareerLayout";
-import Career from "./screens/Career";
+import Career, { careerLoader } from "./screens/Career";
+import CareerError from "./components/CareerError";
 // step 2
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -29,7 +30,12 @@ const router = createBrowserRouter(
       </Route>
       <Route path="career" element={<CareerLayout />}>
         {/* Career component render once the reach career route with help of [index attribute]*/}
-        <Route index element={<Career />} />
+        <Route
+          index
+          element={<Career />}
+          loader={careerLoader}
+          errorElement={<CareerError />}
+        />
       </Route>
       <Route path="*" element={<PageNotFound />} />
     </Route>
