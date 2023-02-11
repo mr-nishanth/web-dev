@@ -1,5 +1,8 @@
 import { createBrowserRouter } from "react-router-dom";
 import Layout from "../components/Layout";
+import Protected from "../components/Protected";
+import postLoader from "../loaders/postLoader";
+import statsLoader from "../loaders/statsLoader";
 import About from "../pages/About";
 import Contact from "../pages/Contact";
 import Dashboard from "../pages/Dashboard";
@@ -45,7 +48,11 @@ export const router = createBrowserRouter([
   {
     path: "/dashboard",
     id: "Dashboard",
-    element: <Dashboard />,
+    element: (
+      <Protected>
+        <Dashboard />
+      </Protected>
+    ),
     children: [
       {
         errorElement: <DashboardError />,
@@ -53,6 +60,7 @@ export const router = createBrowserRouter([
           {
             index: true,
             element: <DashboardStats />,
+            loader: statsLoader,
           },
           {
             path: "/dashboard/users",
@@ -63,6 +71,7 @@ export const router = createBrowserRouter([
             path: "/dashboard/posts",
             id: "DashboardPosts",
             element: <Posts />,
+            loader: statsLoader,
           },
           {
             path: "/dashboard/settings",
@@ -78,6 +87,7 @@ export const router = createBrowserRouter([
             path: "/dashboard/posts/:id",
             id: "DashboardPost",
             element: <Post />,
+            loader: postLoader,
           },
         ],
       },
