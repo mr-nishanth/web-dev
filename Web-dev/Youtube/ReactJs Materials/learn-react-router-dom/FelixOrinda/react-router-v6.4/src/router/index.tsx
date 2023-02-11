@@ -7,6 +7,8 @@ import DashboardError from "../pages/DashboardError";
 import DashboardStats from "../pages/DashboardStats";
 import ErrorPage from "../pages/ErrorPage";
 import Home from "../pages/Home";
+import Post from "../pages/Post";
+import Posts from "../pages/Posts";
 import Settings from "../pages/Settings";
 import User from "../pages/User";
 import Users from "../pages/Users";
@@ -58,6 +60,11 @@ export const router = createBrowserRouter([
             element: <Users />,
           },
           {
+            path: "/dashboard/posts",
+            id: "DashboardPosts",
+            element: <Posts />,
+          },
+          {
             path: "/dashboard/settings",
             id: "DashboardSettings",
             element: <Settings />,
@@ -66,6 +73,11 @@ export const router = createBrowserRouter([
             path: "/dashboard/users/:id",
             id: "DashboardUser",
             element: <User />,
+          },
+          {
+            path: "/dashboard/posts/:id",
+            id: "DashboardPost",
+            element: <Post />,
           },
         ],
       },
