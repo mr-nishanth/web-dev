@@ -6,6 +6,7 @@ type Props = {
 const links = [
   { name: "Dashboard", path: "/dashboard" },
   { name: "Users", path: "/dashboard/users" },
+  { name: "Posts", path: "/dashboard/posts" },
   { name: "Settings", path: "/dashboard/settings" },
 ];
 const DashBoardLayout = ({ children }: Props) => {
