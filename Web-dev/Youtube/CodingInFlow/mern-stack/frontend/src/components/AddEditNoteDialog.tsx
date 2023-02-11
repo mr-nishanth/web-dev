@@ -20,8 +20,8 @@ const AddEditNoteDialog = ({
     formState: { errors, isSubmitting },
   } = useForm<NoteInput>({
     defaultValues: {
-      title: noteToEdit?.title || "",
-      text: noteToEdit?.text || "",
+      title: noteToEdit.title || "",
+      text: noteToEdit.text || "",
     },
   });
 

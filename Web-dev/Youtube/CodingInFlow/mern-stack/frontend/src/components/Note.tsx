@@ -9,9 +9,15 @@ interface NoteProps {
   note: NoteModel;
   className?: string;
   onDeleteNoteClicked: (note: NoteModel) => void;
+  onNoteClicked: (note: NoteModel) => void;
 }
 
-const Note = ({ note, className, onDeleteNoteClicked }: NoteProps) => {
+const Note = ({
+  note,
+  className,
+  onDeleteNoteClicked,
+  onNoteClicked,
+}: NoteProps) => {
   const { title, text, createdAt, updatedAt } = note;
 
   let createdUpdatedText: string;
@@ -21,7 +27,7 @@ const Note = ({ note, className, onDeleteNoteClicked }: NoteProps) => {
     createdUpdatedText = `Created: ${formatDate(createdAt)}`;
   }
   return (
-    <Card className={`${styles.noteCard} ${className}`}>
+    <Card className={`${styles.noteCard} ${className}`} onClick={onNoteClicked}>
       <Card.Body className={styles.cardBody}>
         <Card.Title className={`${styleUtils.flexCenter}`}>
           {title}{" "}
