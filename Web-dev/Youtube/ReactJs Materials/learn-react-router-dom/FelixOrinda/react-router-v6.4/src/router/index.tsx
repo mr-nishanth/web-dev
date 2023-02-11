@@ -9,6 +9,7 @@ import Home from "../pages/Home";
 export const router = createBrowserRouter([
   {
     path: "/",
+    id: "HomePage",
     element: (
       <Layout>
         <Home />
@@ -18,6 +19,7 @@ export const router = createBrowserRouter([
   },
   {
     path: "/about",
+    id: "AboutPage",
     element: (
       <Layout>
         <About />
@@ -26,6 +28,7 @@ export const router = createBrowserRouter([
   },
   {
     path: "/contact",
+    id: "ContactPage",
     element: (
       <Layout>
         <Contact />
@@ -34,6 +37,7 @@ export const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
+    id: "DashboardPage",
     element: <Dashboard />,
   },
 ]);
