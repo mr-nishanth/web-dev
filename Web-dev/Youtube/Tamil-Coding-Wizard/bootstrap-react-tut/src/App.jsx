@@ -1,6 +1,6 @@
-import BTypography from "./components/BTypography";
+import BImages from "./components/BImages";
 
 const App = () => {
-  return <BTypography />;
+  return <BImages />;
 };
 export default App;
