@@ -1,6 +1,7 @@
+import BasicGrid from "./components/BasicGrid";
 import BBreakpoints from "./components/BBreakpoints";
 
 const App = () => {
-  return <BBreakpoints />;
+  return <BasicGrid />;
 };
 export default App;
