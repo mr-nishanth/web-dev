@@ -1,7 +1,6 @@
-import BSimplifiedUtility from "./components/BSimplifiedUtility";
-import BUtilityClasses from "./components/BUtilityClasses";
+import BBreakpoints from "./components/BBreakpoints";
 
 const App = () => {
-  return <BSimplifiedUtility />;
+  return <BBreakpoints />;
 };
 export default App;
