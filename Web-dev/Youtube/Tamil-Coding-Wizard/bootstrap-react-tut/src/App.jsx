@@ -1,7 +1,7 @@
-import BColors from "./components/BColors";
-import BImages from "./components/BImages";
+import BSimplifiedUtility from "./components/BSimplifiedUtility";
+import BUtilityClasses from "./components/BUtilityClasses";
 
 const App = () => {
-  return <BColors />;
+  return <BSimplifiedUtility />;
 };
 export default App;
