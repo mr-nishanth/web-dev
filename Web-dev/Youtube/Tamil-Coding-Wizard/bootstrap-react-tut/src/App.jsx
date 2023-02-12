@@ -1,6 +1,7 @@
+import BColors from "./components/BColors";
 import BImages from "./components/BImages";
 
 const App = () => {
-  return <BImages />;
+  return <BColors />;
 };
 export default App;
