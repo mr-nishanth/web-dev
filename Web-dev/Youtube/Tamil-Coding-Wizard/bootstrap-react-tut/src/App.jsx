@@ -1,8 +1,10 @@
-import BasicGrid from "./components/BasicGrid";
-import BBreakpoints from "./components/BBreakpoints";
-import CustomTheme from "./components/CustomTheme";
+import AppNavBar from "./components/AppNavBar";
 
 const App = () => {
-  return <CustomTheme />;
+  return (
+    <>
+      <AppNavBar />
+    </>
+  );
 };
 export default App;

@@ -6,6 +6,7 @@ specifiers:
   '@types/react-dom': ^18.0.10
   '@vitejs/plugin-react': ^3.1.0
   bootstrap: ^5.2.3
+  bootstrap-icons: ^1.10.3
   react: ^18.2.0
   react-bootstrap: ^2.7.1
   react-dom: ^18.2.0
@@ -14,6 +15,7 @@ specifiers:
 dependencies:
   '@popperjs/core': 2.11.6
   bootstrap: 5.2.3_@popperjs+core@2.11.6
+  bootstrap-icons: 1.10.3
   react: 18.2.0
   react-bootstrap: 2.7.1_zula6vjvt3wdocc4mwcxqa6nzi
   react-dom: 18.2.0_react@18.2.0
@@ -594,6 +596,10 @@ packages:
     dependencies:
       color-convert: 1.9.3
     dev: true
+
+  /bootstrap-icons/1.10.3:
+    resolution: {integrity: sha512-7Qvj0j0idEm/DdX9Q0CpxAnJYqBCFCiUI6qzSPYfERMcokVuV9Mdm/AJiVZI8+Gawe4h/l6zFcOzvV7oXCZArw==}
+    dev: false
 
   /bootstrap/5.2.3_@popperjs+core@2.11.6:
     resolution: {integrity: sha512-cEKPM+fwb3cT8NzQZYEu4HilJ3anCrWqh3CHAok1p9jXqMPsPTBhU25fBckEJHJ/p+tTxTFTsFQGM+gaHpi3QQ==}
