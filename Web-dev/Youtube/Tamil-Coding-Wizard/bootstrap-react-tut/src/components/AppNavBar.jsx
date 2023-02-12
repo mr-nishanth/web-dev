@@ -26,7 +26,7 @@ function AppNavBar() {
             <Nav.Link className="fw-bold text-black" href="#mustTry">
               Must Try
             </Nav.Link>
-            <Nav.Link className="fw-bold text-black" href="#contactUs">
+            <Nav.Link className="fw-bold text-black" href="#contact">
               Contact Us
             </Nav.Link>
           </Nav>
