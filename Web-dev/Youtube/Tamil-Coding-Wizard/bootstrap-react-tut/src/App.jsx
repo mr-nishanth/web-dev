@@ -1,4 +1,6 @@
+import BTypography from "./components/BTypography";
+
 const App = () => {
-  return <div>App</div>;
+  return <BTypography />;
 };
 export default App;
