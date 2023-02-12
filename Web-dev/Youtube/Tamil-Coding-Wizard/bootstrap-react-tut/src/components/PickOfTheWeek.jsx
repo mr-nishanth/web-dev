@@ -16,7 +16,7 @@ const PickOfTheWeek = () => {
         <Row className="align-items-center">
           {/* Image */}
           <Col md={7}>
-            <Image src={PickImage} alt="Pink Head Phone" fluid />
+            <Image src={PickImage} alt="Pink Head Phone" fluid rounded />
           </Col>
           {/* Content */}
           <Col md={5}>
