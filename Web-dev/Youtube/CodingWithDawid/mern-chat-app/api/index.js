@@ -1,4 +1,5 @@
 import dotenv from "dotenv";
+dotenv.config({ path: "./config/config.env" });
 import express from "express";
 import bodyParser from "body-parser";
 import mongoose from "mongoose";
@@ -12,14 +13,18 @@ const app = express();
 const PORT = process.env.PORT || 4000;
 
 // ? CONFIGURATION
-dotenv.config({ path: "./config/config.env" });
-app.use(express.json());
+app.use(
+  cors({
+    withCredentials: true,
+    origin: ["http://localhost:3000", "http://localhost:5173"],
+  })
+);
 app.use(helmet());
 app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
-app.use(morgan("common"));
+app.use(express.json());
+app.use(morgan("dev"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cors());
 
 // ROUTES
 app.use("/api/v1", authRoutes);
