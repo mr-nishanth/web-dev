@@ -8,7 +8,9 @@ const client = axios.create({
 export const request = async ({ ...options }) => {
   // Set auth  token
   // Below the token was fetched from the local storage
-  client.defaults.headers.common.Authorization = `${options.token}`;
+  client.defaults.headers.common.Authorization = `${options?.token}`;
+  // client.defaults.headers.common["Content-Type"] = "application/json";
+  client.defaults.withCredentials = true;
   // console.log({ options });
   // We defined the success callback
   const onSuccess = (response) => response;
