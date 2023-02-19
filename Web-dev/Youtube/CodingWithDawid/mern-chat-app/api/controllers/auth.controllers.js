@@ -14,12 +14,12 @@ export const register = async (req, res) => {
     });
     await user.save();
     jwt.sign(
-      { userId: user._id },
+      { userId: user._id, username: user.username },
       process.env.JWT_SECRET,
-      { expiresIn: "12h" },
+      {},
       (err, token) => {
         if (err) throw err;
-        res.cookie("token", token, { httpOnly: true }).json({
+        return res.cookie("token", token, { httpOnly: true }).status(201).json({
           id: user._id,
         });
       }
@@ -35,3 +35,20 @@ export const register = async (req, res) => {
     res.status(500).json({ error: "Server error" });
   }
 };
+
+// export const profile = async (req, res) => {
+//   console.log(req.cookies);
+
+//   const { token } = req.cookies;
+
+//   console.log({ token });
+//   if (!token) {
+//     return res.status(401).json({ error: "Unauthorized" });
+//   }
+//   jwt.verify(token, process.env.JWT_SECRET, (err, decodedToken) => {
+//     if (err) {
+//       res.status(401).json({ error: "Unauthorized" });
+//     }
+//     res.json(decodedToken);
+//   });
+// };
