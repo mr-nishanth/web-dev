@@ -1,4 +1,10 @@
+import Register from "./pages/Register";
+
 const App = () => {
-  return <div className="bg-red-500">App</div>;
+  return (
+    <>
+      <Register />
+    </>
+  );
 };
 export default App;
