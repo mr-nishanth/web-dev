@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { UserContext } from "../context/UserContext";
 import { request } from "../utils/axios-utils";
 const initialRegister = { username: "", password: "" };
 const Register = () => {
   const [register, setRegister] = useState(initialRegister);
+  const { userData, setUserData } = useContext(UserContext);
   const handleRegister = (e) => {
     const { name, value } = e.target;
     setRegister({ ...register, [name]: value });
@@ -10,11 +12,13 @@ const Register = () => {
   const registerUser = async (e) => {
     e.preventDefault();
     console.log({ register });
-    await request({
+    const { data } = await request({
       url: "/register",
       method: "POST",
       data: register,
     });
+    console.log({ data });
+    setUserData({ ...userData, id: data?.id, username: register?.username });
     setRegister(initialRegister);
   };
   return (
