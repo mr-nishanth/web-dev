@@ -6,7 +6,7 @@ import mongoose from "mongoose";
 import cors from "cors";
 import helmet from "helmet";
 import morgan from "morgan";
-
+import cookieParser from "cookie-parser";
 import authRoutes from "./routes/auth.routes.js";
 
 const app = express();
@@ -15,14 +15,15 @@ const PORT = process.env.PORT || 4000;
 // ? CONFIGURATION
 app.use(
   cors({
-    withCredentials: true,
-    origin: ["http://localhost:3000", "http://localhost:5173"],
+    credentials: true,
+    origin: process.env.CLIENT_URL,
   })
 );
 app.use(helmet());
 app.use(helmet.crossOriginResourcePolicy({ policy: "cross-origin" }));
 app.use(express.json());
 app.use(morgan("dev"));
+app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
