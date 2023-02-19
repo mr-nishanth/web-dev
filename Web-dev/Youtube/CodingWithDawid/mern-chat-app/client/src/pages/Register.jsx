@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import { request } from "../utils/axios-utils";
 const initialRegister = { username: "", password: "" };
 const Register = () => {
   const [register, setRegister] = useState(initialRegister);
@@ -7,10 +7,15 @@ const Register = () => {
     const { name, value } = e.target;
     setRegister({ ...register, [name]: value });
   };
-  const registerUser = (e) => {
-    setRegister(initialRegister);
+  const registerUser = async (e) => {
     e.preventDefault();
     console.log({ register });
+    await request({
+      url: "/register",
+      method: "POST",
+      data: register,
+    });
+    setRegister(initialRegister);
   };
   return (
     <div className="bg-blue-50 h-screen flex items-center">
