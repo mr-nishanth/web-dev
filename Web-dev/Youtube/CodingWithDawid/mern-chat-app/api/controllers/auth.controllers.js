@@ -36,19 +36,19 @@ export const register = async (req, res) => {
   }
 };
 
-// export const profile = async (req, res) => {
-//   console.log(req.cookies);
+export const profile = async (req, res) => {
+  console.log(req.cookies);
 
-//   const { token } = req.cookies;
+  const { token } = req.cookies;
 
-//   console.log({ token });
-//   if (!token) {
-//     return res.status(401).json({ error: "Unauthorized" });
-//   }
-//   jwt.verify(token, process.env.JWT_SECRET, (err, decodedToken) => {
-//     if (err) {
-//       res.status(401).json({ error: "Unauthorized" });
-//     }
-//     res.json(decodedToken);
-//   });
-// };
+  console.log({ token });
+  if (!token) {
+    return res.status(401).json({ error: "Unauthorized" });
+  }
+  jwt.verify(token, process.env.JWT_SECRET, (err, decodedToken) => {
+    if (err) {
+      res.status(401).json({ error: "Unauthorized" });
+    }
+    res.json(decodedToken);
+  });
+};
