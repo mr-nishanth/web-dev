@@ -1,10 +1,10 @@
-import React from "react";
+import { createElement } from "react";
 import { createRoot } from "react-dom";
 import Pet from "./Pet";
 const App = () => {
-  return React.createElement("div", {}, [
-    React.createElement("h1", {}, "Adopt Me!"),
-    React.createElement(
+  return createElement("div", {}, [
+    createElement("h1", {}, "Adopt Me!"),
+    createElement(
       Pet,
       {
         name: "Luna",
@@ -13,7 +13,7 @@ const App = () => {
       },
       null
     ),
-    React.createElement(
+    createElement(
       Pet,
       {
         name: "Pepper",
@@ -22,14 +22,10 @@ const App = () => {
       },
       null
     ),
-    React.createElement(
-      Pet,
-      { name: "Doink", animal: "Cat", breed: "Mix" },
-      null
-    ),
+    createElement(Pet, { name: "Doink", animal: "Cat", breed: "Mix" }, null),
   ]);
 };
 
 const container = document.getElementById("root");
 const root = createRoot(container);
-root.render(React.createElement(App));
+root.render(createElement(App));
