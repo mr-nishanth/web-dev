@@ -1,0 +1,3 @@
+React is one-line data follow/binding
+Parent to child 100%
+Child to Parent Rare
