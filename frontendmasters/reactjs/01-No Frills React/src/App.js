@@ -1,20 +1,40 @@
-const Pet = () => {
+const Pet = (props) => {
   return React.createElement("div", {}, [
-    React.createElement("h1", {}, "Luna"),
-    React.createElement("h2", {}, "Dog"),
-    React.createElement("h3", {}, "Parrot"),
+    React.createElement("h1", {}, props.name),
+    React.createElement("h2", {}, props.animal),
+    React.createElement("h3", {}, props.breed),
   ]);
 };
 
-// {} and null are same thing in React
 const App = () => {
   return React.createElement("div", {}, [
-    React.createElement("h1", null, "Adopt Me"),
-    React.createElement(Pet, null, null),
-    React.createElement(Pet, null, null),
+    React.createElement("h1", {}, "Adopt Me!"),
+    React.createElement(
+      Pet,
+      {
+        name: "Luna",
+        animal: "Dog",
+        breed: "Havanese",
+      },
+      null
+    ),
+    React.createElement(
+      Pet,
+      {
+        name: "Pepper",
+        animal: "Bird",
+        breed: "Cockatiel",
+      },
+      null
+    ),
+    React.createElement(
+      Pet,
+      { name: "Doink", animal: "Cat", breed: "Mix" },
+      null
+    ),
   ]);
 };
 
 const container = document.getElementById("root");
 const root = ReactDOM.createRoot(container);
-root.render(React.createElement(App, {}, null));
+root.render(React.createElement(App));
