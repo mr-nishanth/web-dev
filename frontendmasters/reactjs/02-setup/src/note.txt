@@ -1,3 +1,8 @@
 React is one-line data follow/binding
 Parent to child 100%
 Child to Parent Rare
+
+# QUESTION
+Tree Shaking in vite
+Live code inclusion
+Dead code elimination
