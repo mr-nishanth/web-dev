@@ -59,7 +59,7 @@ exports.getProducts = catchAsyncError(async (req, res, next) => {
  */
 
 exports.getSingleProduct = catchAsyncError(async (req, res, next) => {
-  const id = req.params.id;
+  const { id } = req.params;
 
   const product = await Product.findById(id);
 
@@ -80,7 +80,7 @@ exports.getSingleProduct = catchAsyncError(async (req, res, next) => {
  */
 
 exports.updateProduct = catchAsyncError(async (req, res, next) => {
-  const id = req.params.id;
+  const { id } = req.params;
   let product = await Product.findById(id);
 
   if (!product)
@@ -90,8 +90,8 @@ exports.updateProduct = catchAsyncError(async (req, res, next) => {
     });
 
   product = await Product.findByIdAndUpdate(id, req.body, {
-    new: true,
-    runValidators: true,
+    new: true, // to return the updated product instead of the old one  [default is false]
+    runValidators: true, // to run the validators in the model again when updating the product
   });
 
   return res.status(200).json({
