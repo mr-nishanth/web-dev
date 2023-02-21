@@ -1,35 +1,35 @@
-const app = require("./app")
-const dotenv = require("dotenv")
-const path = require("path")
-dotenv.config({ path: path.join(__dirname, "config", "config.env") })
+const app = require("./app");
+const dotenv = require("dotenv");
+const path = require("path");
+dotenv.config({ path: path.join(__dirname, "config", "config.env") });
 
-const connectDB = require("./helpers/databases")
+const connectDB = require("./helpers/databases");
 
-const PORT = process.env.PORT || 4000
+const PORT = process.env?.PORT || 4000;
 
 // Database connection
-connectDB()
+connectDB();
 
+const server = app.listen(PORT, () =>
+  console.log(
+    `\n 🚀 is lunching at http://localhost:${PORT} in ${process.env?.NODE_ENV} mode`
+  )
+);
 
-const server = app.listen(PORT, () => console.log(`\n 🚀 is lunching at http://localhost:${PORT} in ${process.env.NODE_ENV} mode`))
+process.on("unhandledRejection", (err) => {
+  console.log(`Error: ${err.message}`);
+  console.log("Shutting down the server due to unhandled rejection error");
+  // Stop the server program
+  server.close(() => {
+    // Stop the node program
+    process.exit(1);
+  });
+});
 
-
-process.on('unhandledRejection', (err) => {
-    console.log(`Error: ${err.message}`);
-    console.log('Shutting down the server due to unhandled rejection error');
-    // Stop the server program
-    server.close(() => {
-        // Stop the node program
-        process.exit(1);
-    })
-})
-
-
-process.on('uncaughtException', (err) => {
-    console.log(`Error: ${err.message}`);
-    console.log('Shutting down the server due to uncaught exception error');
-    server.close(() => {
-        process.exit(1);
-    })
-})
-
+process.on("uncaughtException", (err) => {
+  console.log(`Error: ${err.message}`);
+  console.log("Shutting down the server due to uncaught exception error");
+  server.close(() => {
+    process.exit(1);
+  });
+});
