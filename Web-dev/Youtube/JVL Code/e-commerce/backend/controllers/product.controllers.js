@@ -90,7 +90,7 @@ exports.updateProduct = catchAsyncError(async (req, res, next) => {
     });
 
   product = await Product.findByIdAndUpdate(id, req.body, {
-    new: true, // to return the updated product instead of the old one  [default is false]
+    new: true, // to return the updated product instead of the old one before updating it in the database [default is false]
     runValidators: true, // to run the validators in the model again when updating the product
   });
 
