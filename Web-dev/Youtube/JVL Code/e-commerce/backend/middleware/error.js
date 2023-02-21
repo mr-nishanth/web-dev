@@ -19,12 +19,28 @@ module.exports = (err, req, res, next) => {
     let error = new Error(message);
 
     if (err.name == "ValidationError") {
+      /*
+      console.log(Object.values(err.errors));
+      OUTPUT:
+      [        
+        properties: {          
+          message: 'Please provide a product name',
+          type: 'required',
+          path: 'name',          
+        },            
+      ]
+      console.log(Object.values(err.errors).map((value) => value.message));
+      OUTPUT:
+        [ 'Please provide a product name' ]
+      */
       message = Object.values(err.errors).map((value) => value.message);
+      // message is array of error messages, but the Error class automatically converts array to string when we pass it as a parameter to the constructor of the Error class
+      // eg: new Error(['Please provide a product name', 'Please provide a product price']) => Error: Please provide a product name,Please provide a product price with help of String() method
       error = new Error(message);
     }
 
     if (err.name == "CastError") {
-      message = `Resource not found: ${err.path}`;
+      message = `Resource not found: ${err.path}`; // err.path is the path(column) of the field which is not found in the database (eg: id, name, etc)
       error = new Error(message);
     }
 
