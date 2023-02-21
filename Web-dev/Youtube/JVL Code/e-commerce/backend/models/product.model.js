@@ -7,6 +7,7 @@ const productSchema = new mongoose.Schema(
       required: [true, "Please provide a product name"],
       trim: true,
       maxLength: [100, "Product name cannot exceed 100 characters"],
+      //   type String, so we can use maxLength and minLength validators in mongoose schema [default is String] [maxLength and minLength are not available for Number]
     },
     price: {
       type: Number,
@@ -57,6 +58,7 @@ const productSchema = new mongoose.Schema(
       type: Number,
       required: [true, "Please provide product stock"],
       max: [20, "Product stock cannot exceed 20"],
+      // type Number, so we can use max and min validators in mongoose schema [default is String] [max and min are not available for String]
     },
     reviews: [
       {
