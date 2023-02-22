@@ -8,12 +8,12 @@ const connectDB = require("../helpers/databases");
 connectDB();
 
 const products = require("../data/products.json");
-const Product = require("../model/product.model");
+const Product = require("../models/product.model");
 
 const seedProducts = async () => {
   try {
     const deletedProducts = await Product.deleteMany({});
-    console.log(`➖➖ All Products ➖➖ `);
+    console.log(`➖➖ All Products ➖➖ \n`);
     const insertedProducts = await Product.insertMany(products);
     console.log(`➕➕ All Products ➕➕ `);
   } catch (error) {
