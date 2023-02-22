@@ -43,7 +43,7 @@ exports.getProducts = catchAsyncError(async (req, res, next) => {
     .search()
     .filter()
     .paginate(resultPerPage);
-  const products = await apiFeatures.query;
+  const products = await apiFeatures.query; // Product.find() return query object so we assess the query object and execute it by using await
   return res.status(200).json({
     success: true,
     count: products.length,
