@@ -4,6 +4,9 @@ const logger = require("morgan");
 const errorMiddleware = require("./middleware/error");
 const app = express();
 const helmet = require("helmet");
+// Routes imports
+const productRoutes = require("./routes/products.routes");
+const authRoutes = require("./routes/auth.routes");
 // setup body parser
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -17,8 +20,9 @@ app.use(logger("dev"));
 // Basic security middleware
 app.use(helmet());
 
-// Setup Product route
-app.use("/api/v1", require("./routes/products.routes"));
+// Setup route
+app.use("/api/v1", productRoutes);
+app.use("/api/v1", authRoutes);
 
 // Error handling middleware
 app.use(errorMiddleware);
