@@ -92,3 +92,57 @@ exports.registerUser = async (req, res) => {
     });
   }
 };
+
+// @route   POST api/users/login
+// @desc    Login user
+// @access  Public
+exports.loginUser = async (req, res) => {
+  const { email, password } = req.body;
+
+  if (!email || !password) {
+    return res.status(400).json({
+      status: false,
+      message: "Please provide name, email and password",
+    });
+  }
+
+  try {
+    // Check for existing user
+    let user = await User.findOne({ email }).select("+password").exec();
+
+    if (!user) {
+      return res.status(400).json({
+        status: false,
+        message: "Invalid credentials",
+      });
+    }
+
+    // Check password
+    const isValidPassword = await bcrypt.compare(password, user.password);
+    if (!isValidPassword) {
+      return res.status(400).json({
+        status: false,
+        message: "Invalid credentials",
+      });
+    }
+
+    // Create token
+    const token = createToken(user._id);
+
+    // Send response
+    return res.status(200).json({
+      status: true,
+      message: "User logged in successfully",
+      id: user._id,
+      name: user.name,
+      email: user.email,
+      token,
+    });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({
+      status: false,
+      message: "Internal Server error",
+    });
+  }
+};
