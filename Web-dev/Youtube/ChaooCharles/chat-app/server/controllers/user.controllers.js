@@ -92,13 +92,3 @@ exports.registerUser = async (req, res) => {
     });
   }
 };
-
-    });
-  } catch (error) {
-    console.log(error);
-    return res.status(500).json({
-      status: false,
-      message: "Internal Server error",
-    });
-  }
-};
