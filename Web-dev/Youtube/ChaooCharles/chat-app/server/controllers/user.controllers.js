@@ -169,7 +169,7 @@ exports.getUserById = async (req, res) => {
   }
 
   try {
-    const user = User.findById(userId).exec();
+    const user = await User.findById(userId);
 
     if (!user) {
       return res.status(400).json({
@@ -181,9 +181,7 @@ exports.getUserById = async (req, res) => {
     return res.status(200).json({
       status: true,
       message: `Welcome ${user.name}`,
-      id: user._id,
-      name: user.name,
-      email: user.email,
+      user,
     });
   } catch (error) {
     console.log(error);
