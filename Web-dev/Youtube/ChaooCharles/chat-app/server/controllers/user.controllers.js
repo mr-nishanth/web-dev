@@ -191,3 +191,33 @@ exports.getUserById = async (req, res) => {
     });
   }
 };
+
+// @route   GET api/users
+// @desc    Get all users
+// @access  Private
+exports.getAllUsers = async (req, res) => {
+  try {
+    const users = await User.find().select("-__v").exec();
+
+    if (!users) {
+      return res.status(400).json({
+        status: false,
+        message: "No users found",
+      });
+    }
+
+    // Send response
+    return res.status(200).json({
+      status: true,
+      count: users.length,
+      message: "All users",
+      users,
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      status: false,
+      message: "Internal Server error",
+    });
+  }
+};
