@@ -1,4 +1,7 @@
-require("dotenv").config();
+const path = require("path");
+require("dotenv").config({
+  path: path.join(__dirname, "config", "config.env"),
+});
 const express = require("express");
 const cors = require("cors");
 const helmet = require("helmet");
@@ -15,6 +18,16 @@ app.use(morgan("dev"));
 const PORT = process.env.PORT || 8000;
 
 app.disable("x-powered-by");
+
+// ROUTES
+app.use("/api/users", require("./routes/user.routes"));
+
+app.all("*", (req, res, next) => {
+  res.status(404).json({
+    status: "fail",
+    message: `Can't find ${req.originalUrl} on this server!`,
+  });
+});
 
 // MONGODB CONNECTION
 mongoose.set("strictQuery", false);
