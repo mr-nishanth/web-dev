@@ -146,3 +146,50 @@ exports.loginUser = async (req, res) => {
     });
   }
 };
+
+// @route   GET api/users/:id
+// @desc    Get user by id
+// @access  Private
+exports.getUserById = async (req, res) => {
+  const { userId } = req.params;
+
+  if (!userId) {
+    return res.status(400).json({
+      status: false,
+      message: "Please provide user id",
+    });
+  }
+
+  // Check valid mongo id
+  if (!validator.isMongoId(userId)) {
+    return res.status(400).json({
+      status: false,
+      message: "Please provide a valid user id",
+    });
+  }
+
+  try {
+    const user = User.findById(userId).exec();
+
+    if (!user) {
+      return res.status(400).json({
+        status: false,
+        message: "User not found",
+      });
+    }
+
+    return res.status(200).json({
+      status: true,
+      message: `Welcome ${user.name}`,
+      id: user._id,
+      name: user.name,
+      email: user.email,
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      status: false,
+      message: "Internal Server error",
+    });
+  }
+};
