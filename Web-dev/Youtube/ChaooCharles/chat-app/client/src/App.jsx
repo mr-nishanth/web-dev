@@ -4,10 +4,12 @@ import Chat from "./pages/Chat";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import { Container } from "react-bootstrap";
+import NavBar from "./components/NavBar";
 const App = () => {
   return (
     <>
-      <Container className="text-secondary">
+      <NavBar />
+      <Container>
         <Routes>
           <Route path="/" element={<Chat />} />
           <Route path="/register" element={<Register />} />
