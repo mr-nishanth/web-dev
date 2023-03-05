@@ -9,6 +9,8 @@ const Container = styled.div`
   scroll-snap-type: y mandatory;
   scroll-behavior: smooth;
   overflow-y: auto;
+  color: white;
+  background: url("./img/bg.jpeg");
   scrollbar-width: none; // Firefox 64 and earlier versions do not support this property yet
   &::-webkit-scrollbar {
     // Chrome, Safari, Opera and Edge do not support this property yet
