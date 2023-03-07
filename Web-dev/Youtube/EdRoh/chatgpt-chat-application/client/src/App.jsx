@@ -5,6 +5,7 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
+import Chat from "./components/chat";
 function App() {
   return (
     <div className="app">
