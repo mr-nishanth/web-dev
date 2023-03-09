@@ -4,13 +4,14 @@ import {
   Route,
   RouterProvider,
 } from "react-router-dom";
+import CareerDetails from "./components/careers/CareerDetails";
 import Careers from "./components/careers/Careers";
 import Contact from "./components/help/Contact";
 import Faq from "./components/help/Faq";
 import CareersLayout from "./Layouts/CareersLayout";
 import HelpLayout from "./Layouts/HelpLayout";
 import RootLayout from "./Layouts/RootLayout";
-import { careersLoader } from "./loaders/careersLoader";
+import { careerDetailsLoader, careersLoader } from "./loaders/careersLoader";
 import About from "./pages/About";
 import NotFound from "./pages/error/NotFound";
 import Home from "./pages/Home";
@@ -29,6 +30,11 @@ const router = createBrowserRouter(
 
       <Route path="careers" element={<CareersLayout />}>
         <Route index loader={careersLoader} element={<Careers />} />
+        <Route
+          path=":id"
+          loader={careerDetailsLoader}
+          element={<CareerDetails />}
+        />
       </Route>
 
       <Route path="*" element={<NotFound />} />
