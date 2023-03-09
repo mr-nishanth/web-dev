@@ -6,6 +6,7 @@ import {
 } from "react-router-dom";
 import CareerDetails from "./components/careers/CareerDetails";
 import Careers from "./components/careers/Careers";
+import CareersError from "./components/careers/CareersError";
 import Contact from "./components/help/Contact";
 import Faq from "./components/help/Faq";
 import CareersLayout from "./Layouts/CareersLayout";
@@ -34,6 +35,7 @@ const router = createBrowserRouter(
           path=":id"
           loader={careerDetailsLoader}
           element={<CareerDetails />}
+          errorElement={<CareersError />}
         />
       </Route>
 
