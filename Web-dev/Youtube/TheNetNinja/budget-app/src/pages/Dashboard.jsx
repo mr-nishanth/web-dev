@@ -1,6 +1,6 @@
 import { useLoaderData } from "react-router-dom";
 import Intro from "../components/Intro";
-import { createBudget, fetchData, wait } from "../helpers";
+import { createBudget, createExpense, fetchData, wait } from "../helpers";
 import { toast } from "react-toastify";
 import AddBudgetForm from "../components/AddBudgetForm";
 import AddExpenseForm from "../components/AddExpenseForm";
@@ -49,9 +49,10 @@ export async function dashboardAction({ request }) {
   if (_action === "createExpense") {
     try {
       //  Create Expense
-      createBudget({
+      createExpense({
         name: values?.newExpense,
         amount: values?.newExpenseAmount,
+        budgetId: values?.newExpenseBudget,
       });
       return toast.success(`Expense ${values?.newExpense} created!💵`);
     } catch (error) {
