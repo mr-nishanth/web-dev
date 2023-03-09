@@ -1,6 +1,6 @@
 import { useLoaderData } from "react-router-dom";
 import Intro from "../components/Intro";
-import { createBudget, fetchData } from "../helpers";
+import { createBudget, fetchData, wait } from "../helpers";
 import { toast } from "react-toastify";
 import AddBudgetForm from "../components/AddBudgetForm";
 
@@ -13,6 +13,8 @@ export function dashboardLoader() {
 
 //* Action
 export async function dashboardAction({ request }) {
+  await wait();
+
   const data = await request.formData();
   // console.log({ data, request });
   // const userName = data.get("userName");
