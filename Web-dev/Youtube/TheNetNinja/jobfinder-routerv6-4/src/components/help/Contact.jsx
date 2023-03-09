@@ -1,8 +1,11 @@
+import { Form, useActionData } from "react-router-dom";
 const Contact = () => {
+  const data = useActionData();
+
   return (
     <div className="contact">
       <h3>Contact Us</h3>
-      <form>
+      <Form method="post" action="/help/contact">
         <label htmlFor="email">
           <span>Your email:</span>
           <input type="email" name="email" id="email" required />
@@ -12,7 +15,8 @@ const Contact = () => {
           <textarea name="message" id="message" cols="20" rows="10" required />
         </label>
         <button>Submit</button>
-      </form>
+        {data && data.error && <p>{data.error}</p>}
+      </Form>
     </div>
   );
 };
