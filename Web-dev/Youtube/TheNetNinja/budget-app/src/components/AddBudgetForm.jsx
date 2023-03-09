@@ -46,9 +46,15 @@ const AddBudgetForm = () => {
           />
         </div>
         <input type="hidden" name="_action" value="createBudget" />
-        <button type="submit" className="btn btn--dark">
-          <span>Create Budget</span>
-          <CurrencyDollarIcon width={20} />
+        <button type="submit" className="btn btn--dark" disabled={isSubmitting}>
+          {isSubmitting ? (
+            <span>⌛Creating Budget⏳</span>
+          ) : (
+            <>
+              <span>Create Budget</span>
+              <CurrencyDollarIcon width={20} />
+            </>
+          )}
         </button>
       </fetcher.Form>
     </div>
