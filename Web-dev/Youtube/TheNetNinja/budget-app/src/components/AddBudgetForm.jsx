@@ -8,12 +8,13 @@ const AddBudgetForm = () => {
   const fetcher = useFetcher();
   const isSubmitting = fetcher.state === "submitting";
 
+  const focusRef = useRef();
   // Clear the Form
   const formRef = useRef();
-
   useEffect(() => {
     if (!isSubmitting) {
       formRef.current.reset();
+      focusRef.current.focus();
     }
   }, [isSubmitting]);
 
@@ -27,6 +28,7 @@ const AddBudgetForm = () => {
             type="text"
             id="newBudget"
             name="newBudget"
+            ref={focusRef}
             placeholder="eg: Groceries"
             required
           />
