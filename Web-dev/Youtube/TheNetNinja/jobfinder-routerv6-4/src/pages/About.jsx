@@ -1,4 +1,13 @@
+import { useState } from "react";
+import { Navigate } from "react-router-dom";
+
 const About = () => {
+  const [user, setUser] = useState("Nishanth M");
+
+  if (!user) {
+    return <Navigate to={"/"} replace />;
+  }
+
   return (
     <div className="about">
       <h2>About Us</h2>
@@ -23,6 +32,7 @@ const About = () => {
         rem facilis voluptates quas, necessitatibus aspernatur tenetur id
         dolorum sapiente corrupti voluptate fugiat.
       </p>
+      <button onClick={() => setUser(null)}>Logout</button>
     </div>
   );
 };
