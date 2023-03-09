@@ -9,6 +9,7 @@ import Careers from "./components/careers/Careers";
 import CareersError from "./components/careers/CareersError";
 import Contact from "./components/help/Contact";
 import Faq from "./components/help/Faq";
+import { contactAction } from "./form-action/contactAction";
 import CareersLayout from "./Layouts/CareersLayout";
 import HelpLayout from "./Layouts/HelpLayout";
 import RootLayout from "./Layouts/RootLayout";
@@ -26,7 +27,7 @@ const router = createBrowserRouter(
       <Route path="help" element={<HelpLayout />}>
         {/* /help/faq */}
         <Route path="faq" element={<Faq />} />
-        <Route path="contact" element={<Contact />} />
+        <Route path="contact" element={<Contact />} action={contactAction} />
       </Route>
 
       <Route
