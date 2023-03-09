@@ -9,6 +9,7 @@ import Faq from "./components/help/Faq";
 import HelpLayout from "./Layouts/HelpLayout";
 import RootLayout from "./Layouts/RootLayout";
 import About from "./pages/About";
+import NotFound from "./pages/error/NotFound";
 import Home from "./pages/Home";
 
 const router = createBrowserRouter(
@@ -21,6 +22,7 @@ const router = createBrowserRouter(
         <Route path="faq" element={<Faq />} />
         <Route path="contact" element={<Contact />} />
       </Route>
+      <Route path="*" element={<NotFound />} />
     </Route>
   )
 );
