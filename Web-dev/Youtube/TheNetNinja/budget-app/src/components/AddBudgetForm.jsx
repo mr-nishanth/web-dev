@@ -1,11 +1,26 @@
 import { CurrencyDollarIcon } from "@heroicons/react/24/solid";
+import { useEffect } from "react";
+import { useRef } from "react";
+import { useFetcher } from "react-router-dom";
 import { Form } from "react-router-dom";
 
 const AddBudgetForm = () => {
+  const fetcher = useFetcher();
+  const isSubmitting = fetcher.state === "submitting";
+
+  // Clear the Form
+  const formRef = useRef();
+
+  useEffect(() => {
+    if (!isSubmitting) {
+      formRef.current.reset();
+    }
+  }, [isSubmitting]);
+
   return (
     <div className="form-wrapper">
       <h2 className="h3">Create Budget</h2>
-      <Form method="post" className="grid-sm">
+      <fetcher.Form method="post" className="grid-sm" ref={formRef}>
         <div className="grid-xs">
           <label htmlFor="newBudget">Budget Name</label>
           <input
@@ -33,7 +48,7 @@ const AddBudgetForm = () => {
           <span>Create Budget</span>
           <CurrencyDollarIcon width={20} />
         </button>
-      </Form>
+      </fetcher.Form>
     </div>
   );
 };
