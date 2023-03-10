@@ -3,11 +3,6 @@ export const fetchData = (key) => {
   return JSON.parse(localStorage.getItem(key));
 };
 
-// Delete Item
-export const deleteItem = ({ key }) => {
-  return localStorage.removeItem(key);
-};
-
 // Create budget
 const generateRandomColor = () => {
   const existingBudgetLength = fetchData("budgets")?.length ?? 0;
@@ -81,4 +76,21 @@ export const formatPercentage = (amt) => {
 // Formatting Date
 export const formatDateToLocaleString = (epochNumber) => {
   return new Date(epochNumber).toLocaleDateString();
+};
+
+// Get all items from local storage
+
+export const getAllMatchingItems = ({ category, key, value }) => {
+  const data = fetchData(category) ?? [];
+  return data.filter((item) => item[key] === value);
+};
+
+// Delete Item from local storage
+export const deleteItem = ({ key, id }) => {
+  const existingData = fetchData(key);
+  if (id) {
+    const newData = existingData.filter((item) => item.id !== id);
+    return localStorage.setItem(key, JSON, stringify(newData));
+  }
+  return localStorage.removeItem(key);
 };
