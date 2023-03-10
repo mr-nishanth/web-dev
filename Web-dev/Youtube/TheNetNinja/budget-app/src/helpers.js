@@ -48,3 +48,10 @@ export const createExpense = ({ name, amount, budgetId }) => {
     JSON.stringify([...existingExpenses, newItem])
   );
 };
+
+// Formatting
+
+// Format currency
+export const formatCurrency = (amt) => {
+  return amt.toLocaleString(undefined, { style: "currency", currency: "USD" });
+};
