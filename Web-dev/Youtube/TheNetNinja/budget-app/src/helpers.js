@@ -49,7 +49,7 @@ export const createExpense = ({ name, amount, budgetId }) => {
   );
 };
 
-// Formatting
+//================= Formatting =====================
 
 // Format currency
 export const formatCurrency = (amt) => {
@@ -68,4 +68,12 @@ export const calculateSpentByBudget = (budgetId) => {
     return (acc += expense.amount);
   }, 0);
   return budgetSpent;
+};
+
+// Formatting percentage
+export const formatPercentage = (amt) => {
+  return amt.toLocaleString(undefined, {
+    style: "percent",
+    minimumFractionDigits: 0,
+  });
 };
