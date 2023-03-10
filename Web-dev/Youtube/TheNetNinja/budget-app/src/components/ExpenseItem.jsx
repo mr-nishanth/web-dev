@@ -9,11 +9,11 @@ import {
 
 const ExpenseItem = ({ expense }) => {
   const fetcher = useFetcher();
-  const { name, amount, createdAt } = expense;
+  const { name, amount, createdAt, budgetId, id } = expense;
   const budget = getAllMatchingItems({
     category: "budgets",
     key: "id",
-    value: expense.budgetId,
+    value: budgetId,
   })[0];
   return (
     <>
@@ -26,13 +26,13 @@ const ExpenseItem = ({ expense }) => {
         </Link>
       </td>
       <td>
-        <fetcher.Form method="post">
+        <fetcher.Form method="POST">
           <input type="hidden" name="_action" value="deleteExpense" />
-          <input type="hidden" name="expenseId" value={expense.id} />
+          <input type="hidden" name="expenseId" value={id} />
           <button
             type="submit"
             className="btn btn--warning"
-            aria-label={`Delete ${expense.name} expense`}
+            aria-label={`Delete ${name} expense`}
           >
             <TrashIcon width={20} />
           </button>
