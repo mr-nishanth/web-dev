@@ -6,6 +6,7 @@ import AddBudgetForm from "../components/AddBudgetForm";
 import AddExpenseForm from "../components/AddExpenseForm";
 import BudgetItem from "../components/BudgetItem";
 import Table from "../components/Table";
+import { Link } from "react-router-dom";
 
 // * Our Loader function
 export function dashboardLoader() {
@@ -91,10 +92,15 @@ const Dashboard = () => {
                     <h2>Recent Expenses</h2>
                     <Table
                       key={expenses.id}
-                      expenses={expenses.sort(
-                        (a, b) => b.createdAt - a.createdAt
-                      )}
+                      expenses={expenses
+                        .sort((a, b) => b.createdAt - a.createdAt)
+                        .slice(0, 8)}
                     />
+                    {expenses.length > 8 && (
+                      <Link to={"expenses"} className="btn btn--dark">
+                        View all expenses
+                      </Link>
+                    )}
                   </div>
                 )}
               </div>
