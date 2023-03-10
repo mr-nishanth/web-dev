@@ -55,3 +55,17 @@ export const createExpense = ({ name, amount, budgetId }) => {
 export const formatCurrency = (amt) => {
   return amt.toLocaleString(undefined, { style: "currency", currency: "USD" });
 };
+
+// Total spent by budget
+export const calculateSpentByBudget = (budgetId) => {
+  const expenses = fetchData("expenses") ?? [];
+  const budgetSpent = expenses.reduce((acc, expense) => {
+    //Check does the expense have the same ID as the budget ID that I Passed in, if it doesn't then just get out of there
+    // check if (expense.id === budgetId) I Passed in
+    if (expense.budgetId !== budgetId) return acc; // acc = 0
+
+    // Add the current amount to my total
+    return (acc += expense.amount);
+  }, 0);
+  return budgetSpent;
+};
