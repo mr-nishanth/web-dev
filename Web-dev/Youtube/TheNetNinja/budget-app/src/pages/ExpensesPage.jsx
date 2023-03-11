@@ -1,6 +1,6 @@
 import { useLoaderData } from "react-router-dom";
 import Table from "../components/Table";
-import { deleteItem, fetchData } from "../helpers";
+import { createExpense, deleteItem, fetchData } from "../helpers";
 import { toast } from "react-toastify";
 // * Our Loader function
 export const expensesLoader = async () => {
@@ -13,6 +13,20 @@ export async function expensesAction({ request }) {
   const data = await request.formData();
   const { _action, ...values } = Object.fromEntries(data);
   console.log({ _action, values });
+
+  if (_action === "createExpense") {
+    try {
+      //  Create Expense
+      createExpense({
+        name: values?.newExpense,
+        amount: values?.newExpenseAmount,
+        budgetId: values?.newExpenseBudget,
+      });
+      return toast.success(`Expense ${values?.newExpense} created!💵`);
+    } catch (error) {
+      throw new Error("There was a problem creating your expense.😔");
+    }
+  }
 
   if (_action === "deleteExpense") {
     try {
