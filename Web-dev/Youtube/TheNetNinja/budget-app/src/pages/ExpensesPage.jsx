@@ -14,20 +14,6 @@ export async function expensesAction({ request }) {
   const { _action, ...values } = Object.fromEntries(data);
   console.log({ _action, values });
 
-  if (_action === "createExpense") {
-    try {
-      //  Create Expense
-      createExpense({
-        name: values?.newExpense,
-        amount: values?.newExpenseAmount,
-        budgetId: values?.newExpenseBudget,
-      });
-      return toast.success(`Expense ${values?.newExpense} created!💵`);
-    } catch (error) {
-      throw new Error("There was a problem creating your expense.😔");
-    }
-  }
-
   if (_action === "deleteExpense") {
     try {
       //  Delete Expense
