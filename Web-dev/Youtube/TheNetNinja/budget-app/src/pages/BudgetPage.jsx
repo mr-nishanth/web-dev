@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import AddExpenseForm from "../components/AddExpenseForm";
 import BudgetItem from "../components/BudgetItem";
 import Table from "../components/Table";
-import { deleteItem, getAllMatchingItems } from "../helpers";
+import { createExpense, deleteItem, getAllMatchingItems } from "../helpers";
 
 export async function budgetLoader({ params }) {
   const { id } = params;
@@ -35,6 +35,19 @@ export async function budgetAction({ request }) {
   const { _action, ...values } = Object.fromEntries(data);
   console.log({ _action, values });
 
+  if (_action === "createExpense") {
+    try {
+      //  Create Expense
+      createExpense({
+        name: values?.newExpense,
+        amount: values?.newExpenseAmount,
+        budgetId: values?.newExpenseBudget,
+      });
+      return toast.success(`Expense ${values?.newExpense} created!💵`);
+    } catch (error) {
+      throw new Error("There was a problem creating your expense.😔");
+    }
+  }
   if (_action === "deleteExpense") {
     try {
       //  Delete Expense
