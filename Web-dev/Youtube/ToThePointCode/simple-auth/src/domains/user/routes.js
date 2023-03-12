@@ -1,4 +1,4 @@
-const { createNewUser } = require("./controller");
+const { createNewUser, authenticateUser } = require("./controller");
 
 const router = require("express").Router();
 
@@ -27,6 +27,24 @@ router.post("/signup", async (req, res) => {
     }
   } catch (error) {
     res.status(400).json({ error: error.message });
+  }
+});
+
+// Sign In
+router.post("/", async (req, res) => {
+  let { email, password } = req.body;
+  email = email?.trim();
+  password = password?.trim();
+
+  // Check if all fields are entered or not
+  if (!(email && password)) {
+    throw Error("Empty credentials supplied");
+  }
+  let authenticatedUser = await authenticateUser({ email, password });
+  res.status(200).json(authenticatedUser);
+  try {
+  } catch (error) {
+    res.status(400).send(error.message);
   }
 });
 
