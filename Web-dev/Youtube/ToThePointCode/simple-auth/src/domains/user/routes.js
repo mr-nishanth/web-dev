@@ -1,3 +1,4 @@
+const { verifyToken } = require("../../middlewares/auth");
 const { createNewUser, authenticateUser } = require("./controller");
 
 const router = require("express").Router();
@@ -43,6 +44,17 @@ router.post("/", async (req, res) => {
   let authenticatedUser = await authenticateUser({ email, password });
   res.status(200).json(authenticatedUser);
   try {
+  } catch (error) {
+    res.status(400).send(error.message);
+  }
+});
+
+// protected route
+router.get("/private_data", verifyToken, async (req, res) => {
+  try {
+    res
+      .status(200)
+      .send(`You're in the private territory of ${req?.currentUser?.email}`);
   } catch (error) {
     res.status(400).send(error.message);
   }
