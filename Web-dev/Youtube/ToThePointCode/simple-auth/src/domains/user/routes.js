@@ -3,13 +3,13 @@ const { createNewUser } = require("./controller");
 const router = require("express").Router();
 
 // Sign up
-router.post("/signup", (req, res) => {
+router.post("/signup", async (req, res) => {
   try {
     let { name, email, password } = req.body;
 
-    name = name.trim();
-    email = email.trim();
-    password = password.trim();
+    name = name?.trim();
+    email = email?.trim();
+    password = password?.trim();
 
     if (!(name && email && password)) {
       throw new Error("Please enter all the fields");
@@ -21,7 +21,7 @@ router.post("/signup", (req, res) => {
       throw new Error("Please enter a valid email");
     } else {
       // Good credentials , create new user
-      const newUser = createNewUser({ name, email, password });
+      const newUser = await createNewUser({ name, email, password });
       res.status(201).json(newUser);
     }
   } catch (error) {
