@@ -21,7 +21,8 @@ router.post("/signup", async (req, res) => {
       throw new Error("Please enter a valid email");
     } else {
       // Good credentials , create new user
-      const newUser = await createNewUser({ name, email, password });
+      let newUser = await createNewUser({ name, email, password });
+      newUser.password = undefined;
       res.status(201).json(newUser);
     }
   } catch (error) {
