@@ -1,4 +1,7 @@
-require("dotenv").config();
+const path = require("path");
+require("dotenv").config({
+  path: path.resolve(__dirname, "../../env/local.env"),
+});
 const mongoose = require("mongoose");
 mongoose.set("strictQuery", true);
 const { MONGO_LOCAL_URI } = process.env;
