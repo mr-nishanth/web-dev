@@ -5,6 +5,7 @@ import {
   HttpException,
   HttpStatus,
   Inject,
+  NotFoundException,
   Param,
   ParseIntPipe,
   UseInterceptors,
@@ -49,10 +50,13 @@ export class UsersController {
     const user = this.usersService.getUserById(id);
     if (!user) {
       // throw new UserNotFoundException();
-      throw new UserNotFoundException(
-        'UserNotFoundException CustomErrorClass',
-        400,
-      );
+
+      // throw new UserNotFoundException(
+      //   'UserNotFoundException CustomErrorClass',
+      //   400,
+      // );
+
+      throw new NotFoundException();
     }
     return new SerializedUser(user);
   }
