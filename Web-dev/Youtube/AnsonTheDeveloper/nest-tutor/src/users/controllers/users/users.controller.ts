@@ -32,7 +32,7 @@ export class UsersController {
 
   // Method 2
   @UseInterceptors(ClassSerializerInterceptor)
-  @Get(':username')
+  @Get('username/:username')
   getByUsername(@Param('username') username: string): User {
     const user = this.usersService.getUserByUsername(username);
     if (!user) {
