@@ -19,10 +19,17 @@ export class UsersService {
     },
   ];
 
+  // Method 1
+  // getUsers(): User[] {
+  //   return this.users.map((user) => plainToInstance(SerializedUser, user));
+  // }
+
+  // Method 3
   getUsers(): User[] {
-    return this.users.map((user) => plainToInstance(SerializedUser, user));
+    return this.users.map((user) => new SerializedUser(user));
   }
 
+  // Method 2
   getUserByUsername(username: string): User {
     return this.users.find((user) => user?.username === username);
   }

@@ -17,11 +17,20 @@ export class UsersController {
     @Inject('USERS_SERVICE') private readonly usersService: UsersService,
   ) {}
 
+  // Method 1
+  // @Get()
+  // getUsers(): User[] {
+  //   return this.usersService.getUsers();
+  // }
+
+  // Method 3
+  @UseInterceptors(ClassSerializerInterceptor)
   @Get()
   getUsers(): User[] {
     return this.usersService.getUsers();
   }
 
+  // Method 2
   @UseInterceptors(ClassSerializerInterceptor)
   @Get(':username')
   getByUsername(@Param('username') username: string): User {
