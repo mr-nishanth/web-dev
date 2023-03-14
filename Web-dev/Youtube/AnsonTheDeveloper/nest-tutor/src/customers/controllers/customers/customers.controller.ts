@@ -19,6 +19,7 @@ import { CustomersService } from 'src/customers/services/customers/customers.ser
 @Controller('customers')
 export class CustomersController {
   constructor(private readonly customersService: CustomersService) {}
+  // * Express way
   @Get(':id')
   getCustomers(
     @Param('id', ParseIntPipe) id: number,
@@ -33,6 +34,7 @@ export class CustomersController {
     }
   }
 
+  // * Nestjs way without req and res object , directly return the customer
   @Get('/search/:id')
   searchCustomerById(@Param('id', ParseIntPipe) id: number) {
     const customer = this.customersService.findCustomerById(id);
