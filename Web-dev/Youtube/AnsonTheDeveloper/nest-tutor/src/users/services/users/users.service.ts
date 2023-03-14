@@ -6,17 +6,17 @@ import { SerializedUser, User } from 'src/users/types';
 export class UsersService {
   private users: User[] = [
     {
-      id:1,
+      id: 1,
       username: 'john',
       password: 'changeme',
     },
     {
-      id:2,
+      id: 2,
       username: 'chris',
       password: 'secret',
     },
     {
-      id:3,
+      id: 3,
       username: 'maria',
       password: 'guess',
     },
