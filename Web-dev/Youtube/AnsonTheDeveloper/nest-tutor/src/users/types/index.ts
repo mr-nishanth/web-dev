@@ -1,6 +1,5 @@
-import { Exclude } from 'class-transformer';
-
 /* eslint-disable prettier/prettier */
+import { Exclude } from 'class-transformer';
 export interface User {
   id: number;
   username: string;
