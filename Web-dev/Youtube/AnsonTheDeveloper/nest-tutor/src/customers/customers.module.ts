@@ -1,4 +1,5 @@
 import { Module, NestModule, RequestMethod } from '@nestjs/common';
+import { NextFunction, Request, Response } from 'express';
 import { CustomersController } from './controllers/customers/customers.controller';
 import { ValidateCustomerAccountMiddleware } from './middlewares/validate-customer-account.middleware';
 import { ValidateCustomerMiddleware } from './middlewares/validate-customer.middleware';
@@ -21,7 +22,16 @@ export class CustomersModule implements NestModule {
 
     //* Method 2
     consumer
-      .apply(ValidateCustomerMiddleware, ValidateCustomerAccountMiddleware)
+      .apply(
+        ValidateCustomerMiddleware,
+        ValidateCustomerAccountMiddleware,
+        (req: Request, res: Response, next: NextFunction) => {
+          console.log('Function Middleware');
+          const { valid: funcValid } = req.headers;
+          console.log({ funcValid });
+          next();
+        },
+      )
       .forRoutes(
         {
           path: 'customers/search/:id',
