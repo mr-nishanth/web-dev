@@ -11,15 +11,15 @@ export class UserService {
     return createUserDto;
   }
 
-  updateUser(updateUserDto: UpdateUserDto, param: { userId: number }) {
-    return { updateUserDto, param: param?.userId };
+  updateUser(updateUserDto: UpdateUserDto, userId: number) {
+    return { updateUserDto, userId };
   }
 
-  getUser(param: { userId: number }) {
-    return { param: param?.userId };
+  getUser(userId: number) {
+    return { userId };
   }
 
-  deleteUser(param: { userId: number }) {
-    return { param: param?.userId };
+  deleteUser(userId: number) {
+    return { userId };
   }
 }
