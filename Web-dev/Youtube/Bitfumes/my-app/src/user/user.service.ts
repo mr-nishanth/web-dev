@@ -14,19 +14,19 @@ export class UserService {
     return this.userRepository.find();
   }
 
-  createUser(createUserDto: CreateUserDto) {
-    return createUserDto;
+  createUser(createUserDto: CreateUserDto): Promise<User> {
+    return this.userRepository.save(createUserDto);
   }
 
   updateUser(updateUserDto: UpdateUserDto, userId: number) {
-    return { updateUserDto, userId };
+    return this.userRepository.update(userId, updateUserDto);
   }
 
-  getUser(userId: number) {
-    return { userId };
+  getUser(userId: number): Promise<User> {
+    return this.userRepository.findOne({ where: { id: userId } });
   }
 
-  deleteUser(userId: number) {
-    return { userId };
+  async deleteUser(userId: number) {
+    return await this.userRepository.delete(userId);
   }
 }
