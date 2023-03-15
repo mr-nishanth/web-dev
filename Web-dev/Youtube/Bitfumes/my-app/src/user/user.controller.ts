@@ -1,4 +1,5 @@
 import {
+  Body,
   Controller,
   Delete,
   Get,
@@ -19,13 +20,13 @@ export class UserController {
   }
 
   @Post()
-  store(@Req() req: Request) {
-    return this.userService.createUser(req);
+  store(@Body() body: any) {
+    return this.userService.createUser(body);
   }
 
   @Patch('/:userId')
-  update(@Req() req: Request, @Param() param: { userId: number }) {
-    return this.userService.updateUser(req, param);
+  update(@Body() body: any, @Param() param: { userId: number }) {
+    return this.userService.updateUser(body, param);
   }
 
   @Get('/:userId')

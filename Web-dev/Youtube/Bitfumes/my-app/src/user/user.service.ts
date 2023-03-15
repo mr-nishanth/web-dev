@@ -7,12 +7,12 @@ export class UserService {
     return { name: 'Nishanth', email: 'nishanth@gmail.com' };
   }
 
-  createUser(req: Request) {
-    return req.body;
+  createUser(body: any) {
+    return body;
   }
 
-  updateUser(req: Request, param: { userId: number }) {
-    return { body: req.body, param: param?.userId };
+  updateUser(body: any, param: { userId: number }) {
+    return { body, param: param?.userId };
   }
 
   getUser(param: { userId: number }) {
