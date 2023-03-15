@@ -56,4 +56,11 @@ export class UsersService {
     // save the user
     return this.userRepository.save(newUser);
   }
+
+  // For auth.services
+  async findUserByUsername(username: string) {
+    const user = await this.userRepository;
+    console.log({ user });
+    return user;
+  }
 }
