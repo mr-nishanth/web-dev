@@ -1,10 +1,17 @@
 import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 import { CreateUserDto, UpdateUserDto } from './dto/index.dto';
+import { User } from './entity/user.entity';
 
 @Injectable()
 export class UserService {
-  getUsers() {
-    return { name: 'Nishanth', email: 'nishanth@gmail.com' };
+  constructor(
+    @InjectRepository(User) private userRepository: Repository<User>,
+  ) {}
+
+  getUsers(): Promise<User[]> {
+    return this.userRepository.find();
   }
 
   createUser(createUserDto: CreateUserDto) {
