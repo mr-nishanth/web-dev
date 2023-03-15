@@ -5,10 +5,8 @@ import {
   Get,
   Param,
   Patch,
-  Post,
-  Req,
+  Post,  
 } from '@nestjs/common';
-import { Request } from 'express';
 import { UserService } from './user.service';
 
 @Controller('user')
