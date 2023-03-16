@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { CreateProductDto, UpdateProductDto } from './dto/index.dto';
@@ -21,7 +21,11 @@ export class ProductService {
   }
 
   async findOneProduct(id: string): Promise<ProductDocument> {
-    return this.productModel.findById(id).exec();
+    const product = await this.productModel.findById(id).exec();
+    if (!product) {
+      throw new NotFoundException();
+    }
+    return product;
   }
 
   async updateProduct(
@@ -34,6 +38,10 @@ export class ProductService {
   }
 
   async deleteProduct(id: string): Promise<ProductDocument> {
-    return this.productModel.findByIdAndDelete(id).exec();
+    const product = await this.productModel.findByIdAndDelete(id).exec();
+    if (!product) {
+      throw new NotFoundException();
+    }
+    return null;
   }
 }
