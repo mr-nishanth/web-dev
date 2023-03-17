@@ -1,13 +1,13 @@
-import { BadRequestException } from '@nestjs/common';
-import { Transform } from 'class-transformer';
+// import { BadRequestException } from '@nestjs/common';
+// import { Transform } from 'class-transformer';
 import {
-  IsMongoId,
+  // IsMongoId,
   IsNotEmpty,
   IsNumber,
   IsOptional,
   IsString,
 } from 'class-validator';
-import { Types } from 'mongoose';
+// import { Types } from 'mongoose';
 
 export class CreateProductDto {
   @IsNotEmpty()
