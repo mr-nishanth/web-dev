@@ -7,8 +7,11 @@ const inter = Inter({ subsets: ["latin"] });
 export default function Home() {
   return (
     <main className={styles.main}>
-      <h1>Hello World</h1>
-      <Link href={"/about"}>Back to About page</Link>
+      <h1>Learn Nextjs</h1>
+      <p>
+        <Link href={"/about"}>Back to About page</Link> <br /> <br />
+        <Link href={"/users"}>Back to User page</Link>
+      </p>
     </main>
   );
 }
