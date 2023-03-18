@@ -9,7 +9,7 @@ const getUserPost = async (userId: string) => {
     { next: { revalidate: 60 } }
   );
 
-  if (!res.ok) throw new Error("Failed to get all users");
+  if (!res.ok) return undefined;
   return res.json();
 };
 
