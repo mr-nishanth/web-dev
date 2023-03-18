@@ -1,6 +1,10 @@
 import "./globals.css";
+import type { Metadata } from "next";
 
-export const metadata = {
+import { Inter } from "next/font/google";
+const inter = Inter({ subsets: ["latin"] });
+
+export const metadata: Metadata = {
   title: "Next",
   description: "Learn Nestjs",
 };
@@ -12,12 +16,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en'>
-      <body>
-        <nav>
-          <h1>Black Nav</h1>
-        </nav>
-        {children}
-      </body>
+      <body className={inter.className}>{children}</body>
     </html>
   );
 }
