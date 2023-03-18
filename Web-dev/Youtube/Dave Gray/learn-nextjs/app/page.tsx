@@ -6,7 +6,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
   return (
-    <main className={styles.main}>
+    <main>
       <h1>Learn Nextjs</h1>
       <p>
         <Link href={"/about"}>Back to About page</Link> <br /> <br />
