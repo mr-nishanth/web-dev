@@ -29,3 +29,6 @@ node_modules
 
 # Assets
 /src/assets
+
+# SRC
+/src
