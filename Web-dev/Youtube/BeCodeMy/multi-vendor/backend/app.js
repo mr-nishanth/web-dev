@@ -28,6 +28,20 @@ if (process.env.NODE_ENV !== "PRODUCTION") {
   });
 }
 
+// Home page
+app.get("/", (req, res) => {
+  res
+    .status(200)
+    .send(
+      `<center><h1>Welcome to the Multi Vendor E-commerce Backend</h1></center>`
+    );
+});
+
+// 404 Page Not Found
+app.all("*", (req, res) => {
+  res.status(404).json({ message: `Invalid requested ${req.path} path` });
+});
+
 // Error Handling
 app.use(ErrorHandler);
 
