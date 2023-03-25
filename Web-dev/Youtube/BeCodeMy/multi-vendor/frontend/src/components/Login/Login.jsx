@@ -15,7 +15,11 @@ const Login = () => {
     e.preventDefault();
 
     axios
-      .post(`${server}/user/login-user`, { email, password })
+      .post(
+        `${server}/user/login-user`,
+        { email, password },
+        { withCredentials: true }
+      )
       .then((result) => {
         if (result?.data?.success) {
           toast.success("Login successful");
