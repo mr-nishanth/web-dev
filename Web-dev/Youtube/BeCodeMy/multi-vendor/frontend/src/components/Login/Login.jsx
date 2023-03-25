@@ -1,11 +1,31 @@
 import { useState } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import Styles from "../../styles/styles";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import { server } from "../../server";
+import { toast } from "react-toastify";
 const Login = () => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passVisible, setPassVisible] = useState(false);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    axios
+      .post(`${server}/user/login-user`, { email, password })
+      .then((result) => {
+        if (result?.data?.success) {
+          toast.success("Login successful");
+          navigate("/");
+        }
+      })
+      .catch((error) => {
+        toast.error(error?.response?.data?.message);
+      });
+  };
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
@@ -16,7 +36,7 @@ const Login = () => {
       </div>
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
         <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-          <form className="space-y-6">
+          <form className="space-y-6" onSubmit={handleSubmit}>
             <div className="">
               <label
                 htmlFor="email"
@@ -92,11 +112,18 @@ const Login = () => {
               </div>
             </div>
             <div>
-              <button type="submit" className="group relative w-full h-[40px] flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700">Login</button>
+              <button
+                type="submit"
+                className="group relative w-full h-[40px] flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700"
+              >
+                Login
+              </button>
             </div>
-            <div className={`${Styles.normalFlex} w-full`}> 
-                  <h4>Not have any account?</h4>
-                  <Link to="/sign-up" className="text-blue-600 pl-6">Sign Up</Link>
+            <div className={`${Styles.normalFlex} w-full`}>
+              <h4>Not have any account?</h4>
+              <Link to="/sign-up" className="text-blue-600 pl-6">
+                Sign Up
+              </Link>
             </div>
           </form>
         </div>
