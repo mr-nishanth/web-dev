@@ -1,6 +1,6 @@
 const path = require("path");
 const express = require("express");
-const ErrorHandler = require("./utils/ErrorHandler");
+const CustomErrorHandler = require("./middleware/error");
 const app = express();
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
@@ -45,6 +45,6 @@ app.all("*", (req, res) => {
 });
 
 // Error Handling
-app.use(ErrorHandler);
+app.use(CustomErrorHandler);
 
 module.exports = app;
