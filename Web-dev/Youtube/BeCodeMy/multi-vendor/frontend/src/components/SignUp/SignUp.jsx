@@ -1,21 +1,45 @@
-import { useState } from "react";
+import { React, useState } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-import { RxAvatar } from "react-icons/rx";
 import Styles from "../../styles/styles";
 import { Link } from "react-router-dom";
+import { RxAvatar } from "react-icons/rx";
+import axios from "axios";
+import { server } from "../../server";
+import { toast } from "react-toastify";
 const SignUp = () => {
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [passVisible, setPassVisible] = useState(false);
-  const [avatar, setAvatar] = useState("");
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-  };
+  const [avatar, setAvatar] = useState(null);
 
   const handleAvatar = (e) => {
     setAvatar(e.target.files[0]);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const newForm = new FormData();
+    newForm.append("file", avatar);
+    newForm.append("name", name);
+    newForm.append("email", email);
+    newForm.append("password", password);
+
+    const config = { headers: { "Content-Type": "multipart/form-data" } };
+
+    axios
+      .post(`${server}/user/create-user`, newForm, config)
+      .then((result) => {
+        toast.success(result?.data?.message);
+        setName("");
+        setEmail("");
+        setPassword("");
+        setAvatar(null);
+      })
+      .catch((error) => {
+        toast.error(error?.response?.data?.message);
+      });
   };
 
   return (
