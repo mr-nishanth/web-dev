@@ -6,9 +6,8 @@ const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const helmet = require("helmet");
 const cors = require("cors");
-const fileUpload = require("express-fileupload");
 
-// Disable x-powered-by features
+// Disable x-powered-by featuresP
 app.disable("x-powered-by");
 
 app.use(express.json());
@@ -18,8 +17,8 @@ app.use(cookieParser());
 app.use(logger("dev"));
 app.use(helmet());
 
-// For multer
-app.use(fileUpload({ useTempFiles: true }));
+// For static assets
+app.use("/", express.static(path.join(__dirname, "..", "uploads")));
 
 // Configuration
 if (process.env.NODE_ENV !== "PRODUCTION") {
@@ -36,6 +35,9 @@ app.get("/", (req, res) => {
       `<center><h1>Welcome to the Multi Vendor E-commerce Backend</h1></center>`
     );
 });
+
+// Routes
+app.use("/api/v2/user", require("./controllers/user.controllers"));
 
 // 404 Page Not Found
 app.all("*", (req, res) => {
