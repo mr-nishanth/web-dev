@@ -85,6 +85,7 @@ const Order = {
     }
   },
 };
-Order.load();
+
+Order.load(); //* Make sure to load the order,else it not showing local-storages data
 window.Order = Order; // make it "public"
 export default Order;
