@@ -47,6 +47,15 @@ const Menu = {
       }
     }
     Menu.render();
+
+    // Cache images
+    // await caches.match("/data/images/greentea.png")
+    if (Menu.data) {
+      const imageCache = await caches.open("cm-images");
+      Menu.data.forEach((c) =>
+        imageCache.addAll(c.products.map((p) => `/data/images/${p.image}`))
+      );
+    }
   },
 
   getProductById: async (id) => {
