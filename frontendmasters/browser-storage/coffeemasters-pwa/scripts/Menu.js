@@ -6,14 +6,14 @@ const Menu = {
   // Creating a Database for the Menu
   openDB: async () => {
     return await idb.openDB("cm-menu", 1, {
-      upgrade(db) {
-        db.createObjectStore("categories", { keyPath: "name" });
+      async upgrade(db) {
+        await db.createObjectStore("categories", { keyPath: "name" });
       },
     });
   },
-  load: async () => {
+  loadCacheFirst: async () => {
     // IndexDB
-    //* Cache First Menu
+    //* Cache First approach
     const db = await Menu.openDB();
     if ((await db.count("categories")) == 0) {
       // Database is empty
@@ -24,6 +24,31 @@ const Menu = {
     Menu.data = await db.getAll("categories");
     Menu.render();
   },
+
+  load: async () => {
+    // Network First
+    const db = await Menu.openDB();
+    try {
+      // We try to fetch from the network
+      const data = await API.fetchMenu();
+      Menu.data = data;
+      console.log("Data from the network");
+      // If succeeded, also update the cached version
+      db.clear("categories"); // clear the cached version
+      data.forEach((category) => db.add("categories", category));
+    } catch (e) {
+      // Network error, we go to the cache
+      if ((await db.count("categories")) > 0) {
+        Menu.data = await db.getAll("categories");
+        console.log("Data from the cache");
+      } else {
+        // No cached data is available :(
+        console.log("No data is available");
+      }
+    }
+    Menu.render();
+  },
+
   getProductById: async (id) => {
     if (Menu.data == null) {
       await Menu.load();
