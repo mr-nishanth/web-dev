@@ -2,8 +2,41 @@ import Menu from "./Menu.js";
 
 const Order = {
   cart: [],
+
+  // IndexDB
+  openDB: async () => {
+    return await idb.openDB("cm-storage", 1, {
+      async upgrade(dbRefer) {
+        //  create Object data stores
+        await dbRefer.createObjectStore("order");
+      },
+    });
+  },
+  load: async () => {
+    const db = await Order.openDB();
+    const cart = await db.get("order", "cart");
+    if (cart) {
+      try {
+        Order.cart = JSON.parse(cart);
+        Order.render();
+      } catch (error) {
+        console.error("Data corrupted");
+      }
+    }
+  },
+  save: async () => {
+    const db = await Order.openDB();
+
+    // add vs put
+    // add is used to add order
+    // put is used to update order if existing , else add new order
+    // Local storage -> KeyValueStore
+    // IndexDB -> ValueKeyStore
+    await db.put("order", JSON.stringify(Order.cart), "cart"); // db.put(createObjectStore,Values,Key)
+  },
+  // end of IndexDB
   //   Load the order from the local storage
-  load: () => {
+  loadWebStorage: () => {
     if (localStorage.getItem("cm-cart")) {
       try {
         Order.cart = JSON.parse(localStorage.getItem("cm-cart"));
@@ -15,7 +48,7 @@ const Order = {
     }
   },
   //   save the order object to local storage
-  save: () => {
+  saveWebStorage: () => {
     localStorage.setItem("cm-cart", JSON.stringify(Order.cart));
   },
   add: async (id) => {
