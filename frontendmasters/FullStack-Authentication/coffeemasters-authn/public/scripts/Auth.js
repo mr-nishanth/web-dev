@@ -29,13 +29,13 @@ const Auth = {
   },
   login: async (event) => {
     event.preventDefault();
-    const user = {
+    const credentials = {
       email: document.getElementById("login_email").value,
       password: document.getElementById("login_password").value,
     };
-    const loginResponse = await API.login(user);
+    const loginResponse = await API.login(credentials);
     console.log({ loginResponse });
-    Auth.postLogin(loginResponse, { ...user, name: loginResponse.name });
+    Auth.postLogin(loginResponse, { ...credentials, name: loginResponse.name });
   },
 
   logout: () => {
