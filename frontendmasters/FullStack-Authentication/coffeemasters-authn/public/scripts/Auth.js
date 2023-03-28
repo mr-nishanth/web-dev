@@ -14,6 +14,17 @@ const Auth = {
     } else {
       alert(response.message);
     }
+
+    // Credentials Management API storage
+    //* Our goal auto login
+    if (window.PasswordCredential && user.password) {
+      const credentials = new PasswordCredential({
+        id: user.email,
+        password: user.password,
+        name: user.name,
+      });
+      navigator.credentials.store(credentials);
+    }
   },
 
   register: async (event) => {
@@ -25,7 +36,7 @@ const Auth = {
     };
     const registerResponse = await API.register(user);
     console.log({ registerResponse });
-    Auth.postLogin(registerResponse, { name: user.name, email: user.email });
+    Auth.postLogin(registerResponse, user);
   },
   login: async (event) => {
     event.preventDefault();
@@ -43,6 +54,10 @@ const Auth = {
     Auth.account = null;
     Auth.updateStatus();
     Router.go("/");
+
+    if (window.PasswordCredential) {
+      navigator.credentials.preventSilentAccess();
+    }
   },
 
   updateStatus() {
