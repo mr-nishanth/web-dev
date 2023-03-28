@@ -28,3 +28,6 @@ window.addEventListener("DOMContentLoaded", () => {
   Menu.load();
   Order.render();
 });
+
+// Serving Images with Service Worker
+navigator.serviceWorker.register("../serviceworker.js");
