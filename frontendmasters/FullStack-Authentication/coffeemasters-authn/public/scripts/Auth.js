@@ -5,6 +5,17 @@ const Auth = {
   isLoggedIn: false,
   account: null,
 
+  postLogin: async (response, user) => {
+    if (response.ok) {
+      Auth.isLoggedIn = true;
+      Auth.account = user;
+      Auth.updateStatus();
+      Router.go("/account");
+    } else {
+      alert(response.message);
+    }
+  },
+
   register: async (event) => {
     event.preventDefault();
     const user = {
@@ -12,8 +23,9 @@ const Auth = {
       email: document.getElementById("register_email").value,
       password: document.getElementById("register_password").value,
     };
-    const response = await API.register(user);
-    console.log({ response });
+    const registerResponse = await API.register(user);
+    console.log({ registerResponse });
+    Auth.postLogin(registerResponse, { name: user.name, email: user.email });
   },
   login: async (event) => {
     event.preventDefault();
@@ -21,8 +33,16 @@ const Auth = {
       email: document.getElementById("login_email").value,
       password: document.getElementById("login_password").value,
     };
-    const response = await API.login(user);
-    console.log({ response });
+    const loginResponse = await API.login(user);
+    console.log({ loginResponse });
+    Auth.postLogin(loginResponse, { ...user, name: loginResponse.name });
+  },
+
+  logout: () => {
+    Auth.isLoggedIn = false;
+    Auth.account = null;
+    Auth.updateStatus();
+    Router.go("/");
   },
 
   updateStatus() {
