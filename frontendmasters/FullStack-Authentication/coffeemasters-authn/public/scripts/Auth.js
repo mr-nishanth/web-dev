@@ -23,7 +23,11 @@ const Auth = {
         password: user.password,
         name: user.name,
       });
-      navigator.credentials.store(credentials);
+      try {
+        navigator.credentials.store(credentials);
+      } catch (error) {
+        console.log(e);
+      }
     }
   },
 
@@ -39,7 +43,7 @@ const Auth = {
     Auth.postLogin(registerResponse, user);
   },
   login: async (event) => {
-    event.preventDefault();
+    if (event) event.preventDefault();
     const credentials = {
       email: document.getElementById("login_email").value,
       password: document.getElementById("login_password").value,
@@ -47,6 +51,16 @@ const Auth = {
     const loginResponse = await API.login(credentials);
     console.log({ loginResponse });
     Auth.postLogin(loginResponse, { ...credentials, name: loginResponse.name });
+  },
+
+  autoLogin: async () => {
+    if (window.PasswordCredential) {
+      const credentials = await navigator.credentials.get({ password: true });
+      console.log({ password: credentials });
+      document.getElementById("login_email").value = credentials.id;
+      document.getElementById("login_password").value = credentials.password;
+      Auth.login();
+    }
   },
 
   logout: () => {
@@ -86,6 +100,7 @@ const Auth = {
   init: () => {},
 };
 Auth.updateStatus();
+Auth.autoLogin();
 
 export default Auth;
 
