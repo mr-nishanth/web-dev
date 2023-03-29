@@ -32,8 +32,8 @@ const Auth = {
   },
 
   loginFromGoogle: async (data) => {
-    // console.log({ data });
     const response = await API.loginFromGoogle({ credential: data });
+    console.log({ loginFromGoogle: response });
     Auth.postLogin(response, {
       name: response.name,
       email: response.email,
@@ -65,9 +65,11 @@ const Auth = {
     if (window.PasswordCredential) {
       const credentials = await navigator.credentials.get({ password: true });
       console.log({ password: credentials });
-      document.getElementById("login_email").value = credentials.id;
-      document.getElementById("login_password").value = credentials.password;
-      Auth.login();
+      if (credentials) {
+        document.getElementById("login_email").value = credentials.id;
+        document.getElementById("login_password").value = credentials.password;
+        Auth.login();
+      }
     }
   },
 
