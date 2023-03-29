@@ -50,15 +50,38 @@ const Auth = {
     console.log({ registerResponse });
     Auth.postLogin(registerResponse, user);
   },
+  checkAuthOptions: async () => {
+    const response = await API.checkAuthOption({
+      email: document.getElementById("login_email").value,
+    });
+    console.log({ checkAuthOptions: response });
+
+    Auth.loginStep = 2;
+    if (response.password) {
+      document.getElementById("login_section_password").hidden = false;
+    }
+    if (response.webauthn) {
+      document.getElementById("login_section_password").hidden = false;
+    }
+  },
   login: async (event) => {
     if (event) event.preventDefault();
-    const credentials = {
-      email: document.getElementById("login_email").value,
-      password: document.getElementById("login_password").value,
-    };
-    const loginResponse = await API.login(credentials);
-    console.log({ loginResponse });
-    Auth.postLogin(loginResponse, { ...credentials, name: loginResponse.name });
+
+    if (Auth.loginStep == 1) {
+      Auth.checkAuthOptions();
+    } else {
+      // Step 2
+      const credentials = {
+        email: document.getElementById("login_email").value,
+        password: document.getElementById("login_password").value,
+      };
+      const loginResponse = await API.login(credentials);
+      console.log({ loginResponse });
+      Auth.postLogin(loginResponse, {
+        ...credentials,
+        name: loginResponse.name,
+      });
+    }
   },
 
   autoLogin: async () => {
@@ -107,7 +130,12 @@ const Auth = {
         .forEach((e) => (e.style.display = "none"));
     }
   },
-  init: () => {},
+  loginStep: 1,
+  init: () => {
+    Auth.loginStep = 1;
+    document.getElementById("login_section_password").hidden = true;
+    document.getElementById("login_section_webauthn").hidden = true;
+  },
 };
 Auth.updateStatus();
 Auth.autoLogin();
