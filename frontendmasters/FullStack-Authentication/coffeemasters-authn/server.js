@@ -113,6 +113,26 @@ app.post("/auth/login-google", (req, res) => {
   }
 });
 
+app.post("/auth/auth-options", (req, res) => {
+  const user = findUser(req.body.email);
+  console.log({ user });
+
+  if (user) {
+    console.log("User already exists");
+
+    res.send({
+      password: true,
+      google: user.federated && user.federated.google,
+      webauthn: user.webauthn,
+    });
+  } else {
+    console.log("User not found");
+    res.send({
+      password: true,
+    });
+  }
+});
+
 app.get("*", (req, res) => {
   res.sendFile(__dirname + "public/index.html");
 });
