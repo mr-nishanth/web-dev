@@ -24,13 +24,21 @@ const Auth = {
         name: user.name,
       });
       try {
-        navigator.credentials.store(credentials);
+        await navigator.credentials.store(credentials);
       } catch (error) {
         console.log(e);
       }
     }
   },
 
+  loginFromGoogle: async (data) => {
+    // console.log({ data });
+    const response = await API.loginFromGoogle({ credential: data });
+    Auth.postLogin(response, {
+      name: response.name,
+      email: response.email,
+    });
+  },
   register: async (event) => {
     event.preventDefault();
     const user = {
