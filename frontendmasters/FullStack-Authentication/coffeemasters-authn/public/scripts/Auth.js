@@ -81,6 +81,20 @@ const Auth = {
       alert(verificationRes.message);
     }
   },
+  webAuthnLogin: async (optional) => {
+    const email = document.getElementById("login_email").value;
+    const options = await API.webAuthn.loginOptions(email);
+    const loginRes = await SimpleWebAuthnBrowser.startAuthentication(options);
+    const verificationRes = await API.webAuthn.loginVerification(
+      email,
+      loginRes
+    );
+    if (verificationRes) {
+      Auth.postLogin(verificationRes, verificationRes.user);
+    } else {
+      alert(verificationRes.message);
+    }
+  },
   login: async (event) => {
     if (event) event.preventDefault();
 
