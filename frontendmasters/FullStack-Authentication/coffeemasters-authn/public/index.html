@@ -20,6 +20,14 @@
 
     <script src="scripts/app.js" type="module"></script>
 
+    <!-- Google SignIn -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script>
+        function loginFromGoogle(data) {
+            Auth.loginFromGoogle(data)
+        }
+    </script>
+    <!-- end of Google SignIn -->
 </head>
 
 <body>
@@ -86,6 +94,20 @@
                 </p>
 
                 </fieldset>
+
+                <!-- Google SignIn -->
+                <fieldset>
+                    <div id="g_id_onload"
+                        data-client_id="78121488846-7hrttb7poq80fbethpt3gn79ochfkqkd.apps.googleusercontent.com"
+                        data-context="signin" data-ux_mode="popup" data-callback="loginFromGoogle"
+                        data-auto_select="true" data-itp_support="true">
+                    </div>
+
+                    <div class="g_id_signin" data-type="standard" data-shape="rectangular" data-theme="filled_blue"
+                        data-text="signin_with" data-size="large" data-logo_alignment="left">
+                    </div>
+                </fieldset>
+                <!-- end of Google SignIn -->
             </form>
         </section>
 
