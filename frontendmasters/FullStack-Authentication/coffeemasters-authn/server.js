@@ -119,15 +119,14 @@ app.post("/auth/auth-options", (req, res) => {
 
   if (user) {
     console.log("User already exists");
-
-    res.send({
+    return res.send({
       password: true,
-      google: user.federated && user.federated.google,
-      webauthn: user.webauthn,
+      google: user?.federated?.google,
+      webauthn: user?.webauthn,
     });
   } else {
     console.log("User not found");
-    res.send({
+    return res.send({
       password: true,
     });
   }
