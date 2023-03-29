@@ -81,12 +81,24 @@
             <h2>Log In</h2>
 
             <form id="formLogin" onsubmit="Auth.login(event)">
-                <fieldset>
+                <!-- <fieldset>
                     <label for="login_email">Your Email</label>
                     <input type="email" id="login_email" autocapitalize="username" required>
                     <label for="login_password">Password</label>
                     <input type="password" id="login_password" autocomplete="current-password" required>
+                </fieldset> -->
+                <!-- Changing the flow to Identifier-First -->
+                <fieldset>
+                    <label for="login_email">E-mail</label>
+                    <input placeholder="email" id="login_email" required autocomplete="webauthn username">
+                    <section hidden id="login_section_password">
+                        <label for="login_password">Password</label>
+                        <input type="password" id="login_password" autocomplete="webauthn current-password">
+                    </section>
+                    <section hidden id="login_section_webauthn">
+                    </section>
                 </fieldset>
+                <!-- end of Changing the flow to Identifier-First -->
                 <button type="submit">Continue</button>
 
                 <p>
