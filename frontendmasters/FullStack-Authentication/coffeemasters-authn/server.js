@@ -84,18 +84,20 @@ app.post("/auth/login", (req, res) => {
 
 // SignIn With Google
 app.post("/auth/login-google", (req, res) => {
-  let jwt = jwtJsDecode.jwtDecode(req.body.credential);
+  let jwt = jwtJsDecode.jwtDecode(req.body.credential.credential);
   let payload = jwt.payload;
+  console.log({ payload });
   let user = {
     email: payload.email,
     name: payload.given_name + " " + payload.family_name,
     password: false,
   };
-  const userFound = findUser(user.email);
-
+  const userFound = findUser(payload.email);
+  console.log({ userFound });
   if (userFound) {
     // User exists, we update it with the Google data
     user.federated = { google: payload.aud };
+    // db.data.users.push(user);
     db.write();
     res.send({ ok: true, name: user.name, email: userFound.email });
   } else {
