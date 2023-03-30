@@ -61,7 +61,7 @@ const Auth = {
       document.getElementById("login_section_password").hidden = false;
     }
     if (response.webauthn) {
-      document.getElementById("login_section_password").hidden = false;
+      document.getElementById("login_section_webauthn").hidden = false;
     }
   },
   addWebAuthn: async () => {
