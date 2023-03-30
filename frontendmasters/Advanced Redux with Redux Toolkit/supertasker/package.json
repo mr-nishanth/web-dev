@@ -1,6 +1,6 @@
 {
-  "name": "superkanban",
-  "version": "0.1.0",
+  "name": "nishanth",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
     "@babel/core": "^7.21.3",
