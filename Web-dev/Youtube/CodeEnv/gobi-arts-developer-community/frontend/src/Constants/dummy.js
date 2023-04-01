@@ -22,7 +22,7 @@ export const sidebarRoutes = [
     icon: HiOutlineShoppingBag,
   },
   {
-    name: "CodeMedia events",
+    name: "GADC events",
     path: "/events",
     icon: BsCalendar4Event,
   },
