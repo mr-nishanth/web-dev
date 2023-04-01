@@ -14,26 +14,21 @@ const Sidebar = () => {
       </h2>
       <div className="input__container">
         <BiSearch />
-        <input
-          type="text"
-          name=""
-          id=""
-          placeholder="Explore Gobi arts Developer Community"
-        />
-        <ul className="sidebar__routes">
-          {sidebarRoutes.map((route) => (
-            <NavLink to={route.path} key={route.path}>
-              <route.icon />
-              {route.name}
-            </NavLink>
-          ))}
-        </ul>
-        <div className="sidebar__theming" onClick={handleChangeTheme}>
-          <div className="theme">Theme:</div>
-          <div className={`toggle__theme ${theme}`}>
-            <div className="icon">
-              {theme === "dark" ? <BiMoon /> : <BiSun />}
-            </div>
+        <input type="text" placeholder="Explore Dev Community" />
+      </div>
+      <ul className="sidebar__routes">
+        {sidebarRoutes.map((route) => (
+          <NavLink to={route.path} key={route.path}>
+            <route.icon />
+            {route.name}
+          </NavLink>
+        ))}
+      </ul>
+      <div className="sidebar__theming" onClick={handleChangeTheme}>
+        <div className="theme">Theme:</div>
+        <div className={`toggle__theme ${theme}`}>
+          <div className="icon">
+            {theme === "dark" ? <BiMoon /> : <BiSun />}
           </div>
         </div>
       </div>
