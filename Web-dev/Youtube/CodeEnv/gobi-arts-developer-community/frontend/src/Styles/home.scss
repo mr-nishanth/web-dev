@@ -1,25 +1,30 @@
-@import "./constants";
-@import "./variables";
+@import './constants';
+@import './variables';
 
-.app__home{
+.app__home {
     width: 100%;
     display: flex;
     transition: all $trans;
 
-    .home__container{
-        width:  75%;
+    .home__container {
+        width: 75%;
         @include flexDirection(column);
-        gap:$gap;
-        padding-bottom:$gap ;
-        .home__content{
+        gap: $gap;
+        padding-bottom: $gap;
+        .home__content {
             @include flexDirection(row);
-            gap:$gap;
+            gap: $gap;
             padding: 0 $gap;
-            .posts__wrapper__container{
+            .posts__wrapper__container {
                 @include flexDirection(column);
                 width: 70%;
-                gap:$gap;
+                gap: $gap;
             }
+            // TODO: Update home__feedSidebar here (try this later)
+        }
+        .home__feedSidebar {
+            @include flexDirection(column);
+            gap: $gap;
         }
     }
 }
