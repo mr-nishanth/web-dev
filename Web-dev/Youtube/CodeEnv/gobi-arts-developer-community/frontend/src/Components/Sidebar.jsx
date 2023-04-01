@@ -25,7 +25,7 @@ const Sidebar = () => {
         ))}
       </ul>
       <div className="sidebar__theming" onClick={handleChangeTheme}>
-        <div className="theme">Theme:</div>
+        <div className="theme">Theme</div>
         <div className={`toggle__theme ${theme}`}>
           <div className="icon">
             {theme === "dark" ? <BiMoon /> : <BiSun />}
