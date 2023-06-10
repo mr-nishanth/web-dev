@@ -23,4 +23,16 @@ Node Module:
         In Node every-file is module
             The variable and function defined in that file scope of the that module, not available out-side of the module(file) scope
             
-Note Core
+
+Semantics Versioning
+    ^4.12.6
+    Major.Minor.Patch
+
+        Patch -> Bug fix
+        Minor -> Add few features without breaking existing functionality
+        Major -> Add Brand new features 
+
+        ^4.12.6 -> 4.x.x
+        ~4.12.6 -> 4.12.x
+        4.12.6 -> 4.12.6
+
