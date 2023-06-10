@@ -1,0 +1,26 @@
+Node Module:
+    os
+    fs
+    events
+    http
+
+    Global Object [console.log(),setTimeout(),clearTimeout(),setInterval(),clearInterval()]{window is top-level Global Object}
+    eg:
+        window.setInterval()
+        var message = "",
+        window.message // we can access the message variable in the global object and set the message variable in the global object
+
+        Note:
+        In Node does not support window object instead of use global object 
+            global.setInterval()
+            global.message // throw error because of NODE MODULAR SYSTEM, messsage variable only for current file
+
+
+        Module seems to be global object but it is not a global object 
+        ```js
+            console.log(module)
+        ```
+        In Node every-file is module
+            The variable and function defined in that file scope of the that module, not available out-side of the module(file) scope
+            
+Note Core
