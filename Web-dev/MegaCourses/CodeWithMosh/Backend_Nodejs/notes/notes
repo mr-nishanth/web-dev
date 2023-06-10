@@ -49,3 +49,12 @@ npm outdated
 npm update
 npm i -g npm-check-updates
 npm-check-updates [ncu -u](update the current version to package.json)
+
+Published Package
+npm login
+npm publish
+
+    increment the version number
+    npm version patch
+    npm version minor
+    npm version major
