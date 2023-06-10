@@ -36,3 +36,11 @@ Semantics Versioning
         ~4.12.6 -> 4.12.x
         4.12.6 -> 4.12.6
 
+Viewing Registry Info for a Package
+
+npm list
+npm list -g
+npm list depth=0
+npm list depth=1
+npm view <Package>
+npm view <Package> version
