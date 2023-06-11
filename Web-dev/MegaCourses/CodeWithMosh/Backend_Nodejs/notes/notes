@@ -79,3 +79,40 @@ setx app_password "mr-nishanth" // TODO: not sure its work
     https://github.com/node-config/node-config/wiki/Environment-Variables
 
     https://expressjs.com/en/guide/database-integration.html
+
+09 Mongoose - Modeling Relationship between Conneted Data
+
+
+// Trade off between query performance vs consistency
+
+    1.  Using Reference (Normalization) -> CONSISTENCY
+
+        let author = {
+            name: "Nishanth"
+        }
+
+        let course = {
+            author:"id"
+        }
+
+    2. Using Embedded Document (De-normalization) -> PERFORMANCE
+
+        let course = {
+            author: {
+                name: "Nishanth"
+            }
+        }
+
+    3.  Hybrid
+
+        let author = {
+            name: "Nishanth"
+            // 50 other properties
+        }
+
+        let course = {
+            author: {
+                id:"reference",
+                name: "Nishanth"
+            }
+        }
