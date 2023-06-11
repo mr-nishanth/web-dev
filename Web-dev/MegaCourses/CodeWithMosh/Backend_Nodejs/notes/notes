@@ -58,3 +58,22 @@ npm publish
     npm version patch
     npm version minor
     npm version major
+
+
+Request Processing Pipeline
+
+POST Req
+            req -> json() -> route() -> res
+
+Environments
+    ```
+    console.log(`NODE_ENV ${process.env.NODE_ENV}`);
+    console.log(`Application ${app.get('env')}`);
+    if (app.get('env') === 'development') {
+        app.use(morgan('dev'));
+    }
+    ```    
+
+setx app_password "mr-nishanth" // TODO: not sure its work
+
+    https://github.com/node-config/node-config/wiki/Environment-Variables
