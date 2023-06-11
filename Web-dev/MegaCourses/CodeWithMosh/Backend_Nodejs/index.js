@@ -1,3 +1,6 @@
+const startupDebugger = require('debug')('app:startup');
+const dbDebugger = require('debug')('app:db');
+
 require('dotenv').config();
 const config = require('config');
 const express = require('express');
@@ -27,8 +30,12 @@ if (
 }
 
 if (app.get('env') === 'development') {
+    startupDebugger('Morgan enabled');
     app.use(morgan('dev'));
 }
+
+// DB Work
+dbDebugger('Connecting to database');
 
 const port = process.env.PORT ?? 3500;
 app.listen(port, () => {
