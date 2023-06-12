@@ -1,7 +1,7 @@
 'use client';
 import { useRef } from 'react';
 import { Toaster, toast } from 'react-hot-toast';
-
+import { useRouter } from 'next/navigation';
 const postBlog = async ({
     title,
     description,
@@ -21,6 +21,7 @@ const postBlog = async ({
 const AddBlog = () => {
     const titleRef = useRef<HTMLInputElement | null>(null);
     const descriptionRef = useRef<HTMLTextAreaElement | null>(null);
+    const router = useRouter();
 
     const handleSubmit = async (e: any) => {
         e.preventDefault();
@@ -28,12 +29,20 @@ const AddBlog = () => {
         console.log(descriptionRef.current?.value);
 
         if (titleRef.current && descriptionRef.current) {
-            toast.loading('Adding Blog 🚀', { id: '1' });
-            await postBlog({
-                title: titleRef.current?.value,
-                description: descriptionRef.current?.value,
-            });
-            toast.success('Blog posted successfully 🥳', { id: '1' });
+            try {
+                toast.loading('Adding Blog 🚀', { id: '1' });
+                await postBlog({
+                    title: titleRef.current?.value,
+                    description: descriptionRef.current?.value,
+                });
+                toast.success('Blog posted successfully 🥳', { id: '1' });
+                router.push('/');
+            } catch (error) {
+                toast.error('Error in while posting Blog 🥲', {
+                    id: '1',
+                });
+                console.log(error);
+            }
         }
     };
     return (
