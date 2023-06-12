@@ -7,3 +7,7 @@ npm i prisma -D
 5.  npx prisma db push (push the scheme to the database)
 
 npm i @prisma/client --save
+
+
+https://www.prisma.io/docs/getting-started/quickstart
+https://www.prisma.io/docs/reference/api-reference/error-reference
