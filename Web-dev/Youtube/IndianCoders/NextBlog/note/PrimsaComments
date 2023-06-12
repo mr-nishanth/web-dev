@@ -1,0 +1,9 @@
+npm i prisma -D
+
+1.  npx prisma init
+2.  Configure the database
+3.  Write Model
+4.  npx prisma generate (sync our application to the database)
+5.  npx prisma db push (push the scheme to the database)
+
+npm i @prisma/client --save
