@@ -176,3 +176,8 @@ const view = (componentName) =>{
 </script>
 
 ```
+
+### Layouts Directory
+
+- Nuxt provides a customizable layouts framework you can use throughout your application, ideal for extracting common UI or code patterns into reusable layout components
+- Nuxt 1st look layouts directory before pages directory
