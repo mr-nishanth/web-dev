@@ -143,3 +143,36 @@ const view = (componentName) =>{
 </script>
 
 ```
+
+## Routing
+
+- One core feature of Nuxt is the file system router. Every Vue file inside the pages/ directory creates a corresponding URL (or route) that displays the contents of the file. By using dynamic imports for each page, Nuxt leverages code-splitting to ship the minimum amount of JavaScript for the requested route.
+- Nuxt routing is based on vue-router and generates the routes from every component created in the pages/ directory, based on their filename.
+- If you are using app.vue,make sure to use the <NuxtPage/> component to display the current page
+
+
+## Page Navigation
+
+- To navigate between pages of your application,you  should use the <NuxtLink> component
+- Nuxt3 allows programmatic navigation through the navigateTo() utility method
+- Ensure that Pages must have a single root element to allow route transitions between pages
+
+```vue
+
+<template>
+    <div><NuxtLink to="/">Home</NuxtLink>
+    <NuxtLink to="/about">About</NuxtLink>
+
+    <h1>Home Page by Nishanth</h1>
+
+    <button @click="moveToAbout">Take me to About Page</button>
+    </div>
+</template>
+
+<script setup>
+ function moveToAbout() {
+    navigateTo("about")
+ }
+</script>
+
+```
