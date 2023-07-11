@@ -1,8 +1,16 @@
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Feed from './pages/Feed';
+
 function App() {
     return (
-        <div>
-            <h1>Hello</h1>
-        </div>
+        <Router>
+            <Routes>
+                <Route
+                    path='/'
+                    element={<Feed />}
+                ></Route>
+            </Routes>
+        </Router>
     );
 }
 
