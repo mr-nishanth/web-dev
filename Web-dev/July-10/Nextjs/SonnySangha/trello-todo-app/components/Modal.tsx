@@ -15,27 +15,34 @@ function Modal() {
         state.closeModal,
     ]);
 
-    const [newTaskInput, setNewTaskInput, image, setImage] = useBoardStore(
-        (state) => [
-            state.newTaskInput,
-            state.setNewTaskInput,
-            state.image,
-            state.setImage,
-        ]
-    );
+    const [
+        newTaskInput,
+        setNewTaskInput,
+        image,
+        setImage,
+        addTask,
+        newTaskType,
+    ] = useBoardStore((state) => [
+        state.newTaskInput,
+        state.setNewTaskInput,
+        state.image,
+        state.setImage,
+        state.addTask,
+        state.newTaskType,
+    ]);
 
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (!newTaskInput) return;
 
         // Add Task
+        addTask(newTaskInput, newTaskType, image);
 
         setImage(null);
         closeModal();
     };
 
     return (
-        // Use the `Transition` component at the root level
         <Transition
             appear
             show={isOpen}
@@ -47,10 +54,6 @@ function Modal() {
                 className='relative z-10'
                 onClose={closeModal}
             >
-                {/*
-          Use one Transition.Child to apply one transition to the backdrop...
-        */}
-
                 <Transition.Child
                     as={Fragment}
                     enter='ease-out duration-300'
