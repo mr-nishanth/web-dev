@@ -1,5 +1,4 @@
 import { databases } from '@/appwrite';
-import { Board, Column, TypedColumn } from '@/typing';
 
 export const getTodosGroupByColumn = async () => {
     // Pull the information from database
