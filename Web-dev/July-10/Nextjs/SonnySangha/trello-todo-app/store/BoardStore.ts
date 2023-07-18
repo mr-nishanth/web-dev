@@ -1,10 +1,10 @@
-import { getTodosGroupByColumn } from '@/libs/getTodosGroupByColumn';
-import { Board, Column, TypedColumn } from '@/typing';
+import { getTodosGroupByColumn } from '@/utils/getTodosGroupByColumn';
 import { create } from 'zustand';
 
 interface BoardStore {
     board: Board;
-    getBoard: () => void;
+    getBoard: () => Promise<void>;
+    setBoardState: (board: Board) => void;
 }
 
 export const useBoardStore = create<BoardStore>((set) => ({
@@ -15,4 +15,6 @@ export const useBoardStore = create<BoardStore>((set) => ({
         const board = await getTodosGroupByColumn();
         set({ board });
     },
+
+    setBoardState: (board) => set({ board }),
 }));
