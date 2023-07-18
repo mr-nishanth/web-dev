@@ -19,6 +19,12 @@ interface BoardStore {
 
     newTaskInput: string;
     setNewTaskInput: (newTaskInput: string) => void;
+
+    newTaskType: TypedColumn;
+    setNewTaskType: (columnId: TypedColumn) => void;
+
+    image: File | null;
+    setImage: (image: File | null) => void;
 }
 
 export const useBoardStore = create<BoardStore>((set, get) => ({
@@ -68,6 +74,11 @@ export const useBoardStore = create<BoardStore>((set, get) => ({
     },
 
     newTaskInput: '',
-
     setNewTaskInput: (newTaskInput: string) => set({ newTaskInput }),
+
+    newTaskType: 'todo',
+    setNewTaskType: (columnId: TypedColumn) => set({ newTaskType: columnId }),
+
+    image: null,
+    setImage: (image: File | null) => set({ image }),
 }));
