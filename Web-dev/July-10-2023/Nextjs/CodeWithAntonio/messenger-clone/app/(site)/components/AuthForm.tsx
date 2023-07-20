@@ -107,8 +107,8 @@ function AuthForm() {
             redirect: false,
         })
             .then((response) => {
-                const ACTION = `${action}_ERROR`;
-                console.log({ ACTION: response?.error });
+                console.log(`${action.toUpperCase()}_ERROR ${response?.error}`);
+
                 if (response?.error) {
                     const message = response?.error ?? 'Invalid credentials';
                     toast.error(message);
