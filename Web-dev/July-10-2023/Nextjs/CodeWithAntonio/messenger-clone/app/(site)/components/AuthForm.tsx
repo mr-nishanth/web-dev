@@ -88,6 +88,21 @@ function AuthForm() {
         setIsLoading(true);
 
         // NextAuth Social SignIn
+        signIn(action, {
+            redirect: false,
+        })
+            .then((response) => {
+                const ACTION = `${action}_ERROR`;
+                console.log({ ACTION: response?.error });
+                if (response?.error) {
+                    const message = response?.error ?? 'Invalid credentials';
+                    toast.error(message);
+                }
+                if (response?.ok && !response?.error) {
+                    toast.success('Logged In!');
+                }
+            })
+            .finally(() => setIsLoading(false));
     };
 
     return (
