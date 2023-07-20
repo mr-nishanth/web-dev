@@ -1,5 +1,8 @@
 'use client';
 
+import axios from 'axios';
+import { toast } from 'react-hot-toast';
+import { signIn } from 'next-auth/react';
 import Button from '@/app/components/Button';
 import Input from '@/app/components/inputs/Input';
 import { useCallback, useState } from 'react';
@@ -33,15 +36,51 @@ function AuthForm() {
         },
     });
 
-    const onSubmit: SubmitHandler<FieldValues> = (data) => {
+    const onSubmit: SubmitHandler<FieldValues> = async (data) => {
         setIsLoading(true);
 
         if (variant === 'REGISTER') {
-            // Axios Registration
+            console.log({ REGISTERED_DATA: data });
+            // try {
+            //     if (!data) return toast.error('Please fill all fields');
+            //     const { data: any } = await axios.post('/api/register', data);
+            //     toast.success('Registration successfully ');
+            // } catch (error) {
+            //     console.log({ REGISTERED_ERROR: error });
+            //     toast.error('Something went wrong!, Please try again');
+            // }
+            // setIsLoading(false);
+
+            await axios
+                .post('/api/register', data)
+                .then(() => toast.success('Registration successfully '))
+                .catch((error) => {
+                    console.log({ REGISTERED_ERROR: error });
+                    toast.error('Something went wrong!, Please try again');
+                })
+                .finally(() => setIsLoading(false));
         }
 
         if (variant === 'LOGIN') {
+            console.log({ LOGIN_DATA: data });
             // NextAuth SignIn
+            signIn('credentials', {
+                ...data,
+                redirect: false,
+            })
+                .then((response) => {
+                    if (response?.error) {
+                        console.log({ LOGIN_ERROR: response?.error });
+                        const message =
+                            response?.error ?? 'Invalid credentials';
+                        toast.error(message);
+                    }
+
+                    if (response?.ok && !response?.error) {
+                        toast.success('Logged In');
+                    }
+                })
+                .finally(() => setIsLoading(false));
         }
     };
 
@@ -78,7 +117,7 @@ function AuthForm() {
                     />
                     <Input
                         label='Password'
-                        id='Password'
+                        id='password'
                         type='password'
                         register={register}
                         errors={errors}
